@@ -21,9 +21,6 @@ cd d:\src
 ```cmd
 Frontend:  
 git clone https://github.com/Eco-crew/GreenCup_FE.git  
-  
-Backend:  
-git clone https://github.com/Eco-crew/GreenCup_BE.git  
 ```
 ### 4. 클론 후 디렉토리 구조  
 ```cmd

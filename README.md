@@ -19,7 +19,6 @@ cd d:\src
 ```
 ### 3. 원격 저장소 클론  
 ```cmd
-Frontend:  
 git clone https://github.com/Eco-crew/GreenCup_FE.git  
 ```
 ### 4. 클론 후 디렉토리 구조  
@@ -48,7 +47,6 @@ cd d:\src
 ```
 ### 3. Clone the repositories
 ```cmd
-Frontend:  
 git clone https://github.com/Eco-crew/GreenCup_FE.git  
 ```
 ### 4. Resulting directory structure  

@@ -1,3 +1,5 @@
+import './ReuseOperatorPartnerManageDetailPage.css';
+
 export default function ReuseOperatorPartnerManageDetailPage(){
     return(
         <>

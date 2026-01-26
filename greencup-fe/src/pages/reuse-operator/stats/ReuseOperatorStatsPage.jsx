@@ -1,3 +1,5 @@
+import './ReuseOperatorStatsPage.css';
+
 export default function ReuseOperatorStatsPage(){
     return(
         <>

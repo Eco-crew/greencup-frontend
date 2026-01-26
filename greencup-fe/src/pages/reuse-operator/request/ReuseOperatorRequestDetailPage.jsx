@@ -1,3 +1,5 @@
+import './ReuseOperatorRequestDetailPage.css';
+
 export default function ReuseOperatorRequestDetailPage(){
     return(
         <>

@@ -23,15 +23,49 @@ function App() {
     background: isActive ? "rgba(0,0,0,0.08)" : "transparent",
   });
 
+  const REUSE_OPERATOR = "reuseOperator";
+  const PARTNER = "partner";
+
+  //현재 로그인한 사용자가 수거지점장이냐 제휴지점장이냐
+  //현재 로그인 없으니 임의로 설정
+  const loginUser = REUSE_OPERATOR;
+
+  //수거지점장일 경우, 제휴 지점장일 경우 메뉴 목록
+  const bigMenu = {
+    reuseOperator: ["요청 현황", "대여 현황", "수거 목록 통계"],
+    partner: ["대여 관리", "대여 기록", "요청 및 반납 통계"],
+  };
+
   return (
     <>
       <div className="fixedBar">
         <div className="fixedBarContentCenter">
           <header className="fixedBarHeader">
             <nav className="fixedBarNav">
-              <NavLink to="/" className="fixedBarNavLink" style={linkStyle}>
+              {loginUser === REUSE_OPERATOR
+                ? bigMenu.reuseOperator.map((menu) => (
+                    <NavLink
+                      key={menu}
+                      to="/"
+                      className="fixedBarNavLink"
+                      style={linkStyle}
+                    >
+                      {menu}
+                    </NavLink>
+                  ))
+                : bigMenu.partner.map((menu) => (
+                    <NavLink
+                      key={menu}
+                      to="/"
+                      className="fixedBarNavLink"
+                      style={linkStyle}
+                    >
+                      {menu}
+                    </NavLink>
+                  ))}
+              {/* <NavLink to="/" className="fixedBarNavLink" style={linkStyle}>
                 Home
-              </NavLink>
+              </NavLink> */}
             </nav>
           </header>
         </div>

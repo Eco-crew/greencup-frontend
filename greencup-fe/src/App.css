@@ -1,2 +1,39 @@
+.fixedBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px; /* 헤더 높이 */
+  background-color: white;
+  z-index: 1000;
+  border-bottom: 1px solid #eee;
+}
 
+.fixedBarContentCenter {
+  max-width: 800px;
+  min-height: 200px;
+  margin: 0 auto;
+  padding: 16px;
+}
 
+.fixedBarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.fixedBarNav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.fixedBarNavLink{
+    padding: 8px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+}

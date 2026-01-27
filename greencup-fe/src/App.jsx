@@ -19,8 +19,9 @@ import PartnerStatsPage from "./pages/partner/stats/PartnerStatsPage";
 function App() {
   const [count, setCount] = useState(0);
 
+  //필요시 주석풀고 커스텀할것
   const linkStyle = ({ isActive }) => ({
-    background: isActive ? "rgba(0,0,0,0.08)" : "transparent",
+    // background: isActive ? "rgba(0,0,0,0.08)" : "transparent",
   });
 
   const REUSE_OPERATOR = "reuseOperator";
@@ -40,6 +41,22 @@ function App() {
     <>
       <div className="fixedBar">
         <div className="fixedBarContentCenter">
+          <div id="top_container">
+            <div id="logo_container">
+              <div>로고</div>
+              <div>GreenCup</div>
+            </div>
+            
+            <div id="login_info">
+              <div id="login_name">
+                <div>img</div><div>김수거님</div>
+              </div>
+              <div>고객지원</div>
+              <div>로그아웃</div>
+            </div>
+            
+          </div>
+
           <header className="fixedBarHeader">
             <nav className="fixedBarNav">
               {loginUser === REUSE_OPERATOR

@@ -6,34 +6,75 @@
   height: 200px; /* 헤더 높이 */
   background-color: white;
   z-index: 1000;
-  border-bottom: 1px solid #eee;
+}
+
+#top_container{
+  display:flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding:0px 16px;
+  height:100px;
+}
+
+#logo_container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap:30px;
+
+  height:100px;
+}
+
+#login_info{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap:30px;
+
+  height:50px;
+}
+
+#login_name{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
 }
 
 .fixedBarContentCenter {
-  max-width: 800px;
+  min-width: 300px;
   min-height: 200px;
+  
   margin: 0 auto;
-  padding: 16px;
+  padding: 16px 0px;
 }
 
 .fixedBarHeader {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 12px;
+
+  margin:0 auto;
+
+  background-color: #5aa54b;
 }
 
 .fixedBarNav {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
+
   padding: 12px;
-  border-bottom: 1px solid #eee;
+
+  /* border-bottom: 1px solid #eee; */
 }
 
 .fixedBarNavLink{
     padding: 8px 10px;
-    border-radius: 10px;
+   
     text-decoration: none;
-    color: inherit;
+    color: white;
+
 }

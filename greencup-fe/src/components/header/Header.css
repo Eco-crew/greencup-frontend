@@ -1,0 +1,28 @@
+.fixedBarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  margin:0 auto;
+
+  background-color: #5aa54b;
+}
+
+.fixedBarNav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  padding: 12px;
+
+  /* border-bottom: 1px solid #eee; */
+}
+
+.fixedBarNavLink{
+    padding: 8px 10px;
+   
+    text-decoration: none;
+    color: white;
+
+}

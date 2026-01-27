@@ -1,0 +1,33 @@
+#top_container{
+  display:flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding:0px 16px;
+  height:100px;
+}
+
+#logo_container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap:30px;
+
+  height:100px;
+}
+
+#login_info{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap:30px;
+
+  height:50px;
+}
+
+#login_name{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+}

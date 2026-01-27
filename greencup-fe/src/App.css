@@ -8,40 +8,6 @@
   z-index: 1000;
 }
 
-#top_container{
-  display:flex;
-  justify-content: space-between;
-  align-items: flex-start;
-
-  padding:0px 16px;
-  height:100px;
-}
-
-#logo_container{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  gap:30px;
-
-  height:100px;
-}
-
-#login_info{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  gap:30px;
-
-  height:50px;
-}
-
-#login_name{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  gap:10px;
-}
-
 .fixedBarContentCenter {
   min-width: 300px;
   min-height: 200px;
@@ -50,31 +16,4 @@
   padding: 16px 0px;
 }
 
-.fixedBarHeader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
 
-  margin:0 auto;
-
-  background-color: #5aa54b;
-}
-
-.fixedBarNav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-
-  padding: 12px;
-
-  /* border-bottom: 1px solid #eee; */
-}
-
-.fixedBarNavLink{
-    padding: 8px 10px;
-   
-    text-decoration: none;
-    color: white;
-
-}

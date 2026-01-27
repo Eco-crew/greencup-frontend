@@ -2,6 +2,10 @@ import { useState } from "react";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 
 import "./App.css";
+import { REUSE_OPERATOR, PARTNER } from "./util/constant";
+
+import TopContainer from "./components/topcontainer/TopContainer";
+import Header from "./components/header/Header";
 
 import HomePage from "./pages/home/HomePage";
 import NotFound from "./pages/not-found/NotFound";
@@ -24,9 +28,6 @@ function App() {
     // background: isActive ? "rgba(0,0,0,0.08)" : "transparent",
   });
 
-  const REUSE_OPERATOR = "reuseOperator";
-  const PARTNER = "partner";
-
   //현재 로그인한 사용자가 수거지점장이냐 제휴지점장이냐
   //현재 로그인 없으니 임의로 설정
   const loginUser = REUSE_OPERATOR;
@@ -41,50 +42,12 @@ function App() {
     <>
       <div className="fixedBar">
         <div className="fixedBarContentCenter">
-          <div id="top_container">
-            <div id="logo_container">
-              <div>로고</div>
-              <div>GreenCup</div>
-            </div>
-            
-            <div id="login_info">
-              <div id="login_name">
-                <div>img</div><div>김수거님</div>
-              </div>
-              <div>고객지원</div>
-              <div>로그아웃</div>
-            </div>
-            
-          </div>
-
-          <header className="fixedBarHeader">
-            <nav className="fixedBarNav">
-              {loginUser === REUSE_OPERATOR
-                ? bigMenu.reuseOperator.map((menu) => (
-                    <NavLink
-                      key={menu}
-                      to="/"
-                      className="fixedBarNavLink"
-                      style={linkStyle}
-                    >
-                      {menu}
-                    </NavLink>
-                  ))
-                : bigMenu.partner.map((menu) => (
-                    <NavLink
-                      key={menu}
-                      to="/"
-                      className="fixedBarNavLink"
-                      style={linkStyle}
-                    >
-                      {menu}
-                    </NavLink>
-                  ))}
-              {/* <NavLink to="/" className="fixedBarNavLink" style={linkStyle}>
-                Home
-              </NavLink> */}
-            </nav>
-          </header>
+          <TopContainer />
+          <Header
+            loginUser={loginUser}
+            bigMenu={bigMenu}
+            linkStyle={linkStyle}
+          />
         </div>
       </div>
 

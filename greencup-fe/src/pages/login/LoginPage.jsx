@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import './LoginPage.css';
 
 //인증 모듈에서 로그인/로그아웃 등등 가져오기
@@ -7,10 +9,18 @@ import {REUSE_OPERATOR,PARTNER} from '../../util/constant';
 export default function LoginPage(){
     const { isAuthed, user, login } = useAuth();
     
+    const [loginInput, setLoginInput] = useState({id:'',pw:''});
+    
+    const inputChange = (name,value) =>{
+        setLoginInput(prev=>({...prev, [name]:value}));
+    } 
+
     const tryLogin = () => {
         //현재 로그인한 사용자가 수거지점장이냐 제휴지점장이냐
-        //현재 로그인 없으니 임의로 설정
+        //현재 로그인 백엔드 없으니 임의로 설정
         const nextUser = {role:REUSE_OPERATOR};
+
+        //fetch로 백엔드 로그인 확인을 거친후
         login(nextUser);
     }
     
@@ -28,8 +38,8 @@ export default function LoginPage(){
 
             <div id="loginbox_container">
                 <div className="loginbox_subcontainer">
-                    <input name="login_id" id="login_id" className="login_input" placeholder="아이디를 입력해주세요."/>
-                    <input name="login_pw" id="login_pw" className="login_input" placeholder="비밀번호를 입력해주세요."/>
+                    <input name="id" id="login_id" className="login_input" placeholder="아이디를 입력해주세요." onChange={(e)=>{inputChange(e.target.name, e.target.value)}}/>
+                    <input name="pw" id="login_pw" className="login_input" placeholder="비밀번호를 입력해주세요." onChange={(e)=>{inputChange(e.target.name, e.target.value)}}/>
                     
                 </div>
                 <div className="loginbox_subcontainer">

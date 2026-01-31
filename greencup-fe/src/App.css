@@ -1,3 +1,15 @@
+.wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.main{
+  /* 헤더 높이만큼 밀기 */
+  margin-top: 200px;
+  /* 남는 공간을 다 차지 */
+  flex:1;
+}
+
 .fixedBar {
   position: fixed;
   top: 0;

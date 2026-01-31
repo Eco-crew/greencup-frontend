@@ -6,8 +6,9 @@ import { REUSE_OPERATOR, PARTNER } from "./util/constant";
 
 import TopContainer from "./components/topcontainer/TopContainer";
 import Header from "./components/header/Header";
-
 import Footer from "./components/footer/Footer";
+
+import LoginPage from "./pages/login/LoginPage";
 
 import HomePage from "./pages/home/HomePage";
 import NotFound from "./pages/not-found/NotFound";
@@ -42,73 +43,74 @@ function App() {
 
   return (
     <>
-      <div className="fixedBar">
-        <div className="fixedBarContentCenter">
-          <TopContainer />
-          <Header
-            loginUser={loginUser}
-            bigMenu={bigMenu}
-            linkStyle={linkStyle}
-          />
+      <div className="wrapper">
+        <div className="fixedBar">
+          <div className="fixedBarContentCenter">
+            <TopContainer />
+            <Header
+              loginUser={loginUser}
+              bigMenu={bigMenu}
+              linkStyle={linkStyle}
+            />
+          </div>
         </div>
+
+        <main className="main">
+          {/* <main> */}
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+
+            {/* 주의사항: 자식은 상대경로로 쓴다 */}
+            {/* 수거지점장 */}
+            <Route path="/reuse-operator">
+              {/* 요청받은 현황들 */}
+              <Route path="requests" element={<ReuseOperatorRequestPage />} />
+              {/* 요청받은 현황들 상세페이지 */}
+              <Route
+                path="requests/:requestId"
+                element={<ReuseOperatorRequestDetailPage />}
+              />
+              {/* 업체관리 페이지 */}
+              <Route
+                path="partner-manage"
+                element={<ReuseOperatorPartnerManagePage />}
+              />
+              {/* 업체관리 상세 페이지 */}
+              <Route
+                path="partner-manage/:partnerId"
+                element={<ReuseOperatorPartnerManageDetailPage />}
+              />
+              {/* 수거목록 통계 페이지 */}
+              <Route path="stats" element={<ReuseOperatorStatsPage />} />
+            </Route>
+
+            {/* 제휴 지점장 */}
+            <Route path="/partner">
+              {/* 대여 관리 및 수정 */}
+              <Route
+                path="request-settings"
+                element={<PartnerRequestSettingsPage />}
+              />
+              {/*전체 목록, 요청중인 목록, 대여 및 반납 완료된 목록, 취소한 목록,*/}
+              <Route path="requests" element={<PartnerRequestsPage />} />
+              {/* 이용 통계 페이지 */}
+              <Route path="stats" element={<PartnerStatsPage />} />
+            </Route>
+
+            {/* 후순위-마이페이지 */}
+            <Route path="/me">
+              <Route path="reuse-operator" />
+              <Route path="partner" />
+            </Route>
+
+            {/* 404 페이지 */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+
+        <Footer />
       </div>
-
-      {/* 헤더 높이만큼 밀기 */}
-      <main style={{ marginTop: 200 }}>
-        {/* <main> */}
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          {/* <Route path="/login" element={<LoginPage />} /> */}
-
-          {/* 주의사항: 자식은 상대경로로 쓴다 */}
-          {/* 수거지점장 */}
-          <Route path="/reuse-operator">
-            {/* 요청받은 현황들 */}
-            <Route path="requests" element={<ReuseOperatorRequestPage />} />
-            {/* 요청받은 현황들 상세페이지 */}
-            <Route
-              path="requests/:requestId"
-              element={<ReuseOperatorRequestDetailPage />}
-            />
-            {/* 업체관리 페이지 */}
-            <Route
-              path="partner-manage"
-              element={<ReuseOperatorPartnerManagePage />}
-            />
-            {/* 업체관리 상세 페이지 */}
-            <Route
-              path="partner-manage/:partnerId"
-              element={<ReuseOperatorPartnerManageDetailPage />}
-            />
-            {/* 수거목록 통계 페이지 */}
-            <Route path="stats" element={<ReuseOperatorStatsPage />} />
-          </Route>
-
-          {/* 제휴 지점장 */}
-          <Route path="/partner">
-            {/* 대여 관리 및 수정 */}
-            <Route
-              path="request-settings"
-              element={<PartnerRequestSettingsPage />}
-            />
-            {/*전체 목록, 요청중인 목록, 대여 및 반납 완료된 목록, 취소한 목록,*/}
-            <Route path="requests" element={<PartnerRequestsPage />} />
-            {/* 이용 통계 페이지 */}
-            <Route path="stats" element={<PartnerStatsPage />} />
-          </Route>
-
-          {/* 후순위-마이페이지 */}
-          <Route path="/me">
-            <Route path="reuse-operator" />
-            <Route path="partner" />
-          </Route>
-
-          {/* 404 페이지 */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-
-      <Footer/>
     </>
   );
 }

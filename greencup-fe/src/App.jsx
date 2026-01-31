@@ -4,11 +4,13 @@ import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import { REUSE_OPERATOR, PARTNER } from "./util/constant";
 
+import LoginPage from "./pages/login/LoginPage";
+//인증 모듈에서 로그인/로그아웃 등등 가져오기
+import { useAuth } from './auth/AuthProvider.jsx';
+
 import TopContainer from "./components/topcontainer/TopContainer";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-
-import LoginPage from "./pages/login/LoginPage";
 
 import HomePage from "./pages/home/HomePage";
 import NotFound from "./pages/not-found/NotFound";
@@ -24,21 +26,19 @@ import PartnerRequestsPage from "./pages/partner/request/PartnerRequestsPage";
 import PartnerStatsPage from "./pages/partner/stats/PartnerStatsPage";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { isAuthed, user, logout } = useAuth();
 
   //필요시 주석풀고 커스텀할것
   const linkStyle = ({ isActive }) => ({
     // background: isActive ? "rgba(0,0,0,0.08)" : "transparent",
   });
 
-  //현재 로그인한 사용자가 수거지점장이냐 제휴지점장이냐
-  //현재 로그인 없으니 임의로 설정
-  const loginUser = REUSE_OPERATOR;
 
   //수거지점장일 경우, 제휴 지점장일 경우 메뉴 목록
   const bigMenu = {
     reuseOperator: ["요청 현황", "대여 현황", "수거 목록 통계"],
     partner: ["대여 관리", "대여 기록", "요청 및 반납 통계"],
+    noLogin: ["서비스 소개", "컵수거 시스템", "공지사항", "소통 게시판"],
   };
 
   return (
@@ -46,9 +46,9 @@ function App() {
       <div className="wrapper">
         <div className="fixedBar">
           <div className="fixedBarContentCenter">
-            <TopContainer />
+            <TopContainer logout={logout}/>
             <Header
-              loginUser={loginUser}
+              loginUser={user}
               bigMenu={bigMenu}
               linkStyle={linkStyle}
             />

@@ -1,6 +1,6 @@
 import './TopContainer.css';
 
-export default function TopContainer() {
+export default function TopContainer({logout}) {
   return (
     <>
       <div id="top_container">
@@ -15,7 +15,7 @@ export default function TopContainer() {
             <div>김수거님</div>
           </div>
           <div>고객지원</div>
-          <div>로그아웃</div>
+          <div onClick={()=>{logout()}}>로그아웃</div>
         </div>
       </div>
     </>

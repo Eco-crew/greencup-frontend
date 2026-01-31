@@ -2,7 +2,7 @@
   margin: 0 auto;
 
   width: 50%;
-  height: 800px;
+  height: 650px;
 }
 
 #login_greencup_container {
@@ -25,11 +25,11 @@
 
 #loginbox_container {
   width: 100%;
-  height: 500px;
+  height: 400px;
 }
 
-.loginbox_subcontainer{
-    margin-top:20px;
+.loginbox_subcontainer {
+  margin-top: 20px;
 }
 
 .login_input {
@@ -37,13 +37,28 @@
   width: 100%;
   height: 50px;
 
-  margin-top:20px;
+  margin-top: 20px;
 }
 
-.id_store{
-    margin-left:20px;
+.id_store {
+  margin-left: 20px;
 }
 
-#default_login{
-    
+#default_login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 50px;
+  margin-top: 20px;
+}
+
+#naver_login {
+  height: 50px;
+  margin-top: 20px;
+
+  background-image: url("/img/login/NAVER_login_Light_KR_green_wide_H48.png");
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 }

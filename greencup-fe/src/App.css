@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 200px; /* 헤더 높이 */
+  height: 200px; /* 총 헤더 높이 */
   background-color: white;
   z-index: 1000;
 }

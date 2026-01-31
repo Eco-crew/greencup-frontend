@@ -1,0 +1,10 @@
+.footer {
+  min-width: 300px;
+  min-height: 100px;
+
+  margin: 0px auto;
+  margin-top:16px;
+  padding:16px 0px;
+
+  background-color: gray;
+}

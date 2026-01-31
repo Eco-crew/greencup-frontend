@@ -7,6 +7,8 @@ import { REUSE_OPERATOR, PARTNER } from "./util/constant";
 import TopContainer from "./components/topcontainer/TopContainer";
 import Header from "./components/header/Header";
 
+import Footer from "./components/footer/Footer";
+
 import HomePage from "./pages/home/HomePage";
 import NotFound from "./pages/not-found/NotFound";
 
@@ -105,6 +107,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+
+      <Footer/>
     </>
   );
 }

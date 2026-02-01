@@ -1,15 +1,10 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "./PercentBar.css";
 
 //수거현황 퍼센트바
 //ReuseOperatorRequestPage에서 fetch로 받은 결과이다
 export default function PercentBar({ totalRequest, completedRequest }) {
-  //로그인한 수거지점장에게 온 전체 요청갯수
-  //const [totalRequest,setTotalRequest] = useState(0);
-  //로그인한 수거지점장이 완료한 요청갯수
-  //const [completedRequest,setCompletedRequest] = useState(0);
-
   const containerRef = useRef(null);
   const textRef = useRef(null);
   //초록 프로그래스바의 width
@@ -25,36 +20,53 @@ export default function PercentBar({ totalRequest, completedRequest }) {
     console.log(currentPercent);
     setPercent(currentPercent);
 
-    //getBoundingClientRect => dom의 실제 정보
+    //getBoundingClientRect => dom의 실제 정보 => 미디어 쿼리시에도 적용되게끔
     const updateWidth = () => {
       if (containerRef.current) {
         let parentWidth = containerRef.current.getBoundingClientRect().width;
         console.log(parentWidth);
-        console.log(Math.floor((parentWidth/100) * currentPercent));
-        
-        setProgressWidth(Math.floor((parentWidth/100) * currentPercent));
+
+        let tmpProgressWidth = Math.floor((parentWidth / 100) * currentPercent);
+        console.log(tmpProgressWidth);
+        setProgressWidth(tmpProgressWidth);
+
+        if (textRef.current){
+          let textWidth = textRef.current.getBoundingClientRect().width;
+          setTextPosition(tmpProgressWidth - textWidth);
+        }
       }
     };
 
-    updateWidth(); 
+    updateWidth();
     window.addEventListener("resize", updateWidth);
-    return () => window.removeEventListener("resize", updateWidth);
 
     //depth 값 변경시
     //이전 effect의 return 먼저 실행 (cleanup)
     //그 다음 새 effect 본문 실행
+    return () => window.removeEventListener("resize", updateWidth);
   }, [totalRequest, completedRequest]);
 
   const progressBarStyle = (progressWidth) => ({
     //px 단위임
-    width:progressWidth,
-  })
+    width: progressWidth,
+  });
+
+  const progressTextStyle = (textPosition) => ({
+    //px 단위임
+    left: textPosition,
+  });
 
   return (
     <>
       <div className="progress" id="progress_container" ref={containerRef}>
-        <div className="progress" id="progress_bar" style={progressBarStyle(progressWidth)}>
-          <div className="progress_text" ref={textRef}>{percent}%</div>
+        <div
+          className="progress"
+          id="progress_bar"
+          style={progressBarStyle(progressWidth)}
+        >
+          <div className="progress_text" ref={textRef} style={progressTextStyle(textPosition)}>
+            {percent}%
+          </div>
         </div>
       </div>
     </>

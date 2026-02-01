@@ -1,3 +1,13 @@
-.box {
+.reuse_request_container {
       height: 2000px;  
 }      
+
+.reuse_request_title{
+      margin-left:50px;
+
+      width:200px;
+      height:50px;
+
+      font-size:20px;
+      font-weight:bold;
+}

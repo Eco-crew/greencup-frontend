@@ -6,8 +6,10 @@
 }
 
 #progress_container{
-    background-color: lightgray;
+    margin:16px 0px;
     margin-left:50px;
+
+    background-color: lightgray;
 }
 
 #progress_bar{
@@ -19,6 +21,9 @@
     position:absolute;
     top:10px;
     left:100px;
+
+    width:50px;
+    height:30px;
 
     color:white;
     font-size: 20px;

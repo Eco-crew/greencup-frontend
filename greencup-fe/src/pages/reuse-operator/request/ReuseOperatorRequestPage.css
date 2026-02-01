@@ -11,3 +11,11 @@
       font-size:20px;
       font-weight:bold;
 }
+
+.reuse_request_search{
+      display:flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      gap:20px;
+}

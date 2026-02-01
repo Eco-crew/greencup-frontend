@@ -29,7 +29,8 @@ function App() {
   const { isAuthed, user, logout } = useAuth();
 
   //필요시 주석풀고 커스텀할것
-  const linkStyle = ({ isActive }) => ({
+  const linkStyle = () => ({
+  //const linkStyle = ({ isActive }) => ({
     // background: isActive ? "rgba(0,0,0,0.08)" : "transparent",
   });
 

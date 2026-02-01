@@ -1,0 +1,15 @@
+#searchButton{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: green;
+    border-radius: 10px;
+}
+
+.searchText{
+    color:white;
+
+    font-size: 20px;
+    font-weight:bold;
+}

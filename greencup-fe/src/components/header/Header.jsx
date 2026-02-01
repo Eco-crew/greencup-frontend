@@ -14,7 +14,7 @@ export default function Header({ loginUser, bigMenu, linkStyle }) {
                   key={menu}
                   to="/"
                   className="fixedBarNavLink"
-                  style={linkStyle}
+                  style={linkStyle()}
                 >
                   {menu}
                 </NavLink>
@@ -25,7 +25,7 @@ export default function Header({ loginUser, bigMenu, linkStyle }) {
                     key={menu}
                     to="/"
                     className="fixedBarNavLink"
-                    style={linkStyle}
+                    style={linkStyle()}
                   >
                     {menu}
                   </NavLink>
@@ -35,7 +35,7 @@ export default function Header({ loginUser, bigMenu, linkStyle }) {
                     key={menu}
                     to="/"
                     className="fixedBarNavLink"
-                    style={linkStyle}
+                    style={linkStyle()}
                   >
                     {menu}
                   </NavLink>

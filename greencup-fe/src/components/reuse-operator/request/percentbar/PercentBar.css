@@ -1,13 +1,12 @@
 .progress{
     width:600px;
-    height:50px;
+    height:40px;
 
     border-radius:50px;
 }
 
 #progress_container{
     margin:16px 0px;
-    margin-left:50px;
 
     background-color: lightgray;
 }
@@ -19,7 +18,7 @@
 
 .progress_text{
     position:absolute;
-    top:10px;
+    top:5px;
     left:100px;
 
     width:50px;

@@ -7,8 +7,10 @@ import SearchContainer from "../../../components/reuse-operator/request/list/sea
 import SearchButton from "../../../components/reuse-operator/util/search-button/SearchButton";
 import TabBar from "../../../components/reuse-operator/request/list/tabbar/TabBar";
 import IsCompleteButton from "../../../components/reuse-operator/request/iscomplete-button/IsCompleteButton";
+import Table from "../../../components/reuse-operator/request/list/table/Table";
 
 import { TOTAL, COMPLETED, NOTCOMPLETED } from "../../../util/constant";
+import { fetchReuseRequests } from "../../../api/dummyReuseRequests";
 
 export default function ReuseOperatorRequestPage() {
   //로그인한 수거지점장에게 온 전체 요청갯수
@@ -23,7 +25,11 @@ export default function ReuseOperatorRequestPage() {
   const [partnerName, setPartnerName] = useState("");
   //선택한 탭바 내용 => 기본은 전체
   const [tabBarContent, setTabBarContent] = useState(TOTAL);
-  //맨 처음 랜딩시에는 전체, 검색시에는 검색결과인 요청항목들
+  //맨 처음 랜딩시에는 전체, 검색시에는 검색결과, 탭바 누를시 해당 필터링한 요청항목들
+  const [requests, setRequests] = useState([]);
+  //fetch로 불러올동안 로딩중 여부
+  const [loading, setLoading] = useState(true);
+
 
   const startDateChange = (startDate) => {
     setStartDate(startDate);
@@ -53,9 +59,25 @@ export default function ReuseOperatorRequestPage() {
     }
   };
 
+  //주의 useEffect 인자에 직접적으로 async를 쓰면 안된다. 차라리 fetch then은 가능
   useEffect(() => {
+    //mount 되자마자
     //fetch로 전체, 완료 갯수를 불러오기
     //fetch로 전체 요청 목록 불러오기
+
+    // const run = async () => {
+    //   let reuseRequests = await fetchReuseRequests();
+    //   setRequests(reuseRequests.requests);
+    //   console.log(reuseRequests);
+    // };
+
+    // run();
+
+     fetchReuseRequests().then((data) => {
+      setRequests(data.requests);
+      console.log(data.requests);
+      setLoading(false);
+    });
   }, []);
 
   useEffect(() => {
@@ -75,14 +97,10 @@ export default function ReuseOperatorRequestPage() {
   }, [tabBarContent]);
 
   //완료 버튼을 누를시 실행해야하는것
-  const afterCompleted = (e) => {
-
-  }
+  const afterCompleted = (e) => {};
 
   //취소 버튼을 누를시 실행해야하는것
-  const afterCanceled = (e) => {
-
-  }
+  const afterCanceled = (e) => {};
 
   return (
     <>
@@ -99,9 +117,11 @@ export default function ReuseOperatorRequestPage() {
           <SearchButton width={100} height={100} />
         </div>
         <TabBar tabBarContent={tabBarContent} tabBarClicked={tabBarClicked} />
-         {/* width, height 크기 조정시 값 변경, text 변경 및 버튼 배경색 변경, 버튼을 누를시 onClick이라는 함수를 넘겨줌 */}
+        {/* width, height 크기 조정시 값 변경, text 변경 및 버튼 배경색 변경, 버튼을 누를시 onClick이라는 함수를 넘겨줌 */}
         {/* <IsCompleteButton width={50} height={30} text={"완료"} backgroundColor={"green"} onClick={afterCompleted}/>
         <IsCompleteButton width={50} height={30} text={"취소"} backgroundColor={"red"} onClick={afterCanceled}/> */}
+
+        {loading ? <p>로딩중...</p> : <Table requests={requests} />}
       </div>
     </>
   );

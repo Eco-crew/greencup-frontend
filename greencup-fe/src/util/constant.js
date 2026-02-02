@@ -6,3 +6,13 @@ export const PARTNER = "partner";
 export const TOTAL = "total";
 export const COMPLETED = "completed";
 export const NOTCOMPLETED = "notCompleted";
+
+//수거지점장-요청현황-백엔드에서 받은 헤더 키
+export const REQUEST_ID = "requestId";
+export const NEED_COUNT = "needCount";
+export const RETURN_COUNT = "returnCount";
+export const BROKEN_LOST_COUNT = "brokenLostCount";
+export const PARTNER_NAME = "partnerName";
+export const WANTED_VISIT_TIME = "wantedVisitTime";
+export const REQUESTED_DATE = "requestedDate";
+export const REQUEST_COMPLETED = "completed";

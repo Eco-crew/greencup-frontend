@@ -1,6 +1,6 @@
-
-
-
+#search-table{
+  margin:20px 0px;
+}
 
 /* 아래는 모두 부트스트랩 테이블 커스텀 - 필요시 주석 풀고 커스텀 */
 /* .table.table-hover.custom-table > tbody > tr:hover > * {

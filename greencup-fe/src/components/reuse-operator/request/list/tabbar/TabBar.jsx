@@ -1,5 +1,5 @@
 import './TabBar.css';
-import { TOTAL, COMPLETED, NOTCOMPLETED } from '../../../../util/constant';
+import { TOTAL, COMPLETED, NOTCOMPLETED } from '../../../../../util/constant';
 
 //수거지점장- 요청현황- 전체, 완료, 미완료 탭
 //tabBarClicked => 탭바를 클릭시 실행되는 함수

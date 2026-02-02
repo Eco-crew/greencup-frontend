@@ -4,11 +4,17 @@ import './IsCompleteButton.css';
 //props로 완료/취소 텍스트 및 버튼 색깔 
 //props로 width, height도 받아옴
 //props로 버튼 클릭시 동작할 함수도 받아옴
-export default function IsCompleteButton(){
+export default function IsCompleteButton({width, height, text, backgroundColor, onClick}){
+    const isCompleteButtonStyle = () => ({
+        //숫자만 넣어도 px 인식
+        width:width,
+        height:height,
+        backgroundColor:backgroundColor,
+    });
     return(
         <>
-        <div>
-            IsCompleteButton
+        <div id="isCompleteButton" style={isCompleteButtonStyle()} onClick={onClick}>
+            <div className="isCompleteText">{text}</div>
         </div>
         </>
     );

@@ -4,6 +4,9 @@ import "./ReuseOperatorRequestPage.css";
 import PercentBar from "../../../components/reuse-operator/request/percentbar/PercentBar";
 import SearchContainer from "../../../components/reuse-operator/request/search/SearchContainer";
 import SearchButton from "../../../components/reuse-operator/util/search-button/SearchButton";
+import TabBar from "../../../components/reuse-operator/request/tabbar/TabBar";
+
+import { TOTAL, COMPLETED, NOTCOMPLETED } from "../../../util/constant";
 
 export default function ReuseOperatorRequestPage() {
   //로그인한 수거지점장에게 온 전체 요청갯수
@@ -16,6 +19,8 @@ export default function ReuseOperatorRequestPage() {
   const [endDate, setEndDate] = useState("");
   //제휴지점명
   const [partnerName, setPartnerName] = useState("");
+  //선택한 탭바 내용
+  const [tabBarContent, setTabBarContent] = useState("");
 
   const startDateChange = (startDate) => {
     setStartDate(startDate);
@@ -29,21 +34,41 @@ export default function ReuseOperatorRequestPage() {
     setPartnerName(partnerName);
   };
 
+  const tabBarClicked = (e) => {
+    switch (e.target.id) {
+      case "tab_total":
+        setTabBarContent(TOTAL);
+        break;
+      case "tab_completed":
+        setTabBarContent(COMPLETED);
+        break;
+      case "tab_notcompleted":
+        setTabBarContent(NOTCOMPLETED);
+        break;
+      default:
+        console.log("tabbar clicked error");
+    }
+  };
+
   useEffect(() => {
     //fetch로 전체, 완료 갯수를 불러오기
   }, []);
 
   useEffect(() => {
-    console.log(startDate);
+    //console.log(startDate);
   }, [startDate]);
 
   useEffect(() => {
-    console.log(endDate);
+    //console.log(endDate);
   }, [endDate]);
 
   useEffect(() => {
-    console.log(partnerName);
+    //console.log(partnerName);
   }, [partnerName]);
+
+  useEffect(() => {
+    console.log(tabBarContent);
+  }, [tabBarContent]);
 
   return (
     <>
@@ -56,9 +81,10 @@ export default function ReuseOperatorRequestPage() {
             endDateChange={endDateChange}
             partnerNameChange={partnerNameChange}
           />
-          {/* width, height 크기 조정시 값 변경, 버튼을 누를시 o */}
-          <SearchButton width={100} height={100}/>
+          {/* width, height 크기 조정시 값 변경, 버튼을 누를시 onClick이라는 함수를 넘겨줌 */}
+          <SearchButton width={100} height={100} />
         </div>
+        <TabBar tabBarContent={tabBarContent} tabBarClicked={tabBarClicked} />
       </div>
     </>
   );

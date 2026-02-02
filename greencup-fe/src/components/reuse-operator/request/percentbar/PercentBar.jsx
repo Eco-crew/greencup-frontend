@@ -17,17 +17,17 @@ export default function PercentBar({ totalRequest, completedRequest }) {
   useEffect(() => {
     //현재는 임의로 갯수들이 온다 가정하고 계산하여 넣어본다
     let currentPercent = Math.floor((completedRequest / totalRequest) * 100);
-    console.log(currentPercent);
+    //console.log(currentPercent);
     setPercent(currentPercent);
 
     //getBoundingClientRect => dom의 실제 정보 => 미디어 쿼리시에도 적용되게끔
     const updateWidth = () => {
       if (containerRef.current) {
         let parentWidth = containerRef.current.getBoundingClientRect().width;
-        console.log(parentWidth);
+        //console.log(parentWidth);
 
         let tmpProgressWidth = Math.floor((parentWidth / 100) * currentPercent);
-        console.log(tmpProgressWidth);
+        //console.log(tmpProgressWidth);
         setProgressWidth(tmpProgressWidth);
 
         if (textRef.current){

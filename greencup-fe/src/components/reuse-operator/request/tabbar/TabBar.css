@@ -1,0 +1,24 @@
+.tab_container{
+    margin-right:0px;
+    margin-top:50px;
+
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.tab_element{
+   border-top:1px solid black;
+   border-left:1px solid black; 
+   border-bottom:1px solid black;
+   
+   width:100px;
+   height:40px;
+
+   font-size:20px;
+   text-align: center;
+}
+
+.tab_element:last-child{
+    border-right:1px solid black;
+}

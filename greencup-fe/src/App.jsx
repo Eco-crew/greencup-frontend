@@ -28,6 +28,7 @@ import PartnerStatsPage from "./pages/partner/stats/PartnerStatsPage";
 function App() {
   const { isAuthed, user, logout } = useAuth();
 
+  console.log("App render");
   //필요시 주석풀고 커스텀할것
   const linkStyle = () => ({
   //const linkStyle = ({ isActive }) => ({

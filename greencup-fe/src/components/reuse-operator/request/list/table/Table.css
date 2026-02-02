@@ -1,13 +1,33 @@
-#search-table{
-  margin:20px 0px;
+#search-table {
+  margin: 20px 0px;
+  overflow-x: auto;
+}
+
+#search-table table {
+  min-width: 850px;
+}
+
+.isCompleteButtonTd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.isCompleteText{
+  width:50px;
+  font-size:15px;
 }
 
 /* 아래는 모두 부트스트랩 테이블 커스텀 - 필요시 주석 풀고 커스텀 */
-/* .table.table-hover.custom-table > tbody > tr:hover > * {
+
+/* 
+.table.table-hover.custom-table > tbody > tr:hover > * {
   --bs-table-bg-state: lightblue;
   --bs-table-color-state: #0d6efd;
 }
 
 .table .table-group-divider {
   color: lightblue;
-} */
+} 
+*/

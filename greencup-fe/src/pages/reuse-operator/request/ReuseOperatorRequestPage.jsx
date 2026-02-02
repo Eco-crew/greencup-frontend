@@ -117,11 +117,8 @@ export default function ReuseOperatorRequestPage() {
           <SearchButton width={100} height={100} />
         </div>
         <TabBar tabBarContent={tabBarContent} tabBarClicked={tabBarClicked} />
-        {/* width, height 크기 조정시 값 변경, text 변경 및 버튼 배경색 변경, 버튼을 누를시 onClick이라는 함수를 넘겨줌 */}
-        {/* <IsCompleteButton width={50} height={30} text={"완료"} backgroundColor={"green"} onClick={afterCompleted}/>
-        <IsCompleteButton width={50} height={30} text={"취소"} backgroundColor={"red"} onClick={afterCanceled}/> */}
 
-        {loading ? <p>로딩중...</p> : <Table requests={requests} />}
+        {loading ? <p>로딩중...</p> : <Table requests={requests} afterCompleted={afterCompleted} afterCanceled={afterCanceled}/>}
       </div>
     </>
   );

@@ -47,7 +47,7 @@ function App() {
   return (
     <>
     {/* 모달을 넣을꺼면 여기에 */}
-      <ModalBackground width={500} height={500}>hi</ModalBackground>
+      {/* <ModalBackground width={500} height={500}>hi</ModalBackground> */}
       <div className="wrapper">
         <div className="fixedBar">
           <div className="fixedBarContentCenter">

@@ -16,3 +16,8 @@ export const PARTNER_NAME = "partnerName";
 export const WANTED_VISIT_TIME = "wantedVisitTime";
 export const REQUESTED_DATE = "requestedDate";
 export const REQUEST_COMPLETED = "completed";
+
+//수거지점장-요청현황-한 페이지에 보여줄 버튼 갯수
+export const BUTTON_BLOCK_SIZE = 10;
+//수거지점장-요청현황-한 페이지에 보여줄 게시물 갯수
+export const SHOW_POSTS_COUNT = 10;

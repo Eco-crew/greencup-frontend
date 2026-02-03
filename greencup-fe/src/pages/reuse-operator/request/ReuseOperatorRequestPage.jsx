@@ -8,15 +8,20 @@ import SearchButton from "../../../components/reuse-operator/util/search-button/
 import TabBar from "../../../components/reuse-operator/request/list/tabbar/TabBar";
 import IsCompleteButton from "../../../components/reuse-operator/request/iscomplete-button/IsCompleteButton";
 import Table from "../../../components/reuse-operator/request/list/table/Table";
+import Pagination from "../../../components/pagination/Pagination";
 
 import { TOTAL, COMPLETED, NOTCOMPLETED } from "../../../util/constant";
-import { fetchReuseRequests } from "../../../api/dummyReuseRequests";
+import {
+  fetchTotalReuseRequests,
+  fetchCompletedReuseRequests,
+  fetchNotCompletedReuseRequests,
+} from "../../../api/dummyReuseRequests";
 
 export default function ReuseOperatorRequestPage() {
   //로그인한 수거지점장에게 온 전체 요청갯수
-  const [totalRequest, setTotalRequest] = useState(0);
+  const [totalRequestCount, setTotalRequestCount] = useState(0);
   //로그인한 수거지점장이 완료한 요청갯수
-  const [completedRequest, setCompletedRequest] = useState(0);
+  const [completedRequestCount, setCompletedRequestCount] = useState(0);
   //조회기간 시작일자
   const [startDate, setStartDate] = useState("");
   //조회기간 종료일자
@@ -27,9 +32,12 @@ export default function ReuseOperatorRequestPage() {
   const [tabBarContent, setTabBarContent] = useState(TOTAL);
   //맨 처음 랜딩시에는 전체, 검색시에는 검색결과, 탭바 누를시 해당 필터링한 요청항목들
   const [requests, setRequests] = useState([]);
+  //현재 필터링한 요청항목들에 대한 개수
+  const [requestCount, setRequestCount] = useState(0);
   //fetch로 불러올동안 로딩중 여부
   const [loading, setLoading] = useState(true);
-
+  //무슨 페이지를 눌렀는지
+  const [page, setPage] = useState(1);
 
   const startDateChange = (startDate) => {
     setStartDate(startDate);
@@ -44,6 +52,8 @@ export default function ReuseOperatorRequestPage() {
   };
 
   const tabBarClicked = (e) => {
+    setLoading(true);
+
     switch (e.target.id) {
       case "tab_total":
         setTabBarContent(TOTAL);
@@ -73,9 +83,10 @@ export default function ReuseOperatorRequestPage() {
 
     // run();
 
-     fetchReuseRequests().then((data) => {
+    fetchTotalReuseRequests().then((data) => {
       setRequests(data.requests);
-      console.log(data.requests);
+      //console.log(data.requests);
+      setRequestCount(data.searchRequestCount);
       setLoading(false);
     });
   }, []);
@@ -94,6 +105,32 @@ export default function ReuseOperatorRequestPage() {
 
   useEffect(() => {
     //console.log(tabBarContent);
+    switch (tabBarContent) {
+      case TOTAL:
+        fetchTotalReuseRequests().then((data) => {
+          setRequests(data.requests);
+          //console.log(data.requests);
+          setRequestCount(data.searchRequestCount);
+          setLoading(false);
+        });
+        break;
+      case COMPLETED:
+        fetchCompletedReuseRequests().then((data) => {
+          setRequests(data.requests);
+          //console.log(data.requests);
+          setRequestCount(data.searchRequestCount);
+          setLoading(false);
+        });
+        break;
+      case NOTCOMPLETED:
+        fetchNotCompletedReuseRequests().then((data) => {
+          setRequests(data.requests);
+          //console.log(data.requests);
+          setRequestCount(data.searchRequestCount);
+          setLoading(false);
+        });
+        break;
+    }
   }, [tabBarContent]);
 
   //완료 버튼을 누를시 실행해야하는것
@@ -101,6 +138,16 @@ export default function ReuseOperatorRequestPage() {
 
   //취소 버튼을 누를시 실행해야하는것
   const afterCanceled = (e) => {};
+
+  //페이지네이션 버튼을 누를시 실행해야 하는 것
+  const afterPaginationClicked = (page) => {
+    setPage(page);
+  };
+
+  //페이지네이션 페이지가 변화할때마다, 검색결과를 할때마다
+  useEffect(() => {
+    //fetch로 불러와 usestate로 관리
+  }, [requests, page]);
 
   return (
     <>
@@ -118,7 +165,24 @@ export default function ReuseOperatorRequestPage() {
         </div>
         <TabBar tabBarContent={tabBarContent} tabBarClicked={tabBarClicked} />
 
-        {loading ? <p>로딩중...</p> : <Table requests={requests} afterCompleted={afterCompleted} afterCanceled={afterCanceled}/>}
+        <div className="reuse_request_results">
+          {loading ? (
+            <p>로딩중...</p>
+          ) : (
+            <>
+              <Table
+                requests={requests}
+                afterCompleted={afterCompleted}
+                afterCanceled={afterCanceled}
+              />{" "}
+              <Pagination
+                totalCount={requestCount}
+                page={page}
+                afterPaginationClicked={afterPaginationClicked}
+              />
+            </>
+          )}
+        </div>
       </div>
     </>
   );

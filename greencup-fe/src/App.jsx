@@ -20,6 +20,7 @@ import ReuseOperatorRequestDetailPage from "./pages/reuse-operator/request/Reuse
 import ReuseOperatorPartnerManagePage from "./pages/reuse-operator/partner-manage/ReuseOperatorPartnerManagePage";
 import ReuseOperatorPartnerManageDetailPage from "./pages/reuse-operator/partner-manage/ReuseOperatorPartnerManageDetailPage";
 import ReuseOperatorStatsPage from "./pages/reuse-operator/stats/ReuseOperatorStatsPage";
+import ModalBackground from "./components/reuse-operator/util/modal/ModalBackground.jsx";
 
 import PartnerRequestSettingsPage from "./pages/partner/request/PartnerRequestSettingsPage";
 import PartnerRequestsPage from "./pages/partner/request/PartnerRequestsPage";
@@ -28,8 +29,7 @@ import PartnerStatsPage from "./pages/partner/stats/PartnerStatsPage";
 function App() {
   const { isAuthed, user, logout } = useAuth();
 
-  //console.log("App render");
-  
+
   //필요시 주석풀고 커스텀할것
   const linkStyle = () => ({
   //const linkStyle = ({ isActive }) => ({
@@ -46,6 +46,8 @@ function App() {
 
   return (
     <>
+    {/* 모달을 넣을꺼면 여기에 */}
+      <ModalBackground width={500} height={500}>hi</ModalBackground>
       <div className="wrapper">
         <div className="fixedBar">
           <div className="fixedBarContentCenter">

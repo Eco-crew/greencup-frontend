@@ -27,7 +27,12 @@ export default function ModalBackground({ children, width, height }) {
   //     return () => window.removeEventListener("resize", measure);
   //   }, []);
 
+  const modalWhiteBackgroundStyle = () => ({
+    width:width, height:height
+  });
+
   useEffect(() => {
+    //index.css 참조
     document.body.classList.add("modal-open");
     return () => document.body.classList.remove("modal-open");
   }, []);
@@ -37,7 +42,7 @@ export default function ModalBackground({ children, width, height }) {
       <div className="modalDarkBackground">
         <div
           className="modalWhiteBackground"
-          style={{ width: width, height: height }}
+          style={modalWhiteBackgroundStyle}
         >
           {children}
         </div>

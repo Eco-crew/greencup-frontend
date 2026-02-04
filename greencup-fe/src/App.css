@@ -1,6 +1,11 @@
 .wrapper{
   width: 100%;
   min-height: 100vh;
+
+  /* 이게 중요한 이유는 창을 줄이면 root, body모두 줄인크기만이 100%라 인식하기 때문에 
+  스크롤되는 영역에 하위 요소들이 차있지 않아 비어있음
+  따라서 강제로 지정
+   */
   min-width:750px;
 
   display: flex;

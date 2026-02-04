@@ -26,14 +26,14 @@ export default function CompleteModal({
           </div>
           <input
             className="modalInputNumber"
-            value="0"
+            defaultValue={0}
             onChange={(e) => {
-              inputChange(e);
+              inputChange(e.target.value);
             }}
           />
           <div className="modalInputText">0이상을 입력해주세요.</div>
           <div className="modalButtonContainer">
-            <ConfirmButton width={120} height={50} onClick={confirmClick} />
+            <ConfirmButton width={120} height={50} onClick={(e)=>{confirmClick()}} />
             <CancelButton width={120} height={50} onClick={cancelClick} />
           </div>
         </div>

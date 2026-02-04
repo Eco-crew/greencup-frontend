@@ -20,7 +20,12 @@ import { reuseContext } from "../../../App";
 
 export default function ReuseOperatorRequestPage() {
   //수거지점장-요청현황에서 취소버튼을 누를시 함수를 가져옴
-  const { reuseRequestCancelClick, reuseCancelReloadKey } = useContext(reuseContext);
+  const {
+    reuseRequestCancelClick,
+    reuseCancelReloadKey,
+    reuseRequestCompleteClick,
+    reuseCompleteReloadKey,
+  } = useContext(reuseContext);
 
   //로그인한 수거지점장에게 온 전체 요청갯수
   const [totalRequestCount, setTotalRequestCount] = useState(0);
@@ -122,6 +127,7 @@ export default function ReuseOperatorRequestPage() {
     //fetch로 전체 요청 목록 불러오기
 
     //console.log(tabBarContent);
+
     switch (tabBarContent) {
       case TOTAL:
         handleFetchTotalReuseRequests();
@@ -133,14 +139,17 @@ export default function ReuseOperatorRequestPage() {
         handleFetchNotCompletedReuseRequests();
         break;
     }
-  }, [tabBarContent,reuseCancelReloadKey]);
+  }, [tabBarContent, reuseCancelReloadKey, reuseCompleteReloadKey]);
 
   //완료 버튼을 누를시 실행해야하는것
-  const afterCompleted = (e) => {};
+  const afterCompleted = (e) => {
+    //console.log(e.currentTarget.dataset.id);
+    reuseRequestCompleteClick(e.currentTarget.dataset.id);
+  };
 
   //취소 버튼을 누를시 실행해야하는것
   const afterCanceled = (e) => {
-    console.log(e.currentTarget.dataset.id);
+    //console.log(e.currentTarget.dataset.id);
     reuseRequestCancelClick(e.currentTarget.dataset.id);
   };
 

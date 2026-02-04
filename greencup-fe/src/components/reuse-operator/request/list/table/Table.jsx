@@ -130,7 +130,7 @@ export default function Table({ requests, afterCompleted, afterCanceled }) {
                           height={30}
                           text={"취소"}
                           backgroundColor={"red"}
-                          dataId={realTrIds[index2]}
+                          dataId={realTrIds[index]}
                           onClick={(e) => {
                             e.stopPropagation();
                             afterCanceled(e);
@@ -148,7 +148,7 @@ export default function Table({ requests, afterCompleted, afterCanceled }) {
                           height={30}
                           text={"완료"}
                           backgroundColor={"green"}
-                          dataId={realTrIds[index2]}
+                          dataId={realTrIds[index]}
                           onClick={(e) => {
                             e.stopPropagation();
                             afterCompleted(e);

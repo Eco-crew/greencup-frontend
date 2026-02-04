@@ -60,16 +60,18 @@ function App() {
   //변경후, 페이지내에서 다시 수정한 목록을 바로 보여줘야하는데 그러면 바로 fetch를 실행해야함
   //하지만 여기서는 react query를 사용할수없으므로 임의로 useEffect에 의존성배열을 변화시키기 위해 사용
   const [reuseCancelReloadKey, setReuseCancelReloadKey] = useState(0);
-  const reuseCancelTriggerReload = () => setReuseCancelReloadKey((k) => k + 1);
+  const reuseCancelTriggerReload = () => {
+    setReuseCancelReloadKey((k) => k + 1);
+  };
 
   //수거지점장-요청현황-미완료로 변경 모달에서 취소버튼을 클릭시
-  const reuseCancelClick = () => {
+  const reuseCancel_CancelClick = () => {
     //reusecancelmodal open 상태변수를 바꾸자
     setReuseCancelModalOpen(false);
   };
 
   //수거지점장-요청현황-미완료로 변경 모달에서 확인버튼을 클릭시
-  const reuseConfirmClick = () => {
+  const reuseCancel_ConfirmClick = () => {
     //reusecancelmodal open 상태변수를 바꾸자
     setReuseCancelModalOpen(false);
 
@@ -77,6 +79,7 @@ function App() {
     //fetch로 completed false로 업데이트후
     //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
     reuseCancelTriggerReload();
+    //console.log("reuseCancel_ConfirmClick 눌림");
   };
 
   //수거지점장-요청현황에서 취소버튼을 누를시
@@ -86,16 +89,75 @@ function App() {
 
     //요청아이디 상태변수를 지정
     setReuseCancelRequestId(requestId);
-    console.log(requestId);
+    //console.log(requestId);
   };
   //--------------------수거지점장 미완료로 변경 영역 끝-----------------------
+
+  //--------------------수거지점장 완료로 변경 영역-----------------------
+  //수거지점장-요청현황-완료로 변경 모달 띄울지 여부
+  const [reuseCompleteModalOpen, setReuseCompleteModalOpen] = useState(false);
+  //수거지점장-요청현황-완료로 변경 모달시, 현재 관련있는 요청 아이디
+  const [reuseCompleteRequestId, setReuseCompleteRequestId] = useState("");
+  //수거지점장-요청현황-완료로 변경 모달시, 파손 및 분실한 개수
+  const [reuseCompleteMissedCount, setReuseCompleteMissedCount] = useState(0);
+
+  //변경후, 페이지내에서 다시 수정한 목록을 바로 보여줘야하는데 그러면 바로 fetch를 실행해야함
+  //하지만 여기서는 react query를 사용할수없으므로 임의로 useEffect에 의존성배열을 변화시키기 위해 사용
+  const [reuseCompleteReloadKey, setReuseCompleteReloadKey] = useState(0);
+  const reuseCompleteTriggerReload = () => {
+    setReuseCompleteReloadKey((k) => k + 1);
+  };
+
+  //수거지점장-요청현황-완료로 변경 모달에서 취소버튼을 클릭시
+  const reuseComplete_CancelClick = () => {
+    //reuseCompletemodal open 상태변수를 바꾸자
+    setReuseCompleteModalOpen(false);
+  };
+
+  //수거지점장-요청현황-완료로 변경 모달에서 확인버튼을 클릭시
+  const reuseComplete_ConfirmClick = () => {
+    //reusecancelmodal open 상태변수를 바꾸자
+    setReuseCompleteModalOpen(false);
+
+    //요청아이디 상태변수를 가져온다
+    //파손 및 분실된 컵 상태변수를 가져온다
+    //fetch로 completed true로 업데이트, 분실 컵 업데이트후
+    //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
+    reuseCompleteTriggerReload();
+
+    //console.log("reuseComplete_ConfirmClick 눌림");
+  };
+
+  //수거지점장-요청현황-완료로 변경 모달에서 숫자입력을 할시
+  const reuseCompleteInputChange = (missedCount) => {
+    //파손및 분실된 컵을 업데이트한다
+    setReuseCompleteMissedCount(missedCount);
+  };
+
+  //수거지점장-요청현황에서 완료버튼을 누를시
+  const reuseRequestCompleteClick = (requestId) => {
+    //reusecancelmodal open 상태변수를 바꾸자
+    setReuseCompleteModalOpen(true);
+
+    //요청아이디 상태변수를 지정
+    setReuseCompleteRequestId(requestId);
+    //console.log(requestId);
+  };
+  //--------------------수거지점장 완료로 변경 영역 끝-----------------------
 
   const reuseValue = useMemo(() => {
     return {
       reuseRequestCancelClick,
       reuseCancelReloadKey,
+      reuseRequestCompleteClick,
+      reuseCompleteReloadKey,
     };
-  }, []);
+  }, [
+    reuseRequestCancelClick,
+    reuseCancelReloadKey,
+    reuseRequestCompleteClick,
+    reuseCompleteReloadKey,
+  ]);
 
   return (
     <>
@@ -104,18 +166,28 @@ function App() {
         <ModalBackground>
           <CancelModal
             width={500}
-            height={300}
-            confirmClick={reuseConfirmClick}
-            cancelClick={reuseCancelClick}
+            height={200}
+            confirmClick={reuseCancel_ConfirmClick}
+            cancelClick={reuseCancel_CancelClick}
           />
         </ModalBackground>
       ) : (
         ""
       )}
 
-      <ModalBackground>
-        <CompleteModal width={500} height={400} />
-      </ModalBackground>
+      {reuseCompleteModalOpen ? (
+        <ModalBackground>
+          <CompleteModal
+            width={500}
+            height={400}
+            confirmClick={reuseComplete_ConfirmClick}
+            cancelClick={reuseComplete_CancelClick}
+            inputChange={reuseCompleteInputChange}
+          />
+        </ModalBackground>
+      ) : (
+        ""
+      )}
 
       <div className="wrapper">
         <div className="fixedBar">

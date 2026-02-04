@@ -20,8 +20,8 @@ import { reuseContext } from "../../../App";
 
 export default function ReuseOperatorRequestPage() {
   //수거지점장-요청현황에서 취소버튼을 누를시 함수를 가져옴
-  const {reuseRequestCancelClick} = useContext(reuseContext);
-  
+  const { reuseRequestCancelClick } = useContext(reuseContext);
+
   //로그인한 수거지점장에게 온 전체 요청갯수
   const [totalRequestCount, setTotalRequestCount] = useState(0);
   //로그인한 수거지점장이 완료한 요청갯수
@@ -73,26 +73,42 @@ export default function ReuseOperatorRequestPage() {
     }
   };
 
-  //주의 useEffect 인자에 직접적으로 async를 쓰면 안된다. 차라리 fetch then은 가능
-  useEffect(() => {
-    //mount 되자마자
-    //fetch로 전체, 완료 갯수를 불러오기
-    //fetch로 전체 요청 목록 불러오기
-
-    // const run = async () => {
-    //   let reuseRequests = await fetchReuseRequests();
-    //   setRequests(reuseRequests.requests);
-    //   console.log(reuseRequests);
-    // };
-
-    // run();
-
+  //전체목록 불러온후 상태관리하는 함수
+  const handleFetchTotalReuseRequests = () => {
     fetchTotalReuseRequests().then((data) => {
       setRequests(data.requests);
       //console.log(data.requests);
       setRequestCount(data.searchRequestCount);
       setLoading(false);
     });
+  };
+
+  //완료된 목록만 불러온후 상태관리하는 함수
+  const handleFetchCompletedReuseRequests = () => {
+    fetchCompletedReuseRequests().then((data) => {
+      setRequests(data.requests);
+      //console.log(data.requests);
+      setRequestCount(data.searchRequestCount);
+      setLoading(false);
+    });
+  };
+
+  //미완료된 목록만 불러온후 상태관리하는 함수
+  const handleFetchNotCompletedReuseRequests = () => {
+    fetchNotCompletedReuseRequests().then((data) => {
+      setRequests(data.requests);
+      //console.log(data.requests);
+      setRequestCount(data.searchRequestCount);
+      setLoading(false);
+    });
+  };
+
+  //주의 useEffect 인자에 직접적으로 async를 쓰면 안된다. 차라리 fetch then은 가능
+  useEffect(() => {
+    //mount 되자마자
+    //fetch로 전체, 완료 갯수를 불러오기
+    //fetch로 전체 요청 목록 불러오기
+    handleFetchTotalReuseRequests();
   }, []);
 
   useEffect(() => {
@@ -111,28 +127,13 @@ export default function ReuseOperatorRequestPage() {
     //console.log(tabBarContent);
     switch (tabBarContent) {
       case TOTAL:
-        fetchTotalReuseRequests().then((data) => {
-          setRequests(data.requests);
-          //console.log(data.requests);
-          setRequestCount(data.searchRequestCount);
-          setLoading(false);
-        });
+        handleFetchTotalReuseRequests();
         break;
       case COMPLETED:
-        fetchCompletedReuseRequests().then((data) => {
-          setRequests(data.requests);
-          //console.log(data.requests);
-          setRequestCount(data.searchRequestCount);
-          setLoading(false);
-        });
+        handleFetchCompletedReuseRequests();
         break;
       case NOTCOMPLETED:
-        fetchNotCompletedReuseRequests().then((data) => {
-          setRequests(data.requests);
-          //console.log(data.requests);
-          setRequestCount(data.searchRequestCount);
-          setLoading(false);
-        });
+        handleFetchNotCompletedReuseRequests();
         break;
     }
   }, [tabBarContent]);
@@ -190,7 +191,6 @@ export default function ReuseOperatorRequestPage() {
             </>
           )}
         </div>
-        
       </div>
     </>
   );

@@ -27,6 +27,7 @@ import CancelModal from "./components/reuse-operator/request/list/cancelmodal/Ca
 import PartnerRequestSettingsPage from "./pages/partner/request/PartnerRequestSettingsPage";
 import PartnerRequestsPage from "./pages/partner/request/PartnerRequestsPage";
 import PartnerStatsPage from "./pages/partner/stats/PartnerStatsPage";
+import CompleteModal from "./components/reuse-operator/request/list/completemodal/CompleteModal.jsx";
 
 //상태 저장하기 위한 context
 //수거지점장-요청현황에서 취소버튼을 누를시의 함수
@@ -36,11 +37,6 @@ export const reuseContext = createContext(null);
 
 function App() {
   const { isAuthed, user, logout } = useAuth();
-
-  //수거지점장-요청현황-미완료로 변경 모달 띄울지 여부
-  const [reuseCancelModalOpen, setReuseCancelModalOpen] = useState(false);
-  //수거지점장-요청현황-미완료로 변경 모달시, 현재 관련있는 요청 아이디
-  const [reuseCancelRequestId, setReuseCancelRequestId] = useState("");
 
   //필요시 주석풀고 커스텀할것
   const linkStyle = () => ({
@@ -55,13 +51,19 @@ function App() {
     noLogin: ["서비스 소개", "컵수거 시스템", "공지사항", "소통 게시판"],
   };
 
-  //수거지점장-요청현황-모달에서 취소버튼을 클릭시
+  //--------------------수거지점장 미완료로 변경 영역-----------------------
+  //수거지점장-요청현황-미완료로 변경 모달 띄울지 여부
+  const [reuseCancelModalOpen, setReuseCancelModalOpen] = useState(false);
+  //수거지점장-요청현황-미완료로 변경 모달시, 현재 관련있는 요청 아이디
+  const [reuseCancelRequestId, setReuseCancelRequestId] = useState("");
+
+  //수거지점장-요청현황-미완료로 변경 모달에서 취소버튼을 클릭시
   const cancelClick = () => {
     //reusecancelmodal open 상태변수를 바꾸자
     setReuseCancelModalOpen(false);
   };
 
-  //수거지점장-요청현황-모달에서 확인버튼을 클릭시
+  //수거지점장-요청현황-미완료로 변경 모달에서 확인버튼을 클릭시
   const confirmClick = () => {
     //reusecancelmodal open 상태변수를 바꾸자
     setReuseCancelModalOpen(false);
@@ -79,13 +81,14 @@ function App() {
     setReuseCancelRequestId(requestId);
     console.log(requestId);
   };
+ //--------------------수거지점장 미완료로 변경 영역 끝-----------------------
 
   const reuseValue = useMemo(() => {
     return {
       reuseRequestCancelClick,
     };
   }, []);
-
+  
   return (
     <>
       {/* 모달을 넣을꺼면 여기에 */}
@@ -102,6 +105,10 @@ function App() {
         ""
       )}
 
+      <ModalBackground>
+        <CompleteModal width={500} height={400}/>
+      </ModalBackground>
+      
       <div className="wrapper">
         <div className="fixedBar">
           <div className="fixedBarContentCenter">

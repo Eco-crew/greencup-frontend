@@ -57,19 +57,26 @@ function App() {
   //수거지점장-요청현황-미완료로 변경 모달시, 현재 관련있는 요청 아이디
   const [reuseCancelRequestId, setReuseCancelRequestId] = useState("");
 
+  //변경후, 페이지내에서 다시 수정한 목록을 바로 보여줘야하는데 그러면 바로 fetch를 실행해야함
+  //하지만 여기서는 react query를 사용할수없으므로 임의로 useEffect에 의존성배열을 변화시키기 위해 사용
+  const [reuseCancelReloadKey, setReuseCancelReloadKey] = useState(0);
+  const reuseCancelTriggerReload = () => setReuseCancelReloadKey((k) => k + 1);
+
   //수거지점장-요청현황-미완료로 변경 모달에서 취소버튼을 클릭시
-  const cancelClick = () => {
+  const reuseCancelClick = () => {
     //reusecancelmodal open 상태변수를 바꾸자
     setReuseCancelModalOpen(false);
   };
 
   //수거지점장-요청현황-미완료로 변경 모달에서 확인버튼을 클릭시
-  const confirmClick = () => {
+  const reuseConfirmClick = () => {
     //reusecancelmodal open 상태변수를 바꾸자
     setReuseCancelModalOpen(false);
 
     //요청아이디 상태변수를 가져온다
-    //fetch로 completed false로 업데이트
+    //fetch로 completed false로 업데이트후
+    //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
+    reuseCancelTriggerReload();
   };
 
   //수거지점장-요청현황에서 취소버튼을 누를시
@@ -81,14 +88,15 @@ function App() {
     setReuseCancelRequestId(requestId);
     console.log(requestId);
   };
- //--------------------수거지점장 미완료로 변경 영역 끝-----------------------
+  //--------------------수거지점장 미완료로 변경 영역 끝-----------------------
 
   const reuseValue = useMemo(() => {
     return {
       reuseRequestCancelClick,
+      reuseCancelReloadKey,
     };
   }, []);
-  
+
   return (
     <>
       {/* 모달을 넣을꺼면 여기에 */}
@@ -97,8 +105,8 @@ function App() {
           <CancelModal
             width={500}
             height={300}
-            confirmClick={confirmClick}
-            cancelClick={cancelClick}
+            confirmClick={reuseConfirmClick}
+            cancelClick={reuseCancelClick}
           />
         </ModalBackground>
       ) : (
@@ -106,9 +114,9 @@ function App() {
       )}
 
       <ModalBackground>
-        <CompleteModal width={500} height={400}/>
+        <CompleteModal width={500} height={400} />
       </ModalBackground>
-      
+
       <div className="wrapper">
         <div className="fixedBar">
           <div className="fixedBarContentCenter">

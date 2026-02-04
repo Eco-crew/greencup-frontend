@@ -20,7 +20,7 @@ import { reuseContext } from "../../../App";
 
 export default function ReuseOperatorRequestPage() {
   //수거지점장-요청현황에서 취소버튼을 누를시 함수를 가져옴
-  const { reuseRequestCancelClick } = useContext(reuseContext);
+  const { reuseRequestCancelClick, reuseCancelReloadKey } = useContext(reuseContext);
 
   //로그인한 수거지점장에게 온 전체 요청갯수
   const [totalRequestCount, setTotalRequestCount] = useState(0);
@@ -103,14 +103,6 @@ export default function ReuseOperatorRequestPage() {
     });
   };
 
-  //주의 useEffect 인자에 직접적으로 async를 쓰면 안된다. 차라리 fetch then은 가능
-  useEffect(() => {
-    //mount 되자마자
-    //fetch로 전체, 완료 갯수를 불러오기
-    //fetch로 전체 요청 목록 불러오기
-    handleFetchTotalReuseRequests();
-  }, []);
-
   useEffect(() => {
     //console.log(startDate);
   }, [startDate]);
@@ -123,7 +115,12 @@ export default function ReuseOperatorRequestPage() {
     //console.log(partnerName);
   }, [partnerName]);
 
+  //주의 useEffect 인자에 직접적으로 async를 쓰면 안된다. 차라리 fetch then은 가능
   useEffect(() => {
+    //기본 mount 되자마자
+    //fetch로 전체, 완료 갯수를 불러오기
+    //fetch로 전체 요청 목록 불러오기
+
     //console.log(tabBarContent);
     switch (tabBarContent) {
       case TOTAL:
@@ -136,7 +133,7 @@ export default function ReuseOperatorRequestPage() {
         handleFetchNotCompletedReuseRequests();
         break;
     }
-  }, [tabBarContent]);
+  }, [tabBarContent,reuseCancelReloadKey]);
 
   //완료 버튼을 누를시 실행해야하는것
   const afterCompleted = (e) => {};

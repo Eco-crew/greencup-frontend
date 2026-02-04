@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import "./ReuseOperatorRequestPage.css";
 
@@ -16,8 +16,12 @@ import {
   fetchCompletedReuseRequests,
   fetchNotCompletedReuseRequests,
 } from "../../../api/dummyReuseRequests";
+import { reuseContext } from "../../../App";
 
 export default function ReuseOperatorRequestPage() {
+  //수거지점장-요청현황에서 취소버튼을 누를시 함수를 가져옴
+  const {reuseRequestCancelClick} = useContext(reuseContext);
+  
   //로그인한 수거지점장에게 온 전체 요청갯수
   const [totalRequestCount, setTotalRequestCount] = useState(0);
   //로그인한 수거지점장이 완료한 요청갯수
@@ -137,7 +141,10 @@ export default function ReuseOperatorRequestPage() {
   const afterCompleted = (e) => {};
 
   //취소 버튼을 누를시 실행해야하는것
-  const afterCanceled = (e) => {};
+  const afterCanceled = (e) => {
+    console.log(e.currentTarget.dataset.id);
+    reuseRequestCancelClick(e.currentTarget.dataset.id);
+  };
 
   //페이지네이션 버튼을 누를시 실행해야 하는 것
   const afterPaginationClicked = (page) => {

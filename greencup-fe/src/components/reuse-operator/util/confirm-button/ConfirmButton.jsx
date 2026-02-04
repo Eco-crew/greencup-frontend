@@ -11,7 +11,7 @@ export default function ConfirmButton({width, height, onClick}) {
 
   return (
     <>
-      <div className="confirmButton" style={confirmButtonStyle} onClick={onClick}>
+      <div className="confirmButton" style={confirmButtonStyle()} onClick={onClick}>
         <div className="confirmButtonText">확인</div>
       </div>
     </>

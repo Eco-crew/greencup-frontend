@@ -11,8 +11,8 @@ export default function CancelButton({width, height, onClick}) {
 
   return (
     <>
-      <div className="cancelButton" style={cancelButtonStyle} onClick={onClick}>
-        <div className="cancelButtonText">확인</div>
+      <div className="cancelButton" style={cancelButtonStyle()} onClick={onClick}>
+        <div className="cancelButtonText">취소</div>
       </div>
     </>
   );

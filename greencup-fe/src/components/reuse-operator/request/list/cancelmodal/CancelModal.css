@@ -1,4 +1,4 @@
-.modalWhiteBackground {
+.cancelModalWhiteBackground {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -9,7 +9,7 @@
   border-radius: 8px;
 }
 
-.modalContentContainer {
+.cancelModalContentContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,12 +18,12 @@
   gap:50px;
 }
 
-.modalContentText {
+.cancelModalContentText {
   text-align: center;
   font-size: 20px;
 }
 
-.modalButtonContainer {
+.cancelModalButtonContainer {
   display: flex;
   justify-content: center;
   align-items: center;

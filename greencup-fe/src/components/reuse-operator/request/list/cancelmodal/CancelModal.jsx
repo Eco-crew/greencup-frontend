@@ -12,12 +12,12 @@ export default function CancelModal ({width, height, confirmClick, cancelClick})
     return (
         <>
         <div
-          className="modalWhiteBackground"
+          className="cancelModalWhiteBackground"
           style={modalWhiteBackgroundStyle()}
         >
-            <div className="modalContentContainer">
-                <div className="modalContentText">정말 미완료로 변경하시겠습니까?</div>
-                <div className="modalButtonContainer">
+            <div className="cancelModalContentContainer">
+                <div className="cancelModalContentText">정말 미완료로 변경하시겠습니까?</div>
+                <div className="cancelModalButtonContainer">
                     <ConfirmButton width={120} height={50} onClick={confirmClick}/>
                     <CancelButton width={120} height={50} onClick={cancelClick}/>
                 </div>

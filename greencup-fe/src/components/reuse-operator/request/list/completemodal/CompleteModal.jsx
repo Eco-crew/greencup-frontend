@@ -19,20 +19,20 @@ export default function CompleteModal({
   });
   return (
     <>
-      <div className="modalWhiteBackground" style={modalWhiteBackgroundStyle()}>
-        <div className="modalContentContainer">
-          <div className="modalContentText">
+      <div className="completeModalWhiteBackground" style={modalWhiteBackgroundStyle()}>
+        <div className="completeModalContentContainer">
+          <div className="completeModalContentText">
             파손 및 분실 개수를 입력해주세요
           </div>
           <input
-            className="modalInputNumber"
+            className="completeModalInputNumber"
             defaultValue={0}
             onChange={(e) => {
               inputChange(e.target.value);
             }}
           />
-          <div className="modalInputText">0이상을 입력해주세요.</div>
-          <div className="modalButtonContainer">
+          <div className="completeModalInputText">0이상을 입력해주세요.</div>
+          <div className="completeModalButtonContainer">
             <ConfirmButton width={120} height={50} onClick={(e)=>{confirmClick()}} />
             <CancelButton width={120} height={50} onClick={cancelClick} />
           </div>

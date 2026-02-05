@@ -12,10 +12,6 @@
 # Backup files
 *.bak
 
-# Image files
-*.jpg
-*.png
-*.gif
 
 # 압축 파일
 *.zip

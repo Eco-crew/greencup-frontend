@@ -1,4 +1,4 @@
-#reuse-detail-partner-manager-table {
+#reuse-request-detail-partner-manager-table {
   /* flex 컨테이너의 “직속 자식(flex item)” 
   flex item은 기본이 min-width: auto라서 
   안의 table(min-width:850)을 기준으로 “스스로도 850까지 커지려고” 해.
@@ -13,7 +13,7 @@
   overflow-x: auto;
 }
 
-#reuse-detail-partner-manager-table table {
+#reuse-request-detail-partner-manager-table table {
   min-width: 400px;
 }
 

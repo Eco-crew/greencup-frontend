@@ -82,7 +82,7 @@ export default function ReuseOperatorRequestDetailPage() {
               partnerOperaingEnd={request.partnerOperaingEnd}
             />
           </div>
-          <PartnerMap />
+          <PartnerMap partnerAddress={request.partnerAddress}/>
         </div>
         <PartnerGreenCupInfo />
         <div className="reuse_request_detail_partner_message_container">

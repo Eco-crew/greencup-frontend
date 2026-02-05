@@ -17,8 +17,7 @@ import { reuseContext } from "../../../App";
 export default function ReuseOperatorRequestDetailPage() {
   //url로 받은 requestId
   const { requestId } = useParams();
-
-  console.log(requestId);
+  //console.log(requestId);
 
   //수거지점장-요청현황에서 취소버튼 혹은 완료버튼 누를시 함수를 가져옴
   const {
@@ -51,7 +50,6 @@ export default function ReuseOperatorRequestDetailPage() {
     //기본 mount 되자마자
     //fetch로 요청 내용 정보 설정
     handleFetchReuseRequest(requestId);
-    console.log('key때문에?');
   }, [reuseCancelReloadKey, reuseCompleteReloadKey]);
 
   //완료 버튼을 누를시 실행해야하는것
@@ -76,8 +74,13 @@ export default function ReuseOperatorRequestDetailPage() {
       <div className="reuse_request_detail_container">
         <div className="reuse_request_detail_partner_container">
           <div className="reuse_request_detail_partner_info_container">
-            <PartnerInfo partnerName={request.partnerName}/>
-            <PartnerManagerInfo />
+            <PartnerInfo partnerName={request.partnerName} />
+            <PartnerManagerInfo
+              partnerManagerName={request.partnerManagerName}
+              partnerManagerPhone={request.partnerManagerPhone}
+              partnerOperatingStart={request.partnerOperatingStart}
+              partnerOperaingEnd={request.partnerOperaingEnd}
+            />
           </div>
           <PartnerMap />
         </div>

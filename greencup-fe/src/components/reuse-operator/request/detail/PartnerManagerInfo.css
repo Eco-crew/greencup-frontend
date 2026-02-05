@@ -1,0 +1,32 @@
+#reuse-detail-partner-manager-table {
+  /* flex 컨테이너의 “직속 자식(flex item)” 
+  flex item은 기본이 min-width: auto라서 
+  안의 table(min-width:850)을 기준으로 “스스로도 850까지 커지려고” 해.
+  그래서 너가 기대한 “overflow-x:auto로 스크롤 생성” 대신, 
+  flex item이 그냥 커져버려서 clientWidth === scrollWidth가 되어버린 거야. 
+  */
+
+  flex: 1 1 0%; /* ✅ 내용 기준(auto) 말고 0부터 계산해서 줄어들게 */
+  min-width: 0; /* ✅ flex에서 overflow 먹게 */
+  max-width: 100%; /* ✅ 부모 폭을 절대 넘지 않게 */
+
+  overflow-x: auto;
+}
+
+#reuse-detail-partner-manager-table table {
+  min-width: 400px;
+}
+
+
+/* 아래는 모두 부트스트랩 테이블 커스텀 - 필요시 주석 풀고 커스텀 */
+
+/* 
+#reuse-detail-partner-manager-table .table.table-hover.custom-table > tbody > tr:hover > * {
+  --bs-table-bg-state: lightblue;
+  --bs-table-color-state: #0d6efd;
+}
+
+#reuse-detail-partner-manager-table .table .table-group-divider {
+  color: lightblue;
+} 
+*/

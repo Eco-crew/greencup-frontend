@@ -27,7 +27,7 @@ export default function Table({ requests, afterCompleted, afterCanceled }) {
   const [realTrIds, setRealTrIds] = useState([]);
 
   const trClick = (e) => {
-    navigate(`/reuse-operator/requests/${e.target.dataset.id}`);
+    navigate(`/reuse-operator/requests/${e.currentTarget.dataset.id}`);
   };
 
   useEffect(() => {

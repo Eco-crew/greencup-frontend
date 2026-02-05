@@ -1,0 +1,45 @@
+.requestDetailContainer{
+      height: 1000px;  
+      width:90%;
+      margin:0 auto;
+}
+
+.requestDetailPartnerContainer{
+      display:flex;
+      justify-content: center;
+      align-items: center;
+
+      margin-bottom:50px;
+
+      width:100%;
+      height:500px;
+}
+
+.requestDetailPartnerInfoContainer{
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      width:50%;
+      height:100%;
+}
+
+.requestDetailPartnerMessageContainer{
+      display:flex;
+      justify-content: center;
+      align-items: center;
+
+      width:100%;
+      height:200px;
+}
+
+.requestDetailGoListContainer{
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+
+      width:200px;
+      height:100%;
+}

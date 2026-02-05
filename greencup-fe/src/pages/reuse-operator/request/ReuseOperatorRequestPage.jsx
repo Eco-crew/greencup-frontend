@@ -19,7 +19,7 @@ import {
 import { reuseContext } from "../../../App";
 
 export default function ReuseOperatorRequestPage() {
-  //수거지점장-요청현황에서 취소버튼을 누를시 함수를 가져옴
+  //수거지점장-요청현황에서 취소버튼 혹은 완료버튼 누를시 함수를 가져옴
   const {
     reuseRequestCancelClick,
     reuseCancelReloadKey,

@@ -40,3 +40,10 @@ export async function fetchNotCompletedReuseRequests() {
     tmpReuseRequests.requests = reuseRequests.requests.filter((request) => request.completed === false);
     return tmpReuseRequests;
 }
+
+export async function fetchDetailReuseRequest(requestId) {
+    await sleep(API_DELAY_MS);
+    let tmpReuseRequests = {...reuseRequests};
+    tmpReuseRequests.requests = reuseRequests.requests.filter((request) => request.requestId === requestId);
+    return tmpReuseRequests;
+}

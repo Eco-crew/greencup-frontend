@@ -11,7 +11,7 @@ export default function GoListButton({width, height, onClick}) {
 
   return (
     <>
-      <div className="goListButton" style={goListButtonStyle} onClick={onClick}>
+      <div className="goListButton" style={goListButtonStyle()} onClick={onClick}>
         <div className="goListText">목록으로</div>
       </div>
     </>

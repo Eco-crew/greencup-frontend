@@ -45,5 +45,6 @@ export async function fetchDetailReuseRequest(requestId) {
     await sleep(API_DELAY_MS);
     let tmpReuseRequests = {...reuseRequests};
     tmpReuseRequests.requests = reuseRequests.requests.filter((request) => request.requestId === requestId);
+    console.log(tmpReuseRequests);
     return tmpReuseRequests;
 }

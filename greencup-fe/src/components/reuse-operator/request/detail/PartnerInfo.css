@@ -1,0 +1,20 @@
+.reuse_request_detail_partner_info {
+  width: 100%;
+  height: 200px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap:20px;
+}
+
+.reuse_request_detail_partner_img {
+  background-color: lightgray;
+  width: 150px;
+  height: 100%;
+}
+
+.reuse_request_detail_partner_name {
+  width: 100px;
+  height: 50px;
+}

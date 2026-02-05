@@ -1,12 +1,12 @@
-.requestDetailContainer{
+.reuse_request_detail_container{
       height: 1000px;  
       width:90%;
       margin:0 auto;
 }
 
-.requestDetailPartnerContainer{
+.reuse_request_detail_partner_container{
       display:flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
 
       margin-bottom:50px;
@@ -15,17 +15,17 @@
       height:500px;
 }
 
-.requestDetailPartnerInfoContainer{
+.reuse_request_detail_partner_info_container{
       display:flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
 
-      width:50%;
-      height:100%;
+      width:40%;
+      height:500px;
 }
 
-.requestDetailPartnerMessageContainer{
+.reuse_request_detail_partner_message_container{
       display:flex;
       justify-content: center;
       align-items: center;
@@ -34,7 +34,7 @@
       height:200px;
 }
 
-.requestDetailGoListContainer{
+.reuse_request_detail_golist_container{
       display:flex;
       flex-direction: column;
       justify-content: center;

@@ -73,18 +73,18 @@ export default function ReuseOperatorRequestDetailPage() {
 
   return (
     <>
-      <div className="requestDetailContainer">
-        <div className="requestDetailPartnerContainer">
-          <div className="requestDetailPartnerInfoContainer">
-            <PartnerInfo />
+      <div className="reuse_request_detail_container">
+        <div className="reuse_request_detail_partner_container">
+          <div className="reuse_request_detail_partner_info_container">
+            <PartnerInfo partnerName={request.partnerName}/>
             <PartnerManagerInfo />
           </div>
           <PartnerMap />
         </div>
         <PartnerGreenCupInfo />
-        <div className="requestDetailPartnerMessageContainer">
+        <div className="reuse_request_detail_partner_message_container">
           <PartnerMessage />
-          <div className="requestDetailGoListContainer">
+          <div className="reuse_request_detail_golist_container">
             <GoListButton width={200} height={50} onClick={goListClick} />
           </div>
         </div>

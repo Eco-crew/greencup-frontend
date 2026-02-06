@@ -121,6 +121,7 @@ export default function ReuseOperatorRequestPage() {
   }, [partnerName]);
 
   //주의 useEffect 인자에 직접적으로 async를 쓰면 안된다. 차라리 fetch then은 가능
+  //페이지네이션 페이지가 변화할때마다, 검색결과를 할때마다도
   useEffect(() => {
     //기본 mount 되자마자
     //fetch로 전체, 완료 갯수를 불러오기
@@ -139,7 +140,7 @@ export default function ReuseOperatorRequestPage() {
         handleFetchNotCompletedReuseRequests();
         break;
     }
-  }, [tabBarContent, reuseCancelReloadKey, reuseCompleteReloadKey]);
+  }, [tabBarContent, page, reuseCancelReloadKey, reuseCompleteReloadKey]);
 
   //완료 버튼을 누를시 실행해야하는것
   const afterCompleted = (e) => {
@@ -157,11 +158,6 @@ export default function ReuseOperatorRequestPage() {
   const afterPaginationClicked = (page) => {
     setPage(page);
   };
-
-  //페이지네이션 페이지가 변화할때마다, 검색결과를 할때마다
-  useEffect(() => {
-    //fetch로 불러와 usestate로 관리
-  }, [requests, page]);
 
   return (
     <>

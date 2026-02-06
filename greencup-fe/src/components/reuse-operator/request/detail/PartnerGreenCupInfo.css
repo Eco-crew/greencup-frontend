@@ -11,6 +11,8 @@
   max-width: 100%; /* ✅ 부모 폭을 절대 넘지 않게 */
 
   overflow-x: auto;
+
+  margin-bottom:50px;
 }
 
 #reuse-request-detail-partner-cup-info-table table {

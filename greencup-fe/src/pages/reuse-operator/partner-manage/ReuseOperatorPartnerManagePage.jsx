@@ -1,10 +1,11 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import "./ReuseOperatorPartnerManagePage.css";
 
 import SearchContainer from "../../../components/reuse-operator/partner-manage/list/search/SearchContainer";
 import SearchButton from "../../../components/reuse-operator/util/search-button/SearchButton";
 import Table from "../../../components/reuse-operator/partner-manage/list/table/Table";
+import Pagination from "../../../components/pagination/Pagination";
 
 import { fetchReusePartners } from "../../../api/dummyReusePartners";
 
@@ -68,11 +69,11 @@ export default function ReuseOperatorPartnerManagePage() {
           ) : (
             <>
               <Table partners={partners} />
-              {/* <Pagination
-                        totalCount={requestCount}
-                        page={page}
-                        afterPaginationClicked={afterPaginationClicked}
-                      /> */}
+              <Pagination
+                totalCount={partnerCount}
+                page={page}
+                afterPaginationClicked={afterPaginationClicked}
+              />
             </>
           )}
         </div>

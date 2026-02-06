@@ -8,6 +8,7 @@ export default function SearchContainer({partnerNameChange}) {
         <input
           id="reuse_partner_partner_name"
           type="text"
+          placeholder="업체명"
           onChange={(e) => {
             partnerNameChange(e.target.value);
           }}

@@ -4,7 +4,7 @@ import "./PartnerMap.css";
 
 //수거지점장- 요청현황- 상세페이지- 지도 API 구역
 export default function PartnerMap({ partnerAddress }) {
-    //인스턴스를 useRef로 쓰는이유 => 값을 변경해도 리렌더를 안하고, 즉시 접근가능
+  //인스턴스를 useRef로 쓰는이유 => 값을 변경해도 리렌더를 안하고, 즉시 접근가능
   const mapRef = useRef(null); // 지도 div
   const mapObjRef = useRef(null); // kakao.maps.Map 인스턴스
   const markerRef = useRef(null); // Marker 인스턴스
@@ -19,6 +19,7 @@ export default function PartnerMap({ partnerAddress }) {
         return;
     }
 
+    //load => kakao가 만든 비동기로 초기화후 실행할 콜백함수
     window.kakao.maps.load(() => {
       const kakao = window.kakao;
 
@@ -41,6 +42,7 @@ export default function PartnerMap({ partnerAddress }) {
     if (!window.kakao || !window.kakao.maps) return;
 
     // 지도/지오코더가 아직 준비 안 되었을 수도 있으니 load 안에서 보장
+    //load => kakao가 만든 비동기로 초기화후 실행할 콜백함수
     window.kakao.maps.load(() => {
       const kakao = window.kakao;
 

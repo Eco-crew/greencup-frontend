@@ -84,7 +84,7 @@ export default function ReuseOperatorRequestDetailPage() {
           </div>
           <PartnerMap partnerAddress={request.partnerAddress}/>
         </div>
-        <PartnerGreenCupInfo />
+        <PartnerGreenCupInfo requestId={request.requestId} needCount={request.needCount} returnCount={request.returnCount} brokenLostCount={request.brokenLostCount} wantedVisitTime={request.wantedVisitTime} requestedDate={request.requestedDate} completed={request.completed} afterCompleted={afterCompleted} afterCanceled={afterCanceled}/>
         <div className="reuse_request_detail_partner_message_container">
           <PartnerMessage />
           <div className="reuse_request_detail_golist_container">

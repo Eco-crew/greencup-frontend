@@ -166,7 +166,7 @@ function App() {
         <ModalBackground>
           <CancelModal
             width={500}
-            height={200}
+            height={300}
             confirmClick={reuseCancel_ConfirmClick}
             cancelClick={reuseCancel_CancelClick}
           />

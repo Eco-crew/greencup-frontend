@@ -33,5 +33,3 @@ export const CURRENT_LOAN_COUNT = "currentLoanCount";
 
 //수거지점장-업체관리-비정기휴무일 한 페이지에서 보여줄 휴무일 갯수
 export const SHOW_OFF_DATES_SIZE = 7;
-//수거지점장-업체관리-비정기휴무일 한 페이지에서 보여줄 버튼 갯수
-export const SHOW_OFF_DATES_BUTTON_BLOCK_SIZE = 2;

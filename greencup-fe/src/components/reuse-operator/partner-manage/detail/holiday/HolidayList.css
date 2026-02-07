@@ -1,0 +1,34 @@
+.reuse-partner-manage-holiday-list-container {
+  width: 30%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  gap:10px;
+
+  border:1px solid lightgray;
+  border-radius: 10px;
+  background-color: lightgray;
+}
+
+.reuse-partner-manage-holiday-title {
+  text-align: center;
+}
+
+.reuse-partner-manage-holiday-list {
+  width: 90%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.reuse-partner-manage-holiday-element{
+    width:100%;
+
+    text-align: center;
+}

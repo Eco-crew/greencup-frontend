@@ -1,6 +1,11 @@
-.reuse_partner_manage_detail_container{
-      height: 750px;  
-      width:90%;
-      margin:50px auto;
+.reuse_partner_manage_detail_container {
+  height: 750px;
+  width: 90%;
+  margin: 50px auto;
 }
- 
+
+.reuse_partner_manage_holiday-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

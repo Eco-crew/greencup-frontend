@@ -1,0 +1,10 @@
+.reuse-partner-manage-holiday-calendar-container{
+    width:50%;
+}
+
+#reuse-partner-manage-holiday-calendar{
+    display: inline-block;
+    width:0px;
+    height:0px;
+    visibility: hidden;
+}

@@ -1,115 +1,295 @@
 //수거지점장-업체관리-임시데이터
 const reusePartners = {
     partners: [
-        {  partnerId:'9dddd-fdfdfd-fdfdfd1',  partnerName:'공유오피스A', partnerManagerName:'공유오피스A사장김씨', currentLoanCount: 500},
-        {  partnerId:'9dddd-fdfdfd-fdfdfd2', partnerName:'공유오피스A', partnerManagerName:'공유오피스A사장김씨', currentLoanCount: 500 },
-        {  partnerId:'9dddd-fdfdfd-fdfdfd3', partnerName:'공유오피스A', partnerManagerName:'공유오피스A사장김씨', currentLoanCount: 500 },
-        {  partnerId:'9dddd-fdfdfd-fdfdfd4',  partnerName:'공유오피스A', partnerManagerName:'공유오피스A사장김씨', currentLoanCount: 500 },
-        {  partnerId:'9dddd-fdfdfd-fdfdfd5',  partnerName:'공유오피스A', partnerManagerName:'공유오피스A사장김씨', currentLoanCount: 500 },
-        {  partnerId:'9dddd-fdfdfd-fdfdfd6',  partnerName:'공유오피스A', partnerManagerName:'공유오피스A사장김씨', currentLoanCount: 500 },
-        {  partnerId:'9dddd-fdfdfd-fdfdfd7',  partnerName:'공유오피스A', partnerManagerName:'공유오피스A사장김씨', currentLoanCount: 500 },
-        {  partnerId:'9dddd-fdfdfd-fdfdfd8',  partnerName:'공유오피스A', partnerManagerName:'공유오피스A사장김씨', currentLoanCount: 500 },
-        {  partnerId:'9dddd-fdfdfd-fdfdfd9',  partnerName:'공유오피스A', partnerManagerName:'공유오피스A사장김씨',currentLoanCount: 500 },
-        {  partnerId:'9dddd-fdfdfd-fdfdfd10', partnerName:'공유오피스A', partnerManagerName:'공유오피스A사장김씨', currentLoanCount: 500 },
-     
+        { partnerId: '9dddd-fdfdfd-fdfdfd1', partnerName: '공유오피스A', partnerManagerName: '공유오피스A사장김씨', currentLoanCount: 500 },
+        { partnerId: '9dddd-fdfdfd-fdfdfd2', partnerName: '공유오피스A', partnerManagerName: '공유오피스A사장김씨', currentLoanCount: 500 },
+        { partnerId: '9dddd-fdfdfd-fdfdfd3', partnerName: '공유오피스A', partnerManagerName: '공유오피스A사장김씨', currentLoanCount: 500 },
+        { partnerId: '9dddd-fdfdfd-fdfdfd4', partnerName: '공유오피스A', partnerManagerName: '공유오피스A사장김씨', currentLoanCount: 500 },
+        { partnerId: '9dddd-fdfdfd-fdfdfd5', partnerName: '공유오피스A', partnerManagerName: '공유오피스A사장김씨', currentLoanCount: 500 },
+        { partnerId: '9dddd-fdfdfd-fdfdfd6', partnerName: '공유오피스A', partnerManagerName: '공유오피스A사장김씨', currentLoanCount: 500 },
+        { partnerId: '9dddd-fdfdfd-fdfdfd7', partnerName: '공유오피스A', partnerManagerName: '공유오피스A사장김씨', currentLoanCount: 500 },
+        { partnerId: '9dddd-fdfdfd-fdfdfd8', partnerName: '공유오피스A', partnerManagerName: '공유오피스A사장김씨', currentLoanCount: 500 },
+        { partnerId: '9dddd-fdfdfd-fdfdfd9', partnerName: '공유오피스A', partnerManagerName: '공유오피스A사장김씨', currentLoanCount: 500 },
+        { partnerId: '9dddd-fdfdfd-fdfdfd10', partnerName: '공유오피스A', partnerManagerName: '공유오피스A사장김씨', currentLoanCount: 500 },
+
     ],
     searchPartnerCount: 135,
 }
 
 //수거지점장-업체관리-상세페이지 임시 데이터
-const reuseDetailRequests = {
-    requests: [
+const reuseDetailPartners = {
+    partners: [
         {
-            requestId: 'sdfssfsf-dfdfdsf0', partnerName: '공유오피스A',
-            partnerManagerName: '공유오피스사장김씨',
-            partnerManagerPhone: '010-0000-0000',
-            partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
-            partnerAddress: '서울특별시 동대문구 천호대로 405',
-            memo: '사전에 연락바랍니다.',
-            needCount: 500, returnCount: 500, brokenLostCount: 10, partnerName: '공유오피스A', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: true
+            partner: {
+                partnerId: '9dddd-fdfdfd-fdfdfd1',
+                partnerName: '공유오피스A',
+                partnerManagerName: '공유오피스A사장김씨',
+                partnerManagerPhone: '010-0000-0000',
+                partnerOperatingStart: '09:00',
+                partnerOperaingEnd: '19:00',
+                partnerAddress: '서울시 성동구 성동1동 1길 1',
+                currentLoanCount: 100,
+                totalLoanCount: 1000,
+                totalReturnCount: 880,
+                totalBrokenLostCount: 20,
+                contractDate: '2026-01-01',
+                memo: '도착전 연락 부탁드립니다.',
+            },
+
+            settingInfo: {
+                defaultNeedCount: 1000,
+                defaultReturnCount: 1000,
+                defaultVisitTime: '08:00',
+            },
+
+            weeklyOffDays: ['Sun'],
+
+            offDates: ['2026-01-01', '2026-01-08', '2026-01-09'],
         },
         {
-            requestId: 'dfdsfs-134dfds1', partnerName: '공유오피스A',
-            partnerManagerName: '공유오피스사장김씨',
-            partnerManagerPhone: '010-0000-0000',
-            partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
-            partnerAddress: '서울특별시 동대문구 천호대로 405',
-            memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
+            partner: {
+                partnerId: '9dddd-fdfdfd-fdfdfd2',
+                partnerName: '공유오피스A',
+                partnerManagerName: '공유오피스A사장김씨',
+                partnerManagerPhone: '010-0000-0000',
+                partnerOperatingStart: '09:00',
+                partnerOperaingEnd: '19:00',
+                partnerAddress: '서울시 성동구 성동1동 1길 1',
+                currentLoanCount: 100,
+                totalLoanCount: 1000,
+                totalReturnCount: 880,
+                totalBrokenLostCount: 20,
+                contractDate: '2026-01-01',
+                memo: '도착전 연락 부탁드립니다.',
+            },
+
+            settingInfo: {
+                defaultNeedCount: 1000,
+                defaultReturnCount: 1000,
+                defaultVisitTime: '08:00',
+            },
+
+            weeklyOffDays: ['Sun'],
+
+            offDates: ['2026-02-07', '2026-02-08', '2026-02-09'],
         },
         {
-            requestId: 'dfdsfs-134dfds2', partnerName: '공유오피스A',
-            partnerManagerName: '공유오피스사장김씨',
-            partnerManagerPhone: '010-0000-0000',
-            partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
-            partnerAddress: '서울특별시 동대문구 천호대로 405',
-            memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
+            partner: {
+                partnerId: '9dddd-fdfdfd-fdfdfd3',
+                partnerName: '공유오피스A',
+                partnerManagerName: '공유오피스A사장김씨',
+                partnerManagerPhone: '010-0000-0000',
+                partnerOperatingStart: '09:00',
+                partnerOperaingEnd: '19:00',
+                partnerAddress: '서울시 성동구 성동1동 1길 1',
+                currentLoanCount: 100,
+                totalLoanCount: 1000,
+                totalReturnCount: 880,
+                totalBrokenLostCount: 20,
+                contractDate: '2026-01-01',
+                memo: '도착전 연락 부탁드립니다.',
+            },
+
+            settingInfo: {
+                defaultNeedCount: 1000,
+                defaultReturnCount: 1000,
+                defaultVisitTime: '08:00',
+            },
+
+            weeklyOffDays: ['Sun'],
+
+            offDates: ['2026-03-07', '2026-03-08', '2026-03-09'],
         },
         {
-            requestId: 'dfdsfs-134dfds3', partnerName: '공유오피스A',
-            partnerManagerName: '공유오피스사장김씨',
-            partnerManagerPhone: '010-0000-0000',
-            partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
-            partnerAddress: '서울특별시 동대문구 천호대로 405',
-            memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
+            partner: {
+                partnerId: '9dddd-fdfdfd-fdfdfd4',
+                partnerName: '공유오피스A',
+                partnerManagerName: '공유오피스A사장김씨',
+                partnerManagerPhone: '010-0000-0000',
+                partnerOperatingStart: '09:00',
+                partnerOperaingEnd: '19:00',
+                partnerAddress: '서울시 성동구 성동1동 1길 1',
+                currentLoanCount: 100,
+                totalLoanCount: 1000,
+                totalReturnCount: 880,
+                totalBrokenLostCount: 20,
+                contractDate: '2026-01-01',
+                memo: '도착전 연락 부탁드립니다.',
+            },
+
+            settingInfo: {
+                defaultNeedCount: 1000,
+                defaultReturnCount: 1000,
+                defaultVisitTime: '08:00',
+            },
+
+            weeklyOffDays: ['Sun'],
+
+            offDates: ['2026-04-07', '2026-04-08', '2026-04-09'],
         },
         {
-            requestId: 'dfdsfs-134dfds4', partnerName: '공유오피스A',
-            partnerManagerName: '공유오피스사장김씨',
-            partnerManagerPhone: '010-0000-0000',
-            partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
-            partnerAddress: '서울특별시 동대문구 천호대로 405',
-            memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
+            partner: {
+                partnerId: '9dddd-fdfdfd-fdfdfd5',
+                partnerName: '공유오피스A',
+                partnerManagerName: '공유오피스A사장김씨',
+                partnerManagerPhone: '010-0000-0000',
+                partnerOperatingStart: '09:00',
+                partnerOperaingEnd: '19:00',
+                partnerAddress: '서울시 성동구 성동1동 1길 1',
+                currentLoanCount: 100,
+                totalLoanCount: 1000,
+                totalReturnCount: 880,
+                totalBrokenLostCount: 20,
+                contractDate: '2026-01-01',
+                memo: '도착전 연락 부탁드립니다.',
+            },
+
+            settingInfo: {
+                defaultNeedCount: 1000,
+                defaultReturnCount: 1000,
+                defaultVisitTime: '08:00',
+            },
+
+            weeklyOffDays: ['Sun'],
+
+            offDates: ['2026-05-07', '2026-05-08', '2026-05-09'],
         },
         {
-            requestId: 'dfdsfs-134dfds5', partnerName: '공유오피스A',
-            partnerManagerName: '공유오피스사장김씨',
-            partnerManagerPhone: '010-0000-0000',
-            partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
-            partnerAddress: '서울특별시 동대문구 천호대로 405',
-            memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
+            partner: {
+                partnerId: '9dddd-fdfdfd-fdfdfd6',
+                partnerName: '공유오피스A',
+                partnerManagerName: '공유오피스A사장김씨',
+                partnerManagerPhone: '010-0000-0000',
+                partnerOperatingStart: '09:00',
+                partnerOperaingEnd: '19:00',
+                partnerAddress: '서울시 성동구 성동1동 1길 1',
+                currentLoanCount: 100,
+                totalLoanCount: 1000,
+                totalReturnCount: 880,
+                totalBrokenLostCount: 20,
+                contractDate: '2026-01-01',
+                memo: '도착전 연락 부탁드립니다.',
+            },
+
+            settingInfo: {
+                defaultNeedCount: 1000,
+                defaultReturnCount: 1000,
+                defaultVisitTime: '08:00',
+            },
+
+            weeklyOffDays: ['Sun'],
+
+            offDates: ['2026-06-07', '2026-06-08', '2026-06-09'],
         },
         {
-            requestId: 'dfdsfs-134dfds6', partnerName: '공유오피스A',
-            partnerManagerName: '공유오피스사장김씨',
-            partnerManagerPhone: '010-0000-0000',
-            partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
-            partnerAddress: '서울특별시 동대문구 천호대로 405',
-            memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
+            partner: {
+                partnerId: '9dddd-fdfdfd-fdfdfd7',
+                partnerName: '공유오피스A',
+                partnerManagerName: '공유오피스A사장김씨',
+                partnerManagerPhone: '010-0000-0000',
+                partnerOperatingStart: '09:00',
+                partnerOperaingEnd: '19:00',
+                partnerAddress: '서울시 성동구 성동1동 1길 1',
+                currentLoanCount: 100,
+                totalLoanCount: 1000,
+                totalReturnCount: 880,
+                totalBrokenLostCount: 20,
+                contractDate: '2026-01-01',
+                memo: '도착전 연락 부탁드립니다.',
+            },
+
+            settingInfo: {
+                defaultNeedCount: 1000,
+                defaultReturnCount: 1000,
+                defaultVisitTime: '08:00',
+            },
+
+            weeklyOffDays: ['Sun'],
+
+            offDates: ['2026-07-07', '2026-07-08', '2026-07-09'],
         },
         {
-            requestId: 'dfdsfs-134dfds7', partnerName: '공유오피스A',
-            partnerManagerName: '공유오피스사장김씨',
-            partnerManagerPhone: '010-0000-0000',
-            partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
-            partnerAddress: '서울특별시 동대문구 천호대로 405',
-            memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
+            partner: {
+                partnerId: '9dddd-fdfdfd-fdfdfd8',
+                partnerName: '공유오피스A',
+                partnerManagerName: '공유오피스A사장김씨',
+                partnerManagerPhone: '010-0000-0000',
+                partnerOperatingStart: '09:00',
+                partnerOperaingEnd: '19:00',
+                partnerAddress: '서울시 성동구 성동1동 1길 1',
+                currentLoanCount: 100,
+                totalLoanCount: 1000,
+                totalReturnCount: 880,
+                totalBrokenLostCount: 20,
+                contractDate: '2026-01-01',
+                memo: '도착전 연락 부탁드립니다.',
+            },
+
+            settingInfo: {
+                defaultNeedCount: 1000,
+                defaultReturnCount: 1000,
+                defaultVisitTime: '08:00',
+            },
+
+            weeklyOffDays: ['Sun'],
+
+            offDates: ['2026-08-07', '2026-08-08', '2026-08-09'],
         },
         {
-            requestId: 'dfdsfs-134dfds8', partnerName: '공유오피스A',
-            partnerManagerName: '공유오피스사장김씨',
-            partnerManagerPhone: '010-0000-0000',
-            partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
-            partnerAddress: '서울특별시 동대문구 천호대로 405',
-            memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
+            partner: {
+                partnerId: '9dddd-fdfdfd-fdfdfd9',
+                partnerName: '공유오피스A',
+                partnerManagerName: '공유오피스A사장김씨',
+                partnerManagerPhone: '010-0000-0000',
+                partnerOperatingStart: '09:00',
+                partnerOperaingEnd: '19:00',
+                partnerAddress: '서울시 성동구 성동1동 1길 1',
+                currentLoanCount: 100,
+                totalLoanCount: 1000,
+                totalReturnCount: 880,
+                totalBrokenLostCount: 20,
+                contractDate: '2026-01-01',
+                memo: '도착전 연락 부탁드립니다.',
+            },
+
+            settingInfo: {
+                defaultNeedCount: 1000,
+                defaultReturnCount: 1000,
+                defaultVisitTime: '08:00',
+            },
+
+            weeklyOffDays: ['Sun'],
+
+            offDates: ['2026-09-07', '2026-09-08', '2026-09-09'],
         },
         {
-            requestId: 'dfdsfs-134dfds9', partnerName: '공유오피스A',
-            partnerManagerName: '공유오피스사장김씨',
-            partnerManagerPhone: '010-0000-0000',
-            partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
-            partnerAddress: '서울특별시 동대문구 천호대로 405',
-            memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
+            partner: {
+                partnerId: '9dddd-fdfdfd-fdfdfd10',
+                partnerName: '공유오피스A',
+                partnerManagerName: '공유오피스A사장김씨',
+                partnerManagerPhone: '010-0000-0000',
+                partnerOperatingStart: '09:00',
+                partnerOperaingEnd: '19:00',
+                partnerAddress: '서울시 성동구 성동1동 1길 1',
+                currentLoanCount: 100,
+                totalLoanCount: 1000,
+                totalReturnCount: 880,
+                totalBrokenLostCount: 20,
+                contractDate: '2026-01-01',
+                memo: '도착전 연락 부탁드립니다.',
+            },
+
+            settingInfo: {
+                defaultNeedCount: 1000,
+                defaultReturnCount: 1000,
+                defaultVisitTime: '08:00',
+            },
+
+            weeklyOffDays: ['Sun'],
+
+            offDates: ['2026-10-07', '2026-10-08', '2026-10-09'],
         },
+
     ],
 }
 
@@ -127,10 +307,10 @@ export async function fetchReusePartners() {
 
 
 
-export async function fetchDetailReuseRequest(requestId) {
+export async function fetchDetailReusePartner(partnerId) {
     await sleep(API_DELAY_MS);
-    let tmpReuseRequests = { ...reuseDetailRequests };
-    tmpReuseRequests.requests = reuseDetailRequests.requests.filter((request) => request.requestId === requestId);
-    //console.log(tmpReuseRequests);
-    return tmpReuseRequests;
+    let tmpReusePartners = { ...reuseDetailPartners };
+    tmpReusePartners.partners = reuseDetailPartners.partners.filter((partner) => partner.partner.partnerId === partnerId);
+    //console.log(tmpReusePartners);
+    return tmpReusePartners;
 }

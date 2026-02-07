@@ -162,8 +162,10 @@ export default function ReuseOperatorRequestPage() {
   return (
     <>
       <div className="reuse_request_container">
+        <div className="reuse_request_title_container">
         <div className="reuse_request_title">수거 현황</div>
-        <PercentBar totalRequest={1000} completedRequest={590} />
+        </div>
+        <PercentBar totalRequest={1000} completedRequest={800} />
         <div className="reuse_request_search">
           <SearchContainer
             startDateChange={startDateChange}

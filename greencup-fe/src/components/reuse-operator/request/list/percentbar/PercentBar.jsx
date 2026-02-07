@@ -58,6 +58,7 @@ export default function PercentBar({ totalRequest, completedRequest }) {
 
   return (
     <>
+    <div className="progress_container_container">
       <div className="progress" id="progress_container" ref={containerRef}>
         <div
           className="progress"
@@ -68,6 +69,7 @@ export default function PercentBar({ totalRequest, completedRequest }) {
             {percent}%
           </div>
         </div>
+      </div>
       </div>
     </>
   );

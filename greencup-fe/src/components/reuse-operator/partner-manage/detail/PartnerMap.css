@@ -4,11 +4,12 @@
 
     display:flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     border:1px solid lightgray;
     border-radius: 10px;
+    overflow:hidden;
 }
 
 .reuse_partner_manage_detail_partner_address{

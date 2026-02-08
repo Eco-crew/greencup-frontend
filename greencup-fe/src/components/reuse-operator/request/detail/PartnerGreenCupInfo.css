@@ -6,9 +6,9 @@
   flex item이 그냥 커져버려서 clientWidth === scrollWidth가 되어버린 거야. 
   */
 
-  flex: 1 1 0%; /* ✅ 내용 기준(auto) 말고 0부터 계산해서 줄어들게 */
-  min-width: 0; /* ✅ flex에서 overflow 먹게 */
-  max-width: 100%; /* ✅ 부모 폭을 절대 넘지 않게 */
+  flex: 1 1 0%; /* 내용 기준(auto) 말고 0부터 계산해서 줄어들게 */
+  min-width: 0; /* flex에서 overflow 먹게 */
+  max-width: 100%; /* 부모 폭을 절대 넘지 않게 */
 
   overflow-x: auto;
 

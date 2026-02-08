@@ -8,6 +8,9 @@ import HolidayList from "../../../components/reuse-operator/partner-manage/detai
 import PartnerInfo from "../../../components/reuse-operator/partner-manage/detail/PartnerInfo";
 import PartnerManagerInfo from "../../../components/reuse-operator/partner-manage/detail/PartnerManagerInfo";
 import PartnerMap from "../../../components/reuse-operator/partner-manage/detail/PartnerMap";
+import PartnerGreenCupInfo from "../../../components/reuse-operator/partner-manage/detail/PartnerGreenCupInfo";
+import PartnerSetting from "../../../components/reuse-operator/partner-manage/detail/PartnerSetting";
+import PartnerMessage from "../../../components/reuse-operator/partner-manage/detail/PartnerMessage";
 
 import { fetchDetailReusePartner } from "../../../api/dummyReusePartners";
 
@@ -69,7 +72,29 @@ export default function ReuseOperatorPartnerManageDetailPage() {
           </div>
           <PartnerMap partnerAddress={partner.partnerAddress} />
         </div>
-        <div className="reuse_partner_manage_holiday-container">
+        <PartnerGreenCupInfo
+          currentLoanCount={partner.currentLoanCount}
+          totalLoanCount={partner.totalLoanCount}
+          totalReturnCount={partner.totalReturnCount}
+          totalBrokenLostCount={partner.totalBrokenLostCount}
+          contractDate={partner.contractDate}
+        />
+        <div className="reuse_partner_manage_detail_partner_setting_memo_container">
+          <div className="reuse_partner_manage_detail_partner_setting_total_container">
+            <div>기본 설정</div>
+            <PartnerSetting
+              defaultNeedCount={settingInfo.defaultNeedCount}
+              defaultReturnCount={settingInfo.defaultReturnCount}
+              defaultVisitTime={settingInfo.defaultVisitTime}
+            />
+          </div>
+          <div className="reuse_partner_manage_detail_partner_message_total_container">
+            <div>비고 메세지</div>
+            <PartnerMessage memo={partner.memo}/>
+          </div>
+
+        </div>
+        <div className="reuse_partner_manage_holiday_container">
           <HolidayCalendar offDates={offDates} />
           <HolidayList offDates={offDates} />
         </div>

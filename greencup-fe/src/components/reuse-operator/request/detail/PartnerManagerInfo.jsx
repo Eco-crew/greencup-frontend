@@ -12,14 +12,14 @@ export default function PartnerManagerInfo({
       <div id="reuse-request-detail-partner-manager-table" className="text-center table-responsive">
         {/* 감싸는 상위태그에 table-responsive만으로도 스크롤이 생기지 않음 table태그에 직접적으로 min-width필요*/}
         <table className="table align-middle table-hover custom-table">
-          <thead id="table-header" className="table-group-divider fw-normal">
+          <thead id="reuse-request-detail-partner-manager-table-header" className="table-group-divider fw-normal">
             <tr>
                 <th>업체 지점장 이름</th>
                 <th>연락처</th>
                 <th>업체 운영시간</th>
             </tr>
           </thead>
-           <tbody id="table-body" className="table-group-divider fw-light">
+           <tbody id="reuse-request-detail-partner-manager-table-body" className="table-group-divider fw-light">
                 <tr>
                     <td>{partnerManagerName}</td>
                     <td>{partnerManagerPhone}</td>

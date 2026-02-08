@@ -1,0 +1,28 @@
+.reuse_partner_manage_detail_partnermap_container{
+    width:50%;
+    height:100%;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border:1px solid lightgray;
+    border-radius: 10px;
+}
+
+.reuse_partner_manage_detail_partner_address{
+    width:100%;
+    height:50px;
+
+    text-align: center;
+    line-height: 50px;
+
+    border-bottom:1px solid lightgray;
+    background-color: lightgray;
+}
+
+#reuse_partner_manage_detail_partner_map{
+    width:100%;
+    height:320px;
+}

@@ -1,10 +1,13 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import "./ReuseOperatorPartnerManageDetailPage.css";
 
 import HolidayCalendar from "../../../components/reuse-operator/partner-manage/detail/holiday/HolidayCalendar";
 import HolidayList from "../../../components/reuse-operator/partner-manage/detail/holiday/HolidayList";
+import PartnerInfo from "../../../components/reuse-operator/partner-manage/detail/PartnerInfo";
+import PartnerManagerInfo from "../../../components/reuse-operator/partner-manage/detail/PartnerManagerInfo";
+import PartnerMap from "../../../components/reuse-operator/partner-manage/detail/PartnerMap";
 
 import { fetchDetailReusePartner } from "../../../api/dummyReusePartners";
 
@@ -16,14 +19,14 @@ export default function ReuseOperatorPartnerManageDetailPage() {
   //partnerId 조회한 해당 partner의 partner 항목
   const [partner, setPartner] = useState({});
   //partnerId 조회한 해당 partner의 settingInfo 항목
-  const [settingInfo ,setSettingInfo] = useState({});
+  const [settingInfo, setSettingInfo] = useState({});
   //partnerId 조회한 해당 partner의 weeklyOffDays 항목
   const [weeklyOffDays, setWeeklyOffDays] = useState([]);
   //partnerId 조회한 해당 partner의 offDates 항목
-  const [offDates,setOffDates] = useState([]);
+  const [offDates, setOffDates] = useState([]);
   //fetch로 불러올동안 로딩중 여부
   const [loading, setLoading] = useState(true);
-    
+
   const navigate = useNavigate();
 
   //해당 항목 불러온후 상태관리하는 함수
@@ -46,7 +49,6 @@ export default function ReuseOperatorPartnerManageDetailPage() {
     handleFetchReuseDetailPartner(partnerId);
   }, []);
 
-
   //목록으로 버튼 클릭시 실행해야하는것
   const goListClick = () => {
     navigate("/reuse-operator/partner-manage");
@@ -55,9 +57,21 @@ export default function ReuseOperatorPartnerManageDetailPage() {
   return (
     <>
       <div className="reuse_partner_manage_detail_container">
+        <div className="reuse_partner_manage_detail_partner_container">
+          <div className="reuse_partner_manage_detail_partner_info_container">
+            <PartnerInfo partnerName={partner.partnerName} />
+            <PartnerManagerInfo
+              partnerManagerName={partner.partnerManagerName}
+              partnerManagerPhone={partner.partnerManagerPhone}
+              partnerOperatingStart={partner.partnerOperatingStart}
+              partnerOperaingEnd={partner.partnerOperaingEnd}
+            />
+          </div>
+          <PartnerMap partnerAddress={partner.partnerAddress} />
+        </div>
         <div className="reuse_partner_manage_holiday-container">
-          <HolidayCalendar offDates={offDates}/>
-          <HolidayList offDates={offDates}/>
+          <HolidayCalendar offDates={offDates} />
+          <HolidayList offDates={offDates} />
         </div>
       </div>
     </>

@@ -90,13 +90,23 @@ export default function ReuseOperatorPartnerManageDetailPage() {
           </div>
           <div className="reuse_partner_manage_detail_partner_message_total_container">
             <div>비고 메세지</div>
-            <PartnerMessage memo={partner.memo}/>
+            <PartnerMessage memo={partner.memo} />
           </div>
-
         </div>
         <div className="reuse_partner_manage_holiday_container">
-          <HolidayCalendar offDates={offDates} />
+          <div className="reuse_partner_manage_holiday_calendar_total_container">
+            <div>비정기 휴무 캘린더</div>
+            <HolidayCalendar offDates={offDates} />
+          </div>
+          <div className="reuse_partner_manage_holiday_list_total_container">
+             <div>비정기 휴무일</div>
           <HolidayList offDates={offDates} />
+          </div>
+
+           <div className="reuse_partner_manage_regular_holiday_list_total_container">
+             <div>정기 휴무일</div>
+        
+          </div>
         </div>
       </div>
     </>

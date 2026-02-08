@@ -49,7 +49,6 @@ export default function HolidayList({ offDates }) {
   return (
     <>
       <div className="reuse-partner-manage-holiday-list-container">
-        <div className="reuse-partner-manage-holiday-title">휴무일</div>
         <div className="reuse-partner-manage-holiday-list">
           {showOffDates.map((date) => (
             <div key={date} className="reuse-partner-manage-holiday-element">

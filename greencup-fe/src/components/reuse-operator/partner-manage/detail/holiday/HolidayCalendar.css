@@ -1,5 +1,8 @@
 .reuse-partner-manage-holiday-calendar-container{
-    width:50%;
+    width:310px;
+    min-width: 310px;
+    height:100%;
+
 }
 
 #reuse-partner-manage-holiday-calendar{

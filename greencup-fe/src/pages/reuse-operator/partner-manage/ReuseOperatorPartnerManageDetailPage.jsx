@@ -12,6 +12,7 @@ import PartnerGreenCupInfo from "../../../components/reuse-operator/partner-mana
 import PartnerSetting from "../../../components/reuse-operator/partner-manage/detail/PartnerSetting";
 import PartnerMessage from "../../../components/reuse-operator/partner-manage/detail/PartnerMessage";
 import HolidayRegularList from "../../../components/reuse-operator/partner-manage/detail/holiday/HolidayRegularList";
+import GoListButton from "../../../components/reuse-operator/util/golist-button/GoListButton";
 
 import { fetchDetailReusePartner } from "../../../api/dummyReusePartners";
 
@@ -103,10 +104,12 @@ export default function ReuseOperatorPartnerManageDetailPage() {
             <div>비정기 휴무일</div>
             <HolidayList offDates={offDates} />
           </div>
-
           <div className="reuse_partner_manage_regular_holiday_list_total_container">
             <div>정기 휴무일</div>
-            <HolidayRegularList weeklyOffDays={weeklyOffDays}/>
+            <HolidayRegularList weeklyOffDays={weeklyOffDays} />
+          </div>
+          <div className="reuse_partner_manage_detail_golist_container">
+            <GoListButton width={'100%'} height={50} onClick={goListClick} />
           </div>
         </div>
       </div>

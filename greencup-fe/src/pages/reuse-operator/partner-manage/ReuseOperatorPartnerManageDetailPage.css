@@ -100,6 +100,18 @@
   gap: 20px;
 }
 
+.reuse_partner_manage_detail_golist_container{
+      display:flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+
+      width:10%;
+      height:100%;
+
+      margin-left:10%;
+}
+
 .reuse-partner-manage-holiday-title {
   width: 90%;
   height: 50px;

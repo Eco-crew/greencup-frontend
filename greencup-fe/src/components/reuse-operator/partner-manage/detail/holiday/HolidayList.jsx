@@ -28,7 +28,7 @@ export default function HolidayList({ offDates }) {
       page * SHOW_OFF_DATES_SIZE,
     );
 
-    console.log(tmpOffDates);
+    //console.log(tmpOffDates);
     setShowOffDates(tmpOffDates);
   }, [offDatesTotalCount]);
 

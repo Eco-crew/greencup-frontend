@@ -1,0 +1,36 @@
+//수거지점장-통계
+const reuseStats = {
+    currentTotal: {
+        currentTotalCount: 10000,
+        currentTotalLoanCount: 6000,
+        currentHaveCount: 3500,
+        totalBrokenLostCount: 500,
+    },
+
+    periodTotal: {
+        periodTotalLoanCount: 6000,
+        periodTotalReturnCount: 3500,
+        periodTotalBrokenLostCount: 200,
+    },
+
+    periodTotalLoanTypes: [
+        { periodTotalLoanTypeName: '공유오피스A', periodTotalLoanTypePercent: 30 },
+        { periodTotalLoanTypeName: '야구장A', periodTotalLoanTypePercent: 10 },
+        { periodTotalLoanTypeName: '행사장A', periodTotalLoanTypePercent: 10 },
+        { periodTotalLoanTypeName: '공유오피스B', periodTotalLoanTypePercent: 20 },
+        { periodTotalLoanTypeName: '공유오피스C', periodTotalLoanTypePercent: 30 },
+    ]
+}
+
+
+//실제로 가져오는것처럼 보여주려고 일부러 딜레이를 추가
+const API_DELAY_MS = 300;
+
+function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export async function fetchReuseStats() {
+    await sleep(API_DELAY_MS);
+    return reuseStats;
+}

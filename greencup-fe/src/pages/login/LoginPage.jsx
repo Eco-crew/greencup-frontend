@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./LoginPage.css";
 
@@ -10,9 +11,18 @@ export default function LoginPage() {
   //프론트 context에 로그인한 객체 저장
   const { isAuthed, user, login } = useAuth();
 
-  //입력한 아이디와 비밀번호, 그리고 수거지점장인지, 업체지점장인지
-  const [loginInput, setLoginInput] = useState({ id: "", pw: "", role: "" });
+  const navigate = useNavigate();
 
+  //입력한 아이디와 비밀번호, 그리고 수거지점장인지, 업체지점장인지
+  const [loginInput, setLoginInput] = useState({
+    id: "",
+    pw: "",
+    role: "reuseOperator",
+  });
+  //로그인 에러가 있는지 여부
+  const [isLoginError, setIsLoginError] = useState(false);
+
+  //input tag의 변화가 있을때마다
   const inputChange = (name, value) => {
     setLoginInput((prev) => ({ ...prev, [name]: value }));
   };
@@ -35,21 +45,33 @@ export default function LoginPage() {
       credentials: "include",
     });
 
-    const data = await response.json();
-    console.log(data);
+    if (response.status == 200) {
+      const data = await response.json();
+      //console.log(data);
 
-    const nextUser = {
-      userId: data.userId,
-      userName: data.userName,
-      role: data.role,
-    };
+      const nextUser = {
+        userId: data.id,
+        userName: data.manager_name,
+        role: data.userType,
+      };
 
-    console.log(nextUser);
-    login(nextUser);
+      console.log(nextUser);
+
+      //일단 수거지점장일때는 요청받은 현황들로 이동
+      if (nextUser.role === REUSE_OPERATOR){
+        navigate(`/reuse-operator/requests`);
+      }
+
+      //usecontext에 등록
+      login(nextUser);
+      setIsLoginError(false);
+    } else {
+      setIsLoginError(true);
+    }
   };
 
   useEffect(() => {
-    console.log(loginInput);
+    //console.log(loginInput);
   }, [loginInput]);
 
   return (
@@ -76,6 +98,7 @@ export default function LoginPage() {
               id="login_pw"
               className="login_input"
               placeholder="비밀번호를 입력해주세요."
+              type="password"
               onChange={(e) => {
                 inputChange(e.target.name, e.target.value);
               }}
@@ -121,6 +144,14 @@ export default function LoginPage() {
             </div>
           </div>
           <div className="loginbox_subcontainer">
+            {isLoginError ? (
+              <div className="login_error_message">
+                로그인이 실패하였습니다. 아이디 또는 비밀번호를 확인해주세요.
+              </div>
+            ) : (
+              ""
+            )}
+
             <div
               id="default_login"
               onClick={() => {

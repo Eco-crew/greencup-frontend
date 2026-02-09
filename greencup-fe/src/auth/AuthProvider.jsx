@@ -13,17 +13,24 @@ const AuthContext = createContext(null);
 //컴포넌트인데 provider를 리턴하는것뿐
 export function AuthProvider({children}){
     const [user, setUser] = useState(null);
+    //로그인 여부 context 불러오는것을 마치기전, ProtectedRoute에서 isAuthed를 false로 인식하기전에
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const raw = storage.getItem(STORAGE_KEY);
 
-        if (!raw) return;
+        if (!raw) {
+            setIsLoading(false);
+            return;
+        }    
 
         try{
             const parsed = JSON.parse(raw);
             setUser(parsed);
         } catch(err){
             storage.removeItem(STORAGE_KEY);
+        } finally {
+            setIsLoading(false);
         }
     }, []);
 
@@ -42,10 +49,11 @@ export function AuthProvider({children}){
         return{
             user,
             isAuthed: !!user,
+            isLoading,
             login,
             logout,
         }
-    })
+    },[user, isLoading])
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

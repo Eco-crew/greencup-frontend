@@ -8,6 +8,9 @@ export default function TopContainer({ loginUser, logout }) {
     navigate(`/login`);
   }
 
+  const goHomePage = () => {
+    navigate(`/`);
+  }
   return (
     <>
       <div id="top_container">
@@ -25,12 +28,13 @@ export default function TopContainer({ loginUser, logout }) {
             <>
               <div id="login_name">
                 <div>img</div>
-                <div>김수거님</div>
+                <div>{loginUser.userName}님</div>
               </div>
               <div>고객지원</div>
               <div
                 onClick={() => {
                   logout();
+                  goHomePage();
                 }}
               >
                 로그아웃

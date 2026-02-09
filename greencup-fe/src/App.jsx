@@ -12,6 +12,8 @@ import TopContainer from "./components/topcontainer/TopContainer";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 
+import ProtectedRoute from "./auth/ProtectedRoute.jsx";
+
 import HomePage from "./pages/home/HomePage";
 import NotFound from "./pages/not-found/NotFound";
 
@@ -209,24 +211,24 @@ function App() {
 
               <Route path="/reuse-operator">
                 {/* 요청받은 현황들 */}
-                <Route path="requests" element={<ReuseOperatorRequestPage />} />
+                <Route path="requests" element={<ProtectedRoute><ReuseOperatorRequestPage /></ProtectedRoute>} />
                 {/* 요청받은 현황들 상세페이지 */}
                 <Route
                   path="requests/:requestId"
-                  element={<ReuseOperatorRequestDetailPage />}
+                  element={<ProtectedRoute><ReuseOperatorRequestDetailPage /></ProtectedRoute>}
                 />
                 {/* 업체관리 페이지 */}
                 <Route
                   path="partner-manage"
-                  element={<ReuseOperatorPartnerManagePage />}
+                  element={<ProtectedRoute><ReuseOperatorPartnerManagePage /></ProtectedRoute>}
                 />
                 {/* 업체관리 상세 페이지 */}
                 <Route
                   path="partner-manage/:partnerId"
-                  element={<ReuseOperatorPartnerManageDetailPage />}
+                  element={<ProtectedRoute><ReuseOperatorPartnerManageDetailPage /></ProtectedRoute>}
                 />
                 {/* 수거목록 통계 페이지 */}
-                <Route path="stats" element={<ReuseOperatorStatsPage />} />
+                <Route path="stats" element={<ProtectedRoute><ReuseOperatorStatsPage /></ProtectedRoute>} />
               </Route>
 
               {/* 제휴 지점장 */}
@@ -234,12 +236,12 @@ function App() {
                 {/* 대여 관리 및 수정 */}
                 <Route
                   path="request-settings"
-                  element={<PartnerRequestSettingsPage />}
+                  element={<ProtectedRoute><PartnerRequestSettingsPage /></ProtectedRoute>}
                 />
                 {/*전체 목록, 요청중인 목록, 대여 및 반납 완료된 목록, 취소한 목록,*/}
-                <Route path="requests" element={<PartnerRequestsPage />} />
+                <Route path="requests" element={<ProtectedRoute><PartnerRequestsPage /></ProtectedRoute>} />
                 {/* 이용 통계 페이지 */}
-                <Route path="stats" element={<PartnerStatsPage />} />
+                <Route path="stats" element={<ProtectedRoute><PartnerStatsPage /></ProtectedRoute>} />
               </Route>
 
               {/* 후순위-마이페이지 */}

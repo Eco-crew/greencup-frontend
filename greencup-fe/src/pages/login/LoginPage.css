@@ -113,8 +113,8 @@
 /* ===== 전체 컨테이너: 화면 가운데 카드 ===== */
 #login_container {
   width: min(420px, 92vw);
-  height: auto;                 /* 고정 height 제거 */
-  margin: 60px auto;            /* 중앙 배치 */
+  height: auto; /* 고정 height 제거 */
+  margin: 60px auto; /* 중앙 배치 */
   padding: 28px 26px 24px;
 
   background: #fff;
@@ -178,7 +178,9 @@
   outline: none;
   font-size: 14px;
   background: #fff;
-  transition: border-color 150ms ease, box-shadow 150ms ease;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
 }
 
 .login_input::placeholder {
@@ -229,7 +231,11 @@
   border: 1px solid #dfe5ec;
   border-radius: 12px;
   background: #fff;
-  transition: transform 120ms ease, border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+  transition:
+    transform 120ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background 150ms ease;
 }
 
 .loginbox_subcontainer_flex_element label div {
@@ -275,7 +281,10 @@
 
   cursor: pointer;
   user-select: none;
-  transition: transform 120ms ease, box-shadow 150ms ease, background 150ms ease;
+  transition:
+    transform 120ms ease,
+    box-shadow 150ms ease,
+    background 150ms ease;
 }
 
 #default_login:hover {
@@ -303,7 +312,9 @@
   background-repeat: no-repeat;
 
   cursor: pointer;
-  transition: transform 120ms ease, box-shadow 150ms ease;
+  transition:
+    transform 120ms ease,
+    box-shadow 150ms ease;
 }
 
 #naver_login:hover {
@@ -316,9 +327,45 @@
   box-shadow: none;
 }
 
+.login_error_message {
+  width: 100%;
+  margin-top: 14px;
+  padding: 10px 12px;
+
+  border-radius: 10px;
+  border: 1px solid #ffd4d4;
+  background: #fff3f3;
+
+  color: #d92d20;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+
+  animation: loginErrorFade 0.25s ease;
+}
+
+@keyframes loginErrorFade {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ===== 반응형(모바일) ===== */
 @media (max-width: 420px) {
-  #login_container { margin: 30px auto; padding: 22px 18px; }
-  .loginbox_subcontainer_flex { gap: 8px; }
-  .loginbox_subcontainer_flex_element label { height: 54px; border-radius: 12px; }
+  #login_container {
+    margin: 30px auto;
+    padding: 22px 18px;
+  }
+  .loginbox_subcontainer_flex {
+    gap: 8px;
+  }
+  .loginbox_subcontainer_flex_element label {
+    height: 54px;
+    border-radius: 12px;
+  }
 }

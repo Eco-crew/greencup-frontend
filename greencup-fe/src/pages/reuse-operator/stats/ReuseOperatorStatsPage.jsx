@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "./ReuseOperatorStatsPage.css";
 
 import ReuseStatsCurrentTotal from "../../../components/reuse-operator/stats/ReuseStatsCurrentTotal";
+import ReuseStatsPeriodTotal from "../../../components/reuse-operator/stats/ReuseStatsPeriodTotal";
 
 import { fetchReuseStats } from "../../../api/dummyReuseStats";
 
@@ -49,6 +50,17 @@ export default function ReuseOperatorStatsPage() {
           currentHaveCount={currentTotal.currentHaveCount}
           totalBrokenLostCount={currentTotal.totalBrokenLostCount}
         />
+        <div className="reuse_stats_period_container">
+          <div className="reuse_stats_period_total">
+            <ReuseStatsPeriodTotal
+              periodTotalLoanCount={periodTotal.periodTotalLoanCount}
+              periodTotalReturnCount={periodTotal.periodTotalReturnCount}
+              periodTotalBrokenLostCount={
+                periodTotal.periodTotalBrokenLostCount
+              }
+            />
+          </div>
+        </div>
       </div>
     </>
   );

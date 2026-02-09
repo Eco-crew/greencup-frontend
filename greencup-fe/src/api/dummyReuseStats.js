@@ -14,11 +14,11 @@ const reuseStats = {
     },
 
     periodTotalLoanTypes: [
-        { periodTotalLoanTypeName: '공유오피스A', periodTotalLoanTypePercent: 30 },
-        { periodTotalLoanTypeName: '야구장A', periodTotalLoanTypePercent: 10 },
-        { periodTotalLoanTypeName: '행사장A', periodTotalLoanTypePercent: 10 },
-        { periodTotalLoanTypeName: '공유오피스B', periodTotalLoanTypePercent: 20 },
-        { periodTotalLoanTypeName: '공유오피스C', periodTotalLoanTypePercent: 30 },
+        { periodTotalLoanTypeName: 'office', periodTotalLoanTypePercent: 30 },
+        { periodTotalLoanTypeName: 'public', periodTotalLoanTypePercent: 40 },
+        { periodTotalLoanTypeName: 'event', periodTotalLoanTypePercent: 10 },
+        { periodTotalLoanTypeName: 'cafe', periodTotalLoanTypePercent: 20 },
+        
     ]
 }
 

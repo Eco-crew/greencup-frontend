@@ -192,7 +192,7 @@ function App() {
       <div className="wrapper">
         <div className="fixedBar">
           <div className="fixedBarContentCenter">
-            <TopContainer logout={logout} />
+            <TopContainer loginUser={user} logout={logout} />
             <Header loginUser={user} bigMenu={bigMenu} linkStyle={linkStyle} />
           </div>
         </div>

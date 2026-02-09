@@ -45,7 +45,7 @@ export default function LoginPage() {
     };
 
     console.log(nextUser);
-    //login(nextUser);
+    login(nextUser);
   };
 
   useEffect(() => {

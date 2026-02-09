@@ -1,6 +1,13 @@
-import './TopContainer.css';
+import { useNavigate } from "react-router-dom";
 
-export default function TopContainer({logout}) {
+import "./TopContainer.css";
+
+export default function TopContainer({ loginUser, logout }) {
+  const navigate = useNavigate();
+  const goLoginPage = () => {
+    navigate(`/login`);
+  }
+
   return (
     <>
       <div id="top_container">
@@ -10,12 +17,26 @@ export default function TopContainer({logout}) {
         </div>
 
         <div id="login_info">
-          <div id="login_name">
-            <div>img</div>
-            <div>김수거님</div>
-          </div>
-          <div>고객지원</div>
-          <div onClick={()=>{logout()}}>로그아웃</div>
+          {loginUser === null ? (
+            <div onClick={() => {
+              goLoginPage();
+            }}>로그인</div>
+          ) : (
+            <>
+              <div id="login_name">
+                <div>img</div>
+                <div>김수거님</div>
+              </div>
+              <div>고객지원</div>
+              <div
+                onClick={() => {
+                  logout();
+                }}
+              >
+                로그아웃
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

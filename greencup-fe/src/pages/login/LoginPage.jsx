@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./LoginPage.css";
 
@@ -7,22 +7,50 @@ import { useAuth } from "../../auth/AuthProvider.jsx";
 import { REUSE_OPERATOR, PARTNER } from "../../util/constant";
 
 export default function LoginPage() {
+  //프론트 context에 로그인한 객체 저장
   const { isAuthed, user, login } = useAuth();
 
-  const [loginInput, setLoginInput] = useState({ id: "", pw: "" });
+  //입력한 아이디와 비밀번호, 그리고 수거지점장인지, 업체지점장인지
+  const [loginInput, setLoginInput] = useState({ id: "", pw: "", role: "" });
 
   const inputChange = (name, value) => {
     setLoginInput((prev) => ({ ...prev, [name]: value }));
   };
 
-  const tryLogin = () => {
+  const tryLogin = async () => {
     //현재 로그인한 사용자가 수거지점장이냐 제휴지점장이냐
     //현재 로그인 백엔드 없으니 임의로 설정
-    const nextUser = { role: REUSE_OPERATOR };
-
+    const sendLoginObject = {
+      username: loginInput.id,
+      password: loginInput.pw,
+      userType: loginInput.role == REUSE_OPERATOR ? "reuseOperator" : "partner",
+    };
     //fetch로 백엔드 로그인 확인을 거친후
-    login(nextUser);
+    const response = await fetch(`/api/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(sendLoginObject),
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+    const nextUser = {
+      userId: data.userId,
+      userName: data.userName,
+      role: data.role,
+    };
+
+    console.log(nextUser);
+    //login(nextUser);
   };
+
+  useEffect(() => {
+    console.log(loginInput);
+  }, [loginInput]);
 
   return (
     <>
@@ -61,12 +89,35 @@ export default function LoginPage() {
             </div> */}
           <div className="loginbox_subcontainer_flex">
             <div className="loginbox_subcontainer_flex_element">
-              <input className="login_option" name="login_role"  id="login_role_reuse"  value="reuse" type="radio" />
-              <label htmlFor="login_role_reuse"><div>수거지점장으로</div> <div>로그인</div></label>
+              <input
+                className="login_option"
+                name="role"
+                id="login_role_reuse"
+                value="reuseOperator"
+                type="radio"
+                defaultChecked
+                onChange={(e) => {
+                  inputChange(e.target.name, e.target.value);
+                }}
+              />
+              <label htmlFor="login_role_reuse">
+                <div>수거지점장으로</div> <div>로그인</div>
+              </label>
             </div>
             <div className="loginbox_subcontainer_flex_element">
-              <input className="login_option" name="login_role" id="login_role_partner"  value="partner" type="radio" />
-              <label htmlFor="login_role_partner"><div>업체지점장으로</div> <div>로그인</div></label>
+              <input
+                className="login_option"
+                name="role"
+                id="login_role_partner"
+                value="partner"
+                type="radio"
+                onChange={(e) => {
+                  inputChange(e.target.name, e.target.value);
+                }}
+              />
+              <label htmlFor="login_role_partner">
+                <div>업체지점장으로</div> <div>로그인</div>
+              </label>
             </div>
           </div>
           <div className="loginbox_subcontainer">

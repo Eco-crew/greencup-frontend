@@ -1,10 +1,84 @@
+/* footer 전체 영역 스타일
+   - 페이지 하단 영역임을 시각적으로 구분
+   - 메인 콘텐츠보다 톤을 낮춰 보조 영역 느낌을 줌 */
 .footer {
-  width: 100%;
-  min-height: 100px;
+  background-color: #f6f8f6; /* 연한 회색 배경으로 footer 구분 */
+  color: #666;              /* 본문보다 연한 텍스트 색상 */
+  font-size: 12px;          /* 전체적으로 작은 글씨 크기 */
+}
 
-  margin: 0px auto;
-  margin-top:16px;
-  padding:16px 0px;
+/* footer 내부 콘텐츠를 감싸는 컨테이너
+   - 화면이 커져도 내용이 너무 넓어지지 않도록 제한 */
+.footer-inner {
+  max-width: 1200px;        /* 최대 가로 폭 제한 */
+  margin: 0 auto;           /* 가운데 정렬 */
+  padding: 24px 16px 12px;  /* 위 / 좌우 / 아래 여백 */
+}
 
-  background-color: black;
+/* footer 상단 영역
+   - 로고 영역과 크레딧 영역을 좌우로 배치 */
+.footer-top {
+  display: flex;                    /* 가로 정렬 */
+  justify-content: space-between;   /* 좌우 끝 정렬 */
+  align-items: center;              /* 세로 가운데 정렬 */
+  padding-bottom: -10px;             /* 하단 영역과 간격 */
+}
+
+/* 브랜드 영역 (로고 + 서비스명)
+   - 로고와 텍스트를 한 줄로 정렬 */
+.footer-brand {
+  display: flex;        /* 로고와 텍스트를 가로 배치 */
+  align-items: center;  /* 세로 가운데 정렬 */
+  gap: 2px;             /* 로고와 텍스트 사이 간격 */
+}
+
+/* footer 로고 이미지
+   - header 로고보다 작은 크기로 설정 */
+.footer-logo {
+  width: 40px;   /* 로고 크기 고정 */
+  height: auto;  /* 비율 유지 */
+  margin-top: -15px;
+}
+
+/* 서비스명 텍스트 */
+.footer-title {
+  font-weight: 320;   /* 살짝 강조 */
+  font-size: 20px;    /* footer 내에서 가장 눈에 띄게 */
+  color: #639A44;      
+  font-family: "ChangwonDangam", sans-serif;
+  margin-top: -6px;
+}
+
+/* 크레딧 텍스트 영역
+   - 데스크탑에서는 오른쪽 정렬 */
+.footer-credit {
+  text-align: right;  /* 우측 정렬 */
+  line-height: 0.5;   /* 줄 간격 조정 */
+  margin-top: 20px;
+}
+
+/* footer 하단 영역 (저작권 문구)
+   - 상단 영역과 시각적으로 분리 */
+.footer-bottom {
+  border-top: 1px solid #ddd; /* 구분선 */
+  padding-top: 10px;          /* 위쪽 여백 */
+  text-align: center;         /* 중앙 정렬 */
+  font-size: 11px;            /* 가장 작은 텍스트 */
+  color: #999;                /* 가장 연한 색상 */
+}
+
+/* 반응형 스타일
+   - md(768px) 미만: 모바일 기준 */
+@media (max-width: 767px) {
+  /* 상단 영역을 세로로 쌓기 */
+  .footer-top {
+    flex-direction: column; /* 세로 정렬 */
+    gap: 12px;              /* 요소 간 간격 */
+    text-align: center;     /* 가운데 정렬 */
+  }
+
+  /* 크레딧도 중앙 정렬 */
+  .footer-credit {
+    text-align: center;
+  }
 }

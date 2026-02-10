@@ -44,9 +44,9 @@ export function AuthProvider({ children }) {
 
         if (!raw) {
           const nextUser = {
-            userId: data.id,
-            userName: data.manager_name,
-            role: data.userType,
+            userId: data.user.id,
+            userName: data.user.manager_name,
+            role: data.user.userType,
           };
           setUser(nextUser);
           setIsLoading(false);
@@ -79,7 +79,7 @@ export function AuthProvider({ children }) {
   const login = async (nextUser) => {
     setUser(nextUser);
     storage.setItem(STORAGE_KEY, JSON.stringify(nextUser));
-    await hasLoginSession();
+    //await hasLoginSession();
   };
 
   const logout = () => {

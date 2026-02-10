@@ -16,9 +16,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      gap:50px;
+
+      margin-top:50px;
 }
 
 .reuse_stats_period_total{
-    width:50%;
+    width:45%;
     height:500px;
+}
+
+.reuse_stats_period_total_loan_types{
+      width:45%;
+      height:500px;
 }

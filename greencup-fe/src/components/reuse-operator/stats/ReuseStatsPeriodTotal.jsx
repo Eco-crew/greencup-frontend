@@ -14,12 +14,6 @@ export default function ReuseStatsPeriodTotal({
   //chart를 연결할 dom
   const chartDom = useRef(null);
 
-  //chartjs에 담길 데이터
-  //   const [periodTotalLoanCount, setPeriodTotalLoanCount] = useState(0);
-  //   const [periodTotalReturnCount, setPeriodTotalReturnCount] = useState(0);
-  //   const [periodTotalBrokenLostCount, setPeriodTotalBrokenLostCount] =
-  //     useState(0);
-
   //mount할때 객체 생성
   useEffect(() => {
     chartObjRef.current = new Chart(chartDom.current, {
@@ -31,11 +25,11 @@ export default function ReuseStatsPeriodTotal({
             label: "전체 수거 통계",
             data: [0, 0, 0],
             backgroundColor: [
-              "rgba(46,125,50,0.45)",
-              "rgba(67,160,71,0.45)",
-              "rgba(129,199,132,0.45)",
+              "rgba(46,125,50,0.6)", // 대여수
+              "rgba(33,150,243,0.6)", // 반납수
+              "rgba(255,167,38,0.6)", // 파손/분실
             ],
-            borderColor: ["#2e7d32", "#43a047", "#81c784"],
+            borderColor: ["#2e7d32", "#2196f3", "#ffa726"],
             borderWidth: 1,
           },
         ],

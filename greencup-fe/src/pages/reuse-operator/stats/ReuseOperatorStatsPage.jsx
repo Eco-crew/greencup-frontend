@@ -4,6 +4,7 @@ import "./ReuseOperatorStatsPage.css";
 
 import ReuseStatsCurrentTotal from "../../../components/reuse-operator/stats/ReuseStatsCurrentTotal";
 import ReuseStatsPeriodTotal from "../../../components/reuse-operator/stats/ReuseStatsPeriodTotal";
+import ReuseStatsPeriodTotalLoanTypes from "../../../components/reuse-operator/stats/ReuseStatsPeriodTotalLoanTypes";
 
 import { fetchReuseStats } from "../../../api/dummyReuseStats";
 
@@ -13,7 +14,7 @@ export default function ReuseOperatorStatsPage() {
   //조회기간에 따른 대여수, 반납수, 파손 및 분실개수
   const [periodTotal, setPeriodTotal] = useState({});
   //조회기간에 따른 업체이름과, 업체별 대여한 퍼센트비율
-  const [periodTotalLoanTypes, setPeriodTotalLoanTypes] = useState({});
+  const [periodTotalLoanTypes, setPeriodTotalLoanTypes] = useState([]);
 
   //조회기간 시작일자
   const [startDate, setStartDate] = useState("");
@@ -58,6 +59,11 @@ export default function ReuseOperatorStatsPage() {
               periodTotalBrokenLostCount={
                 periodTotal.periodTotalBrokenLostCount
               }
+            />
+          </div>
+          <div className="reuse_stats_period_total_loan_types">
+            <ReuseStatsPeriodTotalLoanTypes
+              periodTotalLoanTypes={periodTotalLoanTypes}
             />
           </div>
         </div>

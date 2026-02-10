@@ -33,3 +33,10 @@ export const CURRENT_LOAN_COUNT = "currentLoanCount";
 
 //수거지점장-업체관리-비정기휴무일 한 페이지에서 보여줄 휴무일 갯수
 export const SHOW_OFF_DATES_SIZE = 7;
+
+//수거지점장-업체관리-백엔드에서 받은 헤더 키
+export const PERIOD_TOTAL_LOAN_TYPE_NAME = "periodTotalLoanTypeName";
+export const PERIOD_TOTAL_LOAN_TYPE_NAME_OFFICE = "office";
+export const PERIOD_TOTAL_LOAN_TYPE_NAME_PUBLIC = "public";
+export const PERIOD_TOTAL_LOAN_TYPE_NAME_EVENT = "event";
+export const PERIOD_TOTAL_LOAN_TYPE_NAME_CAFE = "cafe";

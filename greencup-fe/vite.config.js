@@ -9,11 +9,15 @@ import react from '@vitejs/plugin-react'
 //사용자 => 브라우저 react => vite proxy -> express -> naver api
 export default defineConfig({
   plugins: [react()],
-   server:{
-    proxy:{
-      '/api':{
-        target:'http://localhost:3000', //프론트 origin → target origin 으로 바꿔줌
-        changeOrigin:true,
+  server: {
+
+    host: "127.0.0.1",
+    port: 5173,
+
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:3000', //프론트 origin → target origin 으로 바꿔줌
+        changeOrigin: true,
       }
     }
   }

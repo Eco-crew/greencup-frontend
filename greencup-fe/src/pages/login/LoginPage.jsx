@@ -9,7 +9,7 @@ import { REUSE_OPERATOR, PARTNER } from "../../util/constant";
 
 export default function LoginPage() {
   //프론트 context에 로그인한 객체 저장
-  const { isAuthed, user, login } = useAuth();
+  const { isAuthed, user, login, hasLoginSession } = useAuth();
 
   const navigate = useNavigate();
 
@@ -22,12 +22,22 @@ export default function LoginPage() {
   //로그인 에러가 있는지 여부
   const [isLoginError, setIsLoginError] = useState(false);
 
+   //딱 처음 mount 될때 세션에서 로그인이 되어있는지 검사해서 context에 넣기
+   useEffect(() => {
+    hasLoginSession();
+    console.log('hasLoginSession 지남');
+   },[]);
+
+  useEffect(() => {
+    //console.log(loginInput);
+  }, [loginInput]);
+
   //input tag의 변화가 있을때마다
   const inputChange = (name, value) => {
     setLoginInput((prev) => ({ ...prev, [name]: value }));
   };
 
-  const tryLogin = async () => {
+  const tryLoginDefault = async () => {
     //현재 로그인한 사용자가 수거지점장이냐 제휴지점장이냐
     //현재 로그인 백엔드 없으니 임의로 설정
     const sendLoginObject = {
@@ -58,7 +68,7 @@ export default function LoginPage() {
       console.log(nextUser);
 
       //일단 수거지점장일때는 요청받은 현황들로 이동
-      if (nextUser.role === REUSE_OPERATOR){
+      if (nextUser.role === REUSE_OPERATOR) {
         navigate(`/reuse-operator/requests`);
       }
 
@@ -70,9 +80,46 @@ export default function LoginPage() {
     }
   };
 
-  useEffect(() => {
-    //console.log(loginInput);
-  }, [loginInput]);
+  const tryLoginNaver = async () => {
+    // const response = await fetch(
+    //   `/api/auth/naver/start?userType=${loginInput.role == REUSE_OPERATOR ? "reuseOperator" : "partner"}`,
+    //   {
+    //     method: "GET",
+    //     credentials: "include",
+    //   },
+    // );
+
+    // console.log(response);
+    // if (response.ok) {
+    //   const data = await response.json();
+    //   //console.log(data);
+
+    //   const nextUser = {
+    //     userId: data.id,
+    //     userName: data.manager_name,
+    //     role: data.userType,
+    //   };
+
+    //   console.log(nextUser);
+
+    //   //일단 수거지점장일때는 요청받은 현황들로 이동
+    //   if (nextUser.role === REUSE_OPERATOR) {
+    //     navigate(`/reuse-operator/requests`);
+    //   }
+
+    //   //usecontext에 등록
+    //   login(nextUser);
+    //   setIsLoginError(false);
+    // } else {
+    //   setIsLoginError(true);
+    // }
+
+    const userType =
+      loginInput.role === REUSE_OPERATOR ? "reuseOperator" : "partner";
+    window.location.href = `/api/auth/naver/start?userType=${userType}`;
+  };
+
+ 
 
   return (
     <>
@@ -155,7 +202,7 @@ export default function LoginPage() {
             <div
               id="default_login"
               onClick={() => {
-                tryLogin();
+                tryLoginDefault();
               }}
             >
               <span>로그인</span>
@@ -163,7 +210,7 @@ export default function LoginPage() {
             <div
               id="naver_login"
               onClick={() => {
-                tryLogin();
+                tryLoginNaver();
               }}
             ></div>
           </div>

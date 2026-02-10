@@ -1,28 +1,34 @@
 #top_container{
-  display:flex;
+  display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;   /* ⭐ 여기 */
 
-  padding:0px 16px;
-  height:100px;
+  padding: 0 16px;
+  height: 100px;
 }
 
-#logo_container{
-  display:flex;
-  justify-content: center;
+#logo_container {
+  display: flex;
   align-items: center;
-  gap:30px;
+  gap: 0px;            /* 30 → 10 추천 */
 
-  height:100px;
+  height: 100%;         
+  cursor: pointer;
+}
+
+#logo_container img {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  transform: translateY(-5px);
 }
 
 #login_info{
-  display:flex;
-  justify-content: center;
+  display: flex;
   align-items: center;
-  gap:30px;
-
-  height:50px;
+  gap: 24px;
+  height: 100%;
+  margin-right: 8px;         
 }
 
 #login_name{
@@ -30,4 +36,19 @@
   justify-content: center;
   align-items: center;
   gap:10px;
+}
+
+/* src/components/topcontainer/TopContainer.css */
+.logo_text {
+  font-family: 'ChangwonDangamRounded', sans-serif;
+  font-size: 26px;       
+  letter-spacing: -0.5px;
+  color: #639A44;
+}
+
+/* 로그인 사용자 역할 아이콘 */
+.user_role_icon {
+  width: 24px;          /* 아이콘 기본 크기 */
+  height: 24px;
+  object-fit: contain; /* 찌그러짐 방지 */
 }

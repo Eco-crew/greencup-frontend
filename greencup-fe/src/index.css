@@ -1,3 +1,32 @@
+/* =========================
+   Brand Font (Logo Only)
+   - 창원단감둥근체
+   - 로고, 브랜드명 등 강조 요소에만 사용
+   - CDN 웹폰트(woff2) 사용 → 빠른 로딩
+   ========================= */
+@font-face {
+  font-family: 'ChangwonDangamRounded'; 
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/ChangwonDangamRound-Regular.woff2') format('woff2');
+  font-weight: normal;            /* 기본 굵기 */
+  font-display: swap;             /* 로딩 전 기본 폰트 → 로딩 후 교체 */
+}
+
+
+/* =========================
+   Global Base Font
+   - 전체 UI 기본 폰트
+   - Pretendard 우선 사용
+   - OS별 시스템 폰트로 안전한 fallback 구성
+   ========================= */
+body {
+  font-family: 'Pretendard',
+               -apple-system,           /* macOS / iOS */
+               BlinkMacSystemFont,       /* Chrome on macOS */
+               'Segoe UI',               /* Windows */
+               Roboto,                   /* Android */
+               'Apple SD Gothic Neo',    /* macOS Korean */
+               sans-serif;               /* 최종 fallback */
+}
 *{
   margin:0;
   padding:0;

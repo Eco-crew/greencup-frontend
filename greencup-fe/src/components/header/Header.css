@@ -1,28 +1,42 @@
+/* 헤더 배경 영역 */
 .fixedBarHeader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-
-  margin:0 auto;
-
-  background-color: #5aa54b;
+  background-color: #5FAC4F;
 }
 
+/* 네비게이션 레이아웃 */
 .fixedBarNav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+  max-width: 1200px;   /* 최대 너비 */
+  margin: 0 auto;     /* 가운데 정렬 */
+  width: 100%;
 
-  padding: 12px;
+  display: flex;      /* 가로 배치 */
+  justify-content: space-between; /* 좌우 분산 */
+  align-items: center; /* 세로 중앙 */
 
-  /* border-bottom: 1px solid #eee; */
+  padding: 12px 20px; /* 내부 여백 */
 }
 
-.fixedBarNavLink{
-    padding: 8px 10px;
-   
-    text-decoration: none;
-    color: white;
+/* 메뉴 링크 기본 스타일 */
+.fixedBarNavLink {
+  padding: 8px 10px;  /* 클릭 영역 */
 
+  font-size: 16px;    /* 글자 크기 */
+  font-weight: 500;   /* 기본 굵기 */
+  letter-spacing: -0.02em; /* 자간 보정 */
+  font-family: "Pretendard", sans-serif;
+
+  text-decoration: none; /* 밑줄 제거 */
+  color: white;       /* 글자 색 */
 }
+
+/* 마우스 올렸을 때 */
+.fixedBarNavLink:hover {
+  opacity: 0.85;
+}
+
+/* 현재 페이지 메뉴 */
+.fixedBarNavLink.active {
+  font-weight: 600;
+  text-decoration: underline;
+}
+

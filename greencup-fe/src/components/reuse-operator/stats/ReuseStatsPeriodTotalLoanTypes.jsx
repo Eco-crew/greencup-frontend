@@ -42,9 +42,9 @@ export default function ReuseStatsPeriodTotalLoanTypes({
             data: [0, 0, 0, 0],
             backgroundColor: [
               "rgba(46,125,50,0.65)", // 메인 녹색
-              "rgba(33,150,243,0.65)", // 블루 
-              "rgba(255,167,38,0.65)", // 앰버 
-              "rgba(0,150,136,0.65)", // 틸 
+              "rgba(33,150,243,0.65)", // 블루
+              "rgba(255,167,38,0.65)", // 앰버
+              "rgba(0,150,136,0.65)", // 틸
             ],
             borderColor: ["#2e7d32", "#2196f3", "#ffa726", "#009688"],
             borderWidth: 1,
@@ -58,6 +58,11 @@ export default function ReuseStatsPeriodTotalLoanTypes({
         plugins: {
           legend: {
             position: "top", //범례를 위에
+          },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => `${ctx.label}: ${ctx.parsed.toLocaleString()}%`,
+            },
           },
         },
       },

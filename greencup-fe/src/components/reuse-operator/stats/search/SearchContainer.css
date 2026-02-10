@@ -1,0 +1,29 @@
+.reuse_stats_search_container{
+    width:600px;
+    height:50px;
+
+    border:1px solid black;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reuse_stats_search_sub_container{
+    width:100%;
+    height:50%;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reuse_stats_search_element{
+    width:50%;
+    height:100%;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -47,6 +47,9 @@ export default function ReuseStatsPeriodTotal({
             beginAtZero: true, //0부터 시작
             ticks: {
               stepSize: 100, //눈금 한개당 단위
+              callback: function (value) {
+                return value + "개";
+              },
             },
           },
         },

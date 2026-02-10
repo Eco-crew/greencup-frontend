@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import "./ReuseOperatorStatsPage.css";
 
 import ReuseStatsCurrentTotal from "../../../components/reuse-operator/stats/ReuseStatsCurrentTotal";
+import SearchContainer from "../../../components/reuse-operator/stats/search/SearchContainer";
+import SearchButton from "../../../components/reuse-operator/util/search-button/SearchButton";
 import ReuseStatsPeriodTotal from "../../../components/reuse-operator/stats/ReuseStatsPeriodTotal";
 import ReuseStatsPeriodTotalLoanTypes from "../../../components/reuse-operator/stats/ReuseStatsPeriodTotalLoanTypes";
 
@@ -51,6 +53,10 @@ export default function ReuseOperatorStatsPage() {
           currentHaveCount={currentTotal.currentHaveCount}
           totalBrokenLostCount={currentTotal.totalBrokenLostCount}
         />
+        <div className="reuse_stats_period_container">
+          <SearchContainer startDateChange={startDateChange} endDateChange={endDateChange}/>
+          <SearchButton width={100} height={50}/>
+        </div>
         <div className="reuse_stats_period_container">
           <div className="reuse_stats_period_total">
             <ReuseStatsPeriodTotal

@@ -79,13 +79,24 @@ export function AuthProvider({ children }) {
   const login = async (nextUser) => {
     setUser(nextUser);
     storage.setItem(STORAGE_KEY, JSON.stringify(nextUser));
-    //await hasLoginSession();
   };
 
-  const logout = () => {
+  const logout = async () => {
     setUser(null);
     storage.removeItem(STORAGE_KEY);
+
+
     //세션에 없애기 요청을 해야함
+     const response = await fetch(`/api/auth/logout`, {
+      method: "POST",
+      credentials: "include", // 세션 쿠키 전송
+      headers: { Accept: "application/json" }, //서버가 응답을 JSON 형태로 보내주길 바람
+    });
+
+    if (response.status == 200) {
+      console.log('로그아웃 완료');
+    }  
+
   };
 
   //의존성 배열이 없으면 → 사실상 매 렌더마다 다시 계산

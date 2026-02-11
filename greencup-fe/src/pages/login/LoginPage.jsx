@@ -25,7 +25,7 @@ export default function LoginPage() {
    //딱 처음 mount 될때 세션에서 로그인이 되어있는지 검사해서 context에 넣기
    useEffect(() => {
     hasLoginSession();
-    console.log('hasLoginSession 지남');
+    //console.log('hasLoginSession 지남');
    },[]);
 
   useEffect(() => {

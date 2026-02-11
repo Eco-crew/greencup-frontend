@@ -35,7 +35,7 @@
   display:flex;
   justify-content: center;
   align-items: center;
-  gap:10px;
+  gap:5px;
 }
 
 /* src/components/topcontainer/TopContainer.css */
@@ -47,8 +47,23 @@
 }
 
 /* 로그인 사용자 역할 아이콘 */
-.user_role_icon {
-  width: 24px;          /* 아이콘 기본 크기 */
+/* 찌그러짐 방지 */
+/* .user_role_icon {
+  width: 24px;          
   height: 24px;
-  object-fit: contain; /* 찌그러짐 방지 */
+  object-fit: contain; 
+} 
+*/
+
+.user_role_icon_reuse {
+  background-image: url('/img/topcontainer/reuse-operator_icon.png');
+  width:50px;
+  height:50px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.user_role_icon_partner{
+  
 }

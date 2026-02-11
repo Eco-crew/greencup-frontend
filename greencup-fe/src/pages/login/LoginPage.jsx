@@ -22,11 +22,11 @@ export default function LoginPage() {
   //로그인 에러가 있는지 여부
   const [isLoginError, setIsLoginError] = useState(false);
 
-   //딱 처음 mount 될때 세션에서 로그인이 되어있는지 검사해서 context에 넣기
-   useEffect(() => {
+  //딱 처음 mount 될때 세션에서 로그인이 되어있는지 검사해서 context에 넣기
+  useEffect(() => {
     hasLoginSession();
     //console.log('hasLoginSession 지남');
-   },[]);
+  }, []);
 
   useEffect(() => {
     //console.log(loginInput);
@@ -70,6 +70,9 @@ export default function LoginPage() {
       //일단 수거지점장일때는 요청받은 현황들로 이동
       if (nextUser.role === REUSE_OPERATOR) {
         navigate(`/reuse-operator/requests`);
+      } else {
+        //업체 지점장일때는 대여 기록으로 이동
+        navigate(`/partner/requests`);
       }
 
       //usecontext에 등록
@@ -118,8 +121,6 @@ export default function LoginPage() {
       loginInput.role === REUSE_OPERATOR ? "reuseOperator" : "partner";
     window.location.href = `/api/auth/naver/start?userType=${userType}`;
   };
-
- 
 
   return (
     <>

@@ -40,17 +40,26 @@ export const reuseContext = createContext(null);
 function App() {
   const { isAuthed, user, logout } = useAuth();
 
-  //필요시 주석풀고 커스텀할것
-  const linkStyle = () => ({
-    //const linkStyle = ({ isActive }) => ({
-    // background: isActive ? "rgba(0,0,0,0.08)" : "transparent",
-  });
-
   //수거지점장일 경우, 제휴 지점장일 경우 메뉴 목록
   const bigMenu = {
-    reuseOperator: ["요청 현황", "대여 현황", "수거 목록 통계"],
-    partner: ["대여 관리", "대여 기록", "요청 및 반납 통계"],
-    noLogin: ["서비스 소개", "컵수거 시스템", "공지사항", "소통 게시판"],
+    noLogin: [
+      { label: "서비스 소개", path: "/" },
+      { label: "컵수거 시스템", path: "#" },
+      { label: "공지사항", path: "#" },
+      { label: "소통 게시판", path: "#" },
+    ],
+
+    reuseOperator: [
+      { label: "요청 현황", path: "/reuse-operator/requests" },
+      { label: "대여 현황", path: "/reuse-operator/partner-manage" },
+      { label: "수거 목록 통계", path: "/reuse-operator/stats" },
+    ],
+
+    partner: [
+      { label: "대여 관리", path: "/partner/request-settings" },
+      { label: "대여 기록", path: "/partner/requests" },
+      { label: "요청 및 반납 통계", path: "/partner/stats" },
+    ],
   };
 
   //--------------------수거지점장 미완료로 변경 영역-----------------------
@@ -195,7 +204,7 @@ function App() {
         <div className="fixedBar">
           <div className="fixedBarContentCenter">
             <TopContainer loginUser={user} logout={logout} />
-            <Header loginUser={user} bigMenu={bigMenu} linkStyle={linkStyle} />
+            <Header loginUser={user} bigMenu={bigMenu} />
           </div>
         </div>
 
@@ -211,24 +220,50 @@ function App() {
 
               <Route path="/reuse-operator">
                 {/* 요청받은 현황들 */}
-                <Route path="requests" element={<ProtectedRoute><ReuseOperatorRequestPage /></ProtectedRoute>} />
+                <Route
+                  path="requests"
+                  element={
+                    <ProtectedRoute>
+                      <ReuseOperatorRequestPage />
+                    </ProtectedRoute>
+                  }
+                />
                 {/* 요청받은 현황들 상세페이지 */}
                 <Route
                   path="requests/:requestId"
-                  element={<ProtectedRoute><ReuseOperatorRequestDetailPage /></ProtectedRoute>}
+                  element={
+                    <ProtectedRoute>
+                      <ReuseOperatorRequestDetailPage />
+                    </ProtectedRoute>
+                  }
                 />
                 {/* 업체관리 페이지 */}
                 <Route
                   path="partner-manage"
-                  element={<ProtectedRoute><ReuseOperatorPartnerManagePage /></ProtectedRoute>}
+                  element={
+                    <ProtectedRoute>
+                      <ReuseOperatorPartnerManagePage />
+                    </ProtectedRoute>
+                  }
                 />
                 {/* 업체관리 상세 페이지 */}
                 <Route
                   path="partner-manage/:partnerId"
-                  element={<ProtectedRoute><ReuseOperatorPartnerManageDetailPage /></ProtectedRoute>}
+                  element={
+                    <ProtectedRoute>
+                      <ReuseOperatorPartnerManageDetailPage />
+                    </ProtectedRoute>
+                  }
                 />
                 {/* 수거목록 통계 페이지 */}
-                <Route path="stats" element={<ProtectedRoute><ReuseOperatorStatsPage /></ProtectedRoute>} />
+                <Route
+                  path="stats"
+                  element={
+                    <ProtectedRoute>
+                      <ReuseOperatorStatsPage />
+                    </ProtectedRoute>
+                  }
+                />
               </Route>
 
               {/* 제휴 지점장 */}
@@ -236,12 +271,30 @@ function App() {
                 {/* 대여 관리 및 수정 */}
                 <Route
                   path="request-settings"
-                  element={<ProtectedRoute><PartnerRequestSettingsPage /></ProtectedRoute>}
+                  element={
+                    <ProtectedRoute>
+                      <PartnerRequestSettingsPage />
+                    </ProtectedRoute>
+                  }
                 />
                 {/*전체 목록, 요청중인 목록, 대여 및 반납 완료된 목록, 취소한 목록,*/}
-                <Route path="requests" element={<ProtectedRoute><PartnerRequestsPage /></ProtectedRoute>} />
+                <Route
+                  path="requests"
+                  element={
+                    <ProtectedRoute>
+                      <PartnerRequestsPage />
+                    </ProtectedRoute>
+                  }
+                />
                 {/* 이용 통계 페이지 */}
-                <Route path="stats" element={<ProtectedRoute><PartnerStatsPage /></ProtectedRoute>} />
+                <Route
+                  path="stats"
+                  element={
+                    <ProtectedRoute>
+                      <PartnerStatsPage />
+                    </ProtectedRoute>
+                  }
+                />
               </Route>
 
               {/* 후순위-마이페이지 */}

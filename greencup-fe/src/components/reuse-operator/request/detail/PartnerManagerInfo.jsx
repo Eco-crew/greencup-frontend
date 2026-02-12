@@ -5,7 +5,7 @@ export default function PartnerManagerInfo({
   partnerManagerName,
   partnerManagerPhone,
   partnerOperatingStart,
-  partnerOperaingEnd,
+  partnerOperatingEnd,
 }) {
   return (
     <>
@@ -23,7 +23,7 @@ export default function PartnerManagerInfo({
                 <tr>
                     <td>{partnerManagerName}</td>
                     <td>{partnerManagerPhone}</td>
-                    <td>{partnerOperatingStart}~{partnerOperaingEnd}</td>
+                    <td>{partnerOperatingStart}~{partnerOperatingEnd}</td>
                 </tr>
            </tbody>
           </table>

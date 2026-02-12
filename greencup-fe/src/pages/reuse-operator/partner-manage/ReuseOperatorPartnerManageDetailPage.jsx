@@ -69,7 +69,7 @@ export default function ReuseOperatorPartnerManageDetailPage() {
               partnerManagerName={partner.partnerManagerName}
               partnerManagerPhone={partner.partnerManagerPhone}
               partnerOperatingStart={partner.partnerOperatingStart}
-              partnerOperaingEnd={partner.partnerOperaingEnd}
+              partnerOperatingEnd={partner.partnerOperatingEnd}
             />
           </div>
           <PartnerMap partnerAddress={partner.partnerAddress} />
@@ -79,7 +79,7 @@ export default function ReuseOperatorPartnerManageDetailPage() {
           totalLoanCount={partner.totalLoanCount}
           totalReturnCount={partner.totalReturnCount}
           totalBrokenLostCount={partner.totalBrokenLostCount}
-          contractDate={partner.contractDate}
+          contractDate={settingInfo.contractDate}
         />
         <div className="reuse_partner_manage_detail_partner_setting_memo_container">
           <div className="reuse_partner_manage_detail_partner_setting_total_container">
@@ -92,7 +92,7 @@ export default function ReuseOperatorPartnerManageDetailPage() {
           </div>
           <div className="reuse_partner_manage_detail_partner_message_total_container">
             <div>비고 메세지</div>
-            <PartnerMessage memo={partner.memo} />
+            <PartnerMessage memo={settingInfo.memo} />
           </div>
         </div>
         <div className="reuse_partner_manage_holiday_container">

@@ -79,7 +79,7 @@ export default function ReuseOperatorRequestDetailPage() {
               partnerManagerName={request.partnerManagerName}
               partnerManagerPhone={request.partnerManagerPhone}
               partnerOperatingStart={request.partnerOperatingStart}
-              partnerOperaingEnd={request.partnerOperaingEnd}
+              partnerOperatingEnd={request.partnerOperatingEnd}
             />
           </div>
           <PartnerMap partnerAddress={request.partnerAddress}/>

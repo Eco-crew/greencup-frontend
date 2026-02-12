@@ -7,7 +7,7 @@ import SearchButton from "../../../components/reuse-operator/util/search-button/
 import Table from "../../../components/reuse-operator/partner-manage/list/table/Table";
 import Pagination from "../../../components/pagination/Pagination";
 
-import { fetchReusePartners } from "../../../api/dummyReusePartners";
+import { SHOW_POSTS_COUNT } from "../../../util/constant";
 
 //수거지점장-업체관리-업체목록
 export default function ReuseOperatorPartnerManagePage() {
@@ -28,13 +28,24 @@ export default function ReuseOperatorPartnerManagePage() {
   };
 
   //전체목록 불러온후 상태관리하는 함수
-  const handleFetchReusePartners = () => {
-    fetchReusePartners().then((data) => {
+  const handleFetchReusePartners = async () => {
+    const response = await fetch(
+      `/api/reuse-operator/partners?partnerName=${encodeURIComponent(partnerName)}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+      {
+        method: "GET",
+        credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+      },
+    );
+
+    if (response.ok) {
+      const data = await response.json();
       setPartners(data.partners);
       //console.log(data.partners);
       setPartnerCount(data.searchPartnerCount);
       setLoading(false);
-    });
+    } else {
+      console.log("오류");
+    }
   };
 
   //주의 useEffect 인자에 직접적으로 async를 쓰면 안된다. 차라리 fetch then은 가능
@@ -46,6 +57,11 @@ export default function ReuseOperatorPartnerManagePage() {
 
     handleFetchReusePartners();
   }, [page]);
+
+  //조회버튼을 누를시 수행해야 하는것
+  const afterSearchButtonClicked = () => {
+    handleFetchReusePartners();
+  };
 
   //페이지네이션 버튼을 누를시 실행해야 하는 것
   const afterPaginationClicked = (page) => {
@@ -60,7 +76,7 @@ export default function ReuseOperatorPartnerManagePage() {
         <div className="reuse_partner_search">
           <SearchContainer partnerNameChange={partnerNameChange} />
           {/* width, height 크기 조정시 값 변경, 버튼을 누를시 onClick이라는 함수를 넘겨줘야함 */}
-          <SearchButton width={100} height={50} />
+          <SearchButton width={100} height={50} onClick={afterSearchButtonClicked}/>
         </div>
 
         <div className="reuse_partner_results">

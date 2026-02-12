@@ -52,7 +52,7 @@ export default function LoginPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(sendLoginObject),
-      credentials: "include",
+      credentials: "include", 
     });
 
     if (response.status == 200) {
@@ -84,39 +84,6 @@ export default function LoginPage() {
   };
 
   const tryLoginNaver = async () => {
-    // const response = await fetch(
-    //   `/api/auth/naver/start?userType=${loginInput.role == REUSE_OPERATOR ? "reuseOperator" : "partner"}`,
-    //   {
-    //     method: "GET",
-    //     credentials: "include",
-    //   },
-    // );
-
-    // console.log(response);
-    // if (response.ok) {
-    //   const data = await response.json();
-    //   //console.log(data);
-
-    //   const nextUser = {
-    //     userId: data.id,
-    //     userName: data.manager_name,
-    //     role: data.userType,
-    //   };
-
-    //   console.log(nextUser);
-
-    //   //일단 수거지점장일때는 요청받은 현황들로 이동
-    //   if (nextUser.role === REUSE_OPERATOR) {
-    //     navigate(`/reuse-operator/requests`);
-    //   }
-
-    //   //usecontext에 등록
-    //   login(nextUser);
-    //   setIsLoginError(false);
-    // } else {
-    //   setIsLoginError(true);
-    // }
-
     const userType =
       loginInput.role === REUSE_OPERATOR ? "reuseOperator" : "partner";
     window.location.href = `/api/auth/naver/start?userType=${userType}`;

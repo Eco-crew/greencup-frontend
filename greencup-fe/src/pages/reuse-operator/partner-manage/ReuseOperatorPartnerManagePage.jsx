@@ -44,7 +44,7 @@ export default function ReuseOperatorPartnerManagePage() {
       setPartnerCount(data.searchPartnerCount);
       setLoading(false);
     } else {
-      console.log("오류");
+      console.log("수거지점장- 업체리스트 불러오기 오류");
     }
   };
 

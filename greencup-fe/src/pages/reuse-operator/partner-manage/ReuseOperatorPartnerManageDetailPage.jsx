@@ -14,8 +14,6 @@ import PartnerMessage from "../../../components/reuse-operator/partner-manage/de
 import HolidayRegularList from "../../../components/reuse-operator/partner-manage/detail/holiday/HolidayRegularList";
 import GoListButton from "../../../components/reuse-operator/util/golist-button/GoListButton";
 
-import { fetchDetailReusePartner } from "../../../api/dummyReusePartners";
-
 export default function ReuseOperatorPartnerManageDetailPage() {
   //url로 받은 partnerId
   const { partnerId } = useParams();
@@ -35,16 +33,23 @@ export default function ReuseOperatorPartnerManageDetailPage() {
   const navigate = useNavigate();
 
   //해당 항목 불러온후 상태관리하는 함수
-  const handleFetchReuseDetailPartner = (partnerId) => {
-    fetchDetailReusePartner(partnerId).then((data) => {
-      //한개이므로
-      setPartner(data.partners[0].partner);
-      setSettingInfo(data.partners[0].settingInfo);
-      setWeeklyOffDays(data.partners[0].weeklyOffDays);
-      setOffDates(data.partners[0].offDates);
+  const handleFetchReuseDetailPartner = async (partnerId) => {
+    const response = await fetch(`/api/reuse-operator/partners/${partnerId}`, {
+      method: "GET",
+      credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      setPartner(data.partner);
+      setSettingInfo(data.settingInfo);
+      setWeeklyOffDays(data.weeklyOffDays);
+      setOffDates(data.offDates);
 
       setLoading(false);
-    });
+    } else {
+      console.log("수거지점장- 업체리스트 불러오기 오류");
+    }
   };
 
   //주의 useEffect 인자에 직접적으로 async를 쓰면 안된다. 차라리 fetch then은 가능
@@ -109,7 +114,7 @@ export default function ReuseOperatorPartnerManageDetailPage() {
             <HolidayRegularList weeklyOffDays={weeklyOffDays} />
           </div>
           <div className="reuse_partner_manage_detail_golist_container">
-            <GoListButton width={'100%'} height={50} onClick={goListClick} />
+            <GoListButton width={"100%"} height={50} onClick={goListClick} />
           </div>
         </div>
       </div>

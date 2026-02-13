@@ -60,6 +60,7 @@ export default function ReuseOperatorPartnerManagePage() {
 
   //조회버튼을 누를시 수행해야 하는것
   const afterSearchButtonClicked = () => {
+    setLoading(true);
     handleFetchReusePartners();
   };
 

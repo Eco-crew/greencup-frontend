@@ -31,6 +31,8 @@ export default function ReuseOperatorStatsPage() {
 
   //fetch로 불러올동안 로딩중 여부
   const [loading, setLoading] = useState(true);
+  //검색버튼을 눌렀을때 로딩중 여부
+  const [searchLoading, setSearchLoading] = useState(true);
 
   const startDateChange = (startDate) => {
     setStartDate(startDate);
@@ -56,6 +58,7 @@ export default function ReuseOperatorStatsPage() {
       setPeriodTotalLoanTypes(data.periodTotalLoanTypes);
 
       setLoading(false);
+      setSearchLoading(false);
     } else {
       console.log("수거지점장- 통계 불러오기 오류");
     }
@@ -67,6 +70,7 @@ export default function ReuseOperatorStatsPage() {
 
   //조회버튼을 누를시 수행해야 하는것
   const afterSearchButtonClicked = () => {
+    setSearchLoading(true);
     handleFetchReuseStats();
   };
 
@@ -101,20 +105,30 @@ export default function ReuseOperatorStatsPage() {
           />
         </div>
         <div className="reuse_stats_period_container">
-          <div className="reuse_stats_period_total">
-            <ReuseStatsPeriodTotal
-              periodTotalLoanCount={periodTotal.periodTotalLoanCount}
-              periodTotalReturnCount={periodTotal.periodTotalReturnCount}
-              periodTotalBrokenLostCount={
-                periodTotal.periodTotalBrokenLostCount
-              }
-            />
-          </div>
-          <div className="reuse_stats_period_total_loan_types">
-            <ReuseStatsPeriodTotalLoanTypes
-              periodTotalLoanTypes={periodTotalLoanTypes}
-            />
-          </div>
+          {searchLoading ? (
+            <div>로딩중</div>
+          ) : periodTotalLoanTypes.length == 0 ? (
+            <>
+              <div>데이터가 존재하지 않습니다.</div>
+            </>
+          ) : (
+            <>
+              <div className="reuse_stats_period_total">
+                <ReuseStatsPeriodTotal
+                  periodTotalLoanCount={periodTotal.periodTotalLoanCount}
+                  periodTotalReturnCount={periodTotal.periodTotalReturnCount}
+                  periodTotalBrokenLostCount={
+                    periodTotal.periodTotalBrokenLostCount
+                  }
+                />
+              </div>
+              <div className="reuse_stats_period_total_loan_types">
+                <ReuseStatsPeriodTotalLoanTypes
+                  periodTotalLoanTypes={periodTotalLoanTypes}
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

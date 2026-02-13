@@ -78,10 +78,12 @@ export default function ReuseStatsPeriodTotalLoanTypes({
     const chart = chartObjRef.current;
     if (!chart) return;
 
-    let putValueData = [];
-    let putLabelData = [];
-
-    console.log(periodTotalLoanTypes);
+    let putUpdateValueData = {
+      [PERIOD_TOTAL_LOAN_TYPE_NAME_OFFICE]: 0,
+      [PERIOD_TOTAL_LOAN_TYPE_NAME_PUBLIC]: 0,
+      [PERIOD_TOTAL_LOAN_TYPE_NAME_EVENT]: 0,
+      [PERIOD_TOTAL_LOAN_TYPE_NAME_CAFE]: 0,
+    };
 
     periodTotalLoanTypes.forEach((periodTotalLoanType) => {
       for (const [key, value] of Object.entries(periodTotalLoanType)) {
@@ -89,31 +91,29 @@ export default function ReuseStatsPeriodTotalLoanTypes({
         if (key === PERIOD_TOTAL_LOAN_TYPE_NAME) {
           switch (value) {
             case PERIOD_TOTAL_LOAN_TYPE_NAME_OFFICE:
-              putLabelData.push("사무실");
+              putUpdateValueData[PERIOD_TOTAL_LOAN_TYPE_NAME_OFFICE] =
+                periodTotalLoanType.periodTotalLoanTypePercent;
               break;
             case PERIOD_TOTAL_LOAN_TYPE_NAME_PUBLIC:
-              putLabelData.push("공공기관");
+              putUpdateValueData[PERIOD_TOTAL_LOAN_TYPE_NAME_PUBLIC] =
+                periodTotalLoanType.periodTotalLoanTypePercent;
               break;
             case PERIOD_TOTAL_LOAN_TYPE_NAME_EVENT:
-              putLabelData.push("행사장");
+              putUpdateValueData[PERIOD_TOTAL_LOAN_TYPE_NAME_EVENT] =
+                periodTotalLoanType.periodTotalLoanTypePercent;
               break;
             case PERIOD_TOTAL_LOAN_TYPE_NAME_CAFE:
-              putLabelData.push("카페");
+              putUpdateValueData[PERIOD_TOTAL_LOAN_TYPE_NAME_CAFE] =
+                periodTotalLoanType.periodTotalLoanTypePercent;
               break;
             default:
               break;
           }
-        } else {
-          putValueData.push(value);
         }
       }
     });
 
-    console.log(putValueData);
-    console.log(putLabelData);
-
-    chart.data.datasets[0].data = putValueData;
-    chart.data.datasets[0].labels = putLabelData;
+    chart.data.datasets[0].data = [putUpdateValueData[PERIOD_TOTAL_LOAN_TYPE_NAME_OFFICE], putUpdateValueData[PERIOD_TOTAL_LOAN_TYPE_NAME_PUBLIC],  putUpdateValueData[PERIOD_TOTAL_LOAN_TYPE_NAME_EVENT], putUpdateValueData[PERIOD_TOTAL_LOAN_TYPE_NAME_CAFE]];
     chart.update();
 
     console.log(chart.data.datasets[0]);

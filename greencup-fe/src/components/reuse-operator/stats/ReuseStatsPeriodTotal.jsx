@@ -40,6 +40,20 @@ export default function ReuseStatsPeriodTotal({
         plugins: {
           legend: {
             position: "top", //범례를 위에
+            labels: {
+              //dataset label만 숨기기
+              filter: (legendItem) => legendItem.text !== "전체 수거 통계",
+            },
+          },
+
+          title: {
+            display: true,
+            text: "전체 수거 통계",
+            align: "start", // 왼쪽 정렬
+            font: {
+              size: 14,
+              weight: "bold",
+            },
           },
         },
         scales: {

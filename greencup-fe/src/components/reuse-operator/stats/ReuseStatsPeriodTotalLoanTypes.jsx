@@ -87,7 +87,7 @@ export default function ReuseStatsPeriodTotalLoanTypes({
       for (const [key, value] of Object.entries(periodTotalLoanType)) {
         //만약 키가 periodTotalLoanTypeName면
         if (key === PERIOD_TOTAL_LOAN_TYPE_NAME) {
-          switch (key) {
+          switch (value) {
             case PERIOD_TOTAL_LOAN_TYPE_NAME_OFFICE:
               putLabelData.push("사무실");
               break;
@@ -115,6 +115,8 @@ export default function ReuseStatsPeriodTotalLoanTypes({
     chart.data.datasets[0].data = putValueData;
     chart.data.datasets[0].labels = putLabelData;
     chart.update();
+
+    console.log(chart.data.datasets[0]);
   }, [periodTotalLoanTypes]);
 
   return (

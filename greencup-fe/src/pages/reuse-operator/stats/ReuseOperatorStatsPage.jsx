@@ -63,7 +63,7 @@ export default function ReuseOperatorStatsPage() {
 
   useEffect(() => {
     handleFetchReuseStats();
-  }, [startDate, endDate]);
+  }, []);
 
   //조회버튼을 누를시 수행해야 하는것
   const afterSearchButtonClicked = () => {

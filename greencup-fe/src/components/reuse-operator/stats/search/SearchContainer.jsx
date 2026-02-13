@@ -4,6 +4,8 @@ import "./SearchContainer.css";
 export default function SearchContainer({
   startDateChange,
   endDateChange,
+  startDate,
+  endDate,
 }) {
   return (
     <>
@@ -14,6 +16,7 @@ export default function SearchContainer({
             <input
               id="reuse_request_start_date"
               type="date"
+              value={startDate}
               onChange={(e) => {
                 startDateChange(e.target.value);
               }}
@@ -22,6 +25,7 @@ export default function SearchContainer({
             <input
               id="reuse_request_end_date"
               type="date"
+              value={endDate}
               onChange={(e) => {
                 endDateChange(e.target.value);
               }}

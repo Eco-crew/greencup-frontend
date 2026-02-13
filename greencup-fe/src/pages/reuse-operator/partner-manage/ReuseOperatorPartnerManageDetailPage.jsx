@@ -64,6 +64,8 @@ export default function ReuseOperatorPartnerManageDetailPage() {
     navigate("/reuse-operator/partner-manage");
   };
 
+  //여기는 렌더링 하는 영역
+  if (loading) return (<div className="reuse_partner_manage_detail_container"><div>로딩중</div></div>)
   return (
     <>
       <div className="reuse_partner_manage_detail_container">

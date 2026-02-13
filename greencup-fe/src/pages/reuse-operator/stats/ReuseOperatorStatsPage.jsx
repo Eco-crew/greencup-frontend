@@ -8,7 +8,10 @@ import SearchButton from "../../../components/reuse-operator/util/search-button/
 import ReuseStatsPeriodTotal from "../../../components/reuse-operator/stats/ReuseStatsPeriodTotal";
 import ReuseStatsPeriodTotalLoanTypes from "../../../components/reuse-operator/stats/ReuseStatsPeriodTotalLoanTypes";
 
-import { fetchReuseStats } from "../../../api/dummyReuseStats";
+import {
+  makeTodayString,
+  make7DaysAgoString,
+} from "../../../util/utilFunction";
 
 export default function ReuseOperatorStatsPage() {
   //현재 대여 현황
@@ -18,31 +21,62 @@ export default function ReuseOperatorStatsPage() {
   //조회기간에 따른 업체이름과, 업체별 대여한 퍼센트비율
   const [periodTotalLoanTypes, setPeriodTotalLoanTypes] = useState([]);
 
-  //조회기간 시작일자
-  const [startDate, setStartDate] = useState("");
-  //조회기간 종료일자
-  const [endDate, setEndDate] = useState("");
+  //<input type="date"> 는 Date 객체가 아니라 문자열 "yyyy-mm-dd" 형태로 값을 다룸
+  //조회기간 시작일자 => 디폴트 오늘날짜 - 7
+  const todayString = makeTodayString();
+  const days7AgoString = make7DaysAgoString(todayString);
+  const [startDate, setStartDate] = useState(days7AgoString);
+  //조회기간 종료일자 => 디폴트 오늘날짜
+  const [endDate, setEndDate] = useState(todayString);
+
+  //fetch로 불러올동안 로딩중 여부
+  const [loading, setLoading] = useState(true);
 
   const startDateChange = (startDate) => {
     setStartDate(startDate);
   };
 
-  const endDateChange = (startDate) => {
-    setEndDate(startDate);
+  const endDateChange = (endDate) => {
+    setEndDate(endDate);
   };
 
-  const handleFetchReuseStats = () => {
-    fetchReuseStats().then((data) => {
+  const handleFetchReuseStats = async () => {
+    const response = await fetch(
+      `/api/reuse-operator/stats?startDate=${startDate}&endDate=${endDate}`,
+      {
+        method: "GET",
+        credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+      },
+    );
+
+    if (response.ok) {
+      const data = await response.json();
       setCurrentTotal(data.currentTotal);
       setPeriodTotal(data.periodTotal);
       setPeriodTotalLoanTypes(data.periodTotalLoanTypes);
-    });
+
+      setLoading(false);
+    } else {
+      console.log("수거지점장- 통계 불러오기 오류");
+    }
   };
 
   useEffect(() => {
     handleFetchReuseStats();
-  }, []);
+  }, [startDate, endDate]);
 
+  //조회버튼을 누를시 수행해야 하는것
+  const afterSearchButtonClicked = () => {
+    handleFetchReuseStats();
+  };
+
+  //여기는 렌더링 하는 영역
+  if (loading)
+    return (
+      <div className="reuse_stats_container">
+        <div>로딩중</div>
+      </div>
+    );
   return (
     <>
       <div className="reuse_stats_container">
@@ -54,8 +88,17 @@ export default function ReuseOperatorStatsPage() {
           totalBrokenLostCount={currentTotal.totalBrokenLostCount}
         />
         <div className="reuse_stats_period_container">
-          <SearchContainer startDateChange={startDateChange} endDateChange={endDateChange}/>
-          <SearchButton width={100} height={50}/>
+          <SearchContainer
+            startDateChange={startDateChange}
+            endDateChange={endDateChange}
+            startDate={startDate}
+            endDate={endDate}
+          />
+          <SearchButton
+            width={100}
+            height={50}
+            onClick={afterSearchButtonClicked}
+          />
         </div>
         <div className="reuse_stats_period_container">
           <div className="reuse_stats_period_total">

@@ -18,7 +18,6 @@ export default function Header({ loginUser, bigMenu }) {
                     key={menu.label}
                     className="fixedBarNavLink"
                     onClick={() => alert("준비중입니다")}
-                    end
                   >
                     {menu.label}
                   </div>
@@ -29,7 +28,6 @@ export default function Header({ loginUser, bigMenu }) {
                     className={({ isActive }) =>
                       "fixedBarNavLink" + (isActive ? " active" : "")
                     }
-                    end
                   >
                     {menu.label}
                   </NavLink>
@@ -43,7 +41,6 @@ export default function Header({ loginUser, bigMenu }) {
                     className={({ isActive }) =>
                       "fixedBarNavLink" + (isActive ? " active" : "")
                     }
-                    end
                   >
                     {menu.label}
                   </NavLink>
@@ -55,7 +52,6 @@ export default function Header({ loginUser, bigMenu }) {
                     className={({ isActive }) =>
                       "fixedBarNavLink" + (isActive ? " active" : "")
                     }
-                    end
                   >
                     {menu.label}
                   </NavLink>

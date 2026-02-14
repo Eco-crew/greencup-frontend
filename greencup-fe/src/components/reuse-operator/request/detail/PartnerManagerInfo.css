@@ -15,6 +15,13 @@
 
 #reuse-request-detail-partner-manager-table table {
   min-width: 400px;
+
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
 
 
@@ -30,3 +37,35 @@
   color: lightblue;
 } 
 */
+
+
+/* header */
+#reuse-request-detail-partner-manager-table thead th {
+ background: #eef0f2; 
+  font-weight: 600;
+  color: #495057;
+  padding: 14px 12px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* body */
+#reuse-request-detail-partner-manager-table tbody td {
+  padding: 14px 12px;
+  color: #343a40;
+  font-size: 15px;
+  border: none;
+}
+
+/* 둥글게 */
+#reuse-request-detail-partner-manager-table thead th:first-child {
+  border-top-left-radius: 12px;
+}
+#reuse-request-detail-partner-manager-table thead th:last-child {
+  border-top-right-radius: 12px;
+}
+#reuse-request-detail-partner-manager-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+#reuse-request-detail-partner-manager-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}

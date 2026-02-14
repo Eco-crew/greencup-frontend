@@ -23,7 +23,7 @@ const reuseDetailRequests = {
             partnerManagerName: '공유오피스사장김씨',
             partnerManagerPhone: '010-0000-0000',
             partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
+            partnerOperatingEnd: '19:00',
             partnerAddress: '서울특별시 동대문구 천호대로 405',
             memo: '사전에 연락바랍니다.',
             needCount: 500, returnCount: 500, brokenLostCount: 10, partnerName: '공유오피스A', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: true
@@ -33,7 +33,7 @@ const reuseDetailRequests = {
             partnerManagerName: '공유오피스사장김씨',
             partnerManagerPhone: '010-0000-0000',
             partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
+            partnerOperatingEnd: '19:00',
             partnerAddress: '서울특별시 동대문구 천호대로 405',
             memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
         },
@@ -42,7 +42,7 @@ const reuseDetailRequests = {
             partnerManagerName: '공유오피스사장김씨',
             partnerManagerPhone: '010-0000-0000',
             partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
+            partnerOperatingEnd: '19:00',
             partnerAddress: '서울특별시 동대문구 천호대로 405',
             memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
         },
@@ -51,7 +51,7 @@ const reuseDetailRequests = {
             partnerManagerName: '공유오피스사장김씨',
             partnerManagerPhone: '010-0000-0000',
             partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
+            partnerOperatingEnd: '19:00',
             partnerAddress: '서울특별시 동대문구 천호대로 405',
             memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
         },
@@ -60,7 +60,7 @@ const reuseDetailRequests = {
             partnerManagerName: '공유오피스사장김씨',
             partnerManagerPhone: '010-0000-0000',
             partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
+            partnerOperatingEnd: '19:00',
             partnerAddress: '서울특별시 동대문구 천호대로 405',
             memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
         },
@@ -69,7 +69,7 @@ const reuseDetailRequests = {
             partnerManagerName: '공유오피스사장김씨',
             partnerManagerPhone: '010-0000-0000',
             partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
+            partnerOperatingEnd: '19:00',
             partnerAddress: '서울특별시 동대문구 천호대로 405',
             memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
         },
@@ -78,7 +78,7 @@ const reuseDetailRequests = {
             partnerManagerName: '공유오피스사장김씨',
             partnerManagerPhone: '010-0000-0000',
             partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
+            partnerOperatingEnd: '19:00',
             partnerAddress: '서울특별시 동대문구 천호대로 405',
             memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
         },
@@ -87,7 +87,7 @@ const reuseDetailRequests = {
             partnerManagerName: '공유오피스사장김씨',
             partnerManagerPhone: '010-0000-0000',
             partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
+            partnerOperatingEnd: '19:00',
             partnerAddress: '서울특별시 동대문구 천호대로 405',
             memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
         },
@@ -96,7 +96,7 @@ const reuseDetailRequests = {
             partnerManagerName: '공유오피스사장김씨',
             partnerManagerPhone: '010-0000-0000',
             partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
+            partnerOperatingEnd: '19:00',
             partnerAddress: '서울특별시 동대문구 천호대로 405',
             memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
         },
@@ -105,7 +105,7 @@ const reuseDetailRequests = {
             partnerManagerName: '공유오피스사장김씨',
             partnerManagerPhone: '010-0000-0000',
             partnerOperatingStart: '09:00',
-            partnerOperaingEnd: '19:00',
+            partnerOperatingEnd: '19:00',
             partnerAddress: '서울특별시 동대문구 천호대로 405',
             memo: '사전에 연락바랍니다.', needCount: 100, returnCount: 100, brokenLostCount: 0, partnerName: '공유오피스B', wantedVisitTime: '2025-01-17 08:00', requestedDate: '2025-01-17', completed: false
         },

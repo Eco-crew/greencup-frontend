@@ -21,9 +21,8 @@
   background: #ffffff;
   border: 1px solid #e9ecef;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
-
 
 /* 아래는 모두 부트스트랩 테이블 커스텀 - 필요시 주석 풀고 커스텀 */
 
@@ -38,10 +37,9 @@
 } 
 */
 
-
 /* header */
 #reuse-request-detail-partner-manager-table thead th {
- background: #eef0f2; 
+  background: #eef0f2;
   font-weight: 600;
   color: #495057;
   padding: 14px 12px;

@@ -29,7 +29,7 @@
   color: #495057;
 
   border-bottom: 1px solid #e9ecef;
-  background: #eef0f2; /* 테이블 header와 동일 톤 */
+  background: #eef0f2; 
 }
 
 #reuse_request_detail_partner_map {

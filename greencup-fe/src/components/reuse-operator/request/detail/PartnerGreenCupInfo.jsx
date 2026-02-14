@@ -21,8 +21,11 @@ export default function PartnerGreenCupInfo({
         className="text-center table-responsive"
       >
         {/* 감싸는 상위태그에 table-responsive만으로도 스크롤이 생기지 않음 table태그에 직접적으로 min-width필요*/}
-        <table className="table align-middle table-hover custom-table">
-          <thead id="reuse-request-detail-partner-cup-info-table-header" className="table-group-divider fw-normal">
+        <table className="table align-middle custom-table">
+          <thead
+            id="reuse-request-detail-partner-cup-info-table-header"
+            className="table-group-divider fw-normal"
+          >
             <tr>
               <th>필요개수</th>
               <th>반납개수</th>
@@ -32,7 +35,10 @@ export default function PartnerGreenCupInfo({
               <th>완료여부</th>
             </tr>
           </thead>
-          <tbody id="reuse-request-detail-partner-cup-info-table-body" className="table-group-divider fw-light">
+          <tbody
+            id="reuse-request-detail-partner-cup-info-table-body"
+            className="table-group-divider fw-light"
+          >
             <tr>
               <td>{needCount}</td>
               <td>{returnCount}</td>
@@ -47,10 +53,10 @@ export default function PartnerGreenCupInfo({
                     </span>
                     {/* width, height 크기 조정시 값 변경, text 변경 및 버튼 배경색 변경, 버튼을 누를시 onClick이라는 함수를 넘겨줌 */}
                     <IsCompleteButton
-                      width={50}
+                      width={60}
                       height={30}
                       text={"취소"}
-                      backgroundColor={"red"}
+                      backgroundColor={"salmon"}
                       dataId={requestId}
                       onClick={(e) => {
                         e.stopPropagation();
@@ -67,10 +73,10 @@ export default function PartnerGreenCupInfo({
                     </span>
                     {/* width, height 크기 조정시 값 변경, text 변경 및 버튼 배경색 변경, 버튼을 누를시 onClick이라는 함수를 넘겨줌 */}
                     <IsCompleteButton
-                      width={50}
+                      width={60}
                       height={30}
                       text={"완료"}
-                      backgroundColor={"green"}
+                      backgroundColor={"#8fbf84"}
                       dataId={requestId}
                       onClick={(e) => {
                         e.stopPropagation();

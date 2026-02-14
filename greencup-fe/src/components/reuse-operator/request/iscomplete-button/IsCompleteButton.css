@@ -1,11 +1,34 @@
-#isCompleteButton{
-    display:flex;
-    justify-content: center;
-    align-items: center;
+.isCompleteButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
-    border-radius: 5px;
+  border-radius: 10px;          
+  border: 1px solid rgba(0,0,0,0.08);
+
+  cursor: pointer;
+  user-select: none;
+
 }
 
-.isCompleteText{
-    font-size: 10px;
+.isCompleteButton:hover {
+  transform: translateY(-1px);
+  filter: brightness(0.98);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.16);
+}
+
+/*클릭해서 누르고 있는 동안(mousedown~mouseup 사이)*/
+.isCompleteButton:active {
+  transform: translateY(0px);
+  filter: brightness(0.92);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.isCompleteText {
+  font-size: 13px;              
+  font-weight: 400;
+  color:#2b2b2b;           
+  line-height: 1;
+  padding: 0 10px;                
+  white-space: nowrap;
 }

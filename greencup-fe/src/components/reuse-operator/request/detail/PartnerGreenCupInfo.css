@@ -17,18 +17,30 @@
 
 #reuse-request-detail-partner-cup-info-table table {
   min-width: 800px;
+
+  /*
+  collapse → 외곽선 = 셀 border 계산 결과 → radius 적용 어려움
+  separate → table border와 셀 border 분리 → radius 정상 적용
+  */
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .reuse-request-detail-partner-cup-info-isCompleteButtonTd {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 12px; 
 }
 
 .reuse-request-detail-partner-cup-info-isCompleteText {
   width: 50px;
-  font-size: 15px;
+  font-size: 14px; 
 }
 
 /* 아래는 모두 부트스트랩 테이블 커스텀 - 필요시 주석 풀고 커스텀 */
@@ -39,7 +51,38 @@
   --bs-table-color-state: #0d6efd;
 }
 
-#reuse-request-detail-partner-cup-info-tablee .table .table-group-divider {
+#reuse-request-detail-partner-cup-info-table .table .table-group-divider {
   color: lightblue;
 } 
 */
+
+/* header */
+#reuse-request-detail-partner-cup-info-table thead th {
+  background: #eef0f2;
+  font-weight: 600;
+  color: #495057;
+  padding: 14px 12px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* body */
+#reuse-request-detail-partner-cup-info-table tbody td {
+  padding: 14px 12px;
+  color: #343a40;
+  font-size: 15px;
+  border: none;
+}
+
+/* 둥글게 */
+#reuse-request-detail-partner-cup-info-table thead th:first-child {
+  border-top-left-radius: 12px;
+}
+#reuse-request-detail-partner-cup-info-table thead th:last-child {
+  border-top-right-radius: 12px;
+}
+#reuse-request-detail-partner-cup-info-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+#reuse-request-detail-partner-cup-info-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}

@@ -13,7 +13,7 @@ export default function IsCompleteButton({width, height, text, backgroundColor, 
     });
     return(
         <>
-        <div id="isCompleteButton" style={isCompleteButtonStyle()} data-id={dataId} onClick={onClick}>
+        <div className="isCompleteButton" style={isCompleteButtonStyle()} data-id={dataId} onClick={onClick}>
             <div className="isCompleteText">{text}</div>
         </div>
         </>

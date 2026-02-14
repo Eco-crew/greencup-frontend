@@ -16,8 +16,13 @@
 #reuse-request-detail-partner-manager-table table {
   min-width: 400px;
 
+  /*
+  collapse → 외곽선 = 셀 border 계산 결과 → radius 적용 어려움
+  separate → table border와 셀 border 분리 → radius 정상 적용
+  */
   border-collapse: separate;
   border-spacing: 0;
+  overflow: hidden;
   background: #ffffff;
   border: 1px solid #e9ecef;
   border-radius: 12px;

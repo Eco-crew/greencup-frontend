@@ -98,17 +98,26 @@ export default function Table({ requests, afterCompleted, afterCanceled }) {
 
   return (
     <>
-      <div id="reuse-request-search-table" className="text-center table-responsive">
+      <div
+        id="reuse-request-search-table"
+        className="text-center table-responsive"
+      >
         {/* 감싸는 상위태그에 table-responsive만으로도 스크롤이 생기지 않음 table태그에 직접적으로 min-width필요*/}
         <table className="table align-middle table-hover custom-table">
-          <thead id="reuse-request-table-header" className="table-group-divider fw-normal">
+          <thead
+            id="reuse-request-table-header"
+            className="table-group-divider fw-normal"
+          >
             <tr>
               {realHeaders.map((rh) => (
                 <th key={rh}>{rh}</th>
               ))}
             </tr>
           </thead>
-          <tbody id="reuse-request-table-body" className="table-group-divider fw-light">
+          <tbody
+            id="reuse-request-table-body"
+            className="table-group-divider fw-light"
+          >
             {realTrs.map((rt, index) => (
               <tr
                 key={realTrIds[index]}
@@ -123,13 +132,15 @@ export default function Table({ requests, afterCompleted, afterCanceled }) {
                   ) : rd === "완료" ? (
                     <td key={index2}>
                       <div className="reuse-request-isCompleteButtonTd">
-                        <span className="reuse-request-isCompleteText">{rd}</span>
+                        <span className="reuse-request-isCompleteText">
+                          {rd}
+                        </span>
                         {/* width, height 크기 조정시 값 변경, text 변경 및 버튼 배경색 변경, 버튼을 누를시 onClick이라는 함수를 넘겨줌 */}
                         <IsCompleteButton
-                          width={50}
+                          width={60}
                           height={30}
                           text={"취소"}
-                          backgroundColor={"red"}
+                          backgroundColor={"salmon"}
                           dataId={realTrIds[index]}
                           onClick={(e) => {
                             e.stopPropagation();
@@ -141,13 +152,15 @@ export default function Table({ requests, afterCompleted, afterCanceled }) {
                   ) : (
                     <td key={index2}>
                       <div className="reuse-request-isCompleteButtonTd">
-                        <span className="reuse-request-isCompleteText">{rd}</span>
+                        <span className="reuse-request-isCompleteText">
+                          {rd}
+                        </span>
                         {/* width, height 크기 조정시 값 변경, text 변경 및 버튼 배경색 변경, 버튼을 누를시 onClick이라는 함수를 넘겨줌 */}
                         <IsCompleteButton
-                          width={50}
+                          width={60}
                           height={30}
                           text={"완료"}
-                          backgroundColor={"green"}
+                          backgroundColor={"#8fbf84"}
                           dataId={realTrIds[index]}
                           onClick={(e) => {
                             e.stopPropagation();

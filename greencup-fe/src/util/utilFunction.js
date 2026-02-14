@@ -1,3 +1,4 @@
+//01012345678처럼 번호에 -이 없으므로 - 추가하여 화면 렌더링
 export const makePhoneNumberHyphen = (phoneNumber) => {
     let splitedPhoneNumber = phoneNumber.split('');
     let hyphenString = '';
@@ -35,6 +36,7 @@ export const makePhoneNumberHyphen = (phoneNumber) => {
     return hyphenString;
 }
 
+//오늘날 현재 날짜를 yyyy-mm-dd 문자열로 만들기
 export const makeTodayString = () => {
     const date = new Date();
     const yyyy = date.getFullYear();
@@ -45,6 +47,7 @@ export const makeTodayString = () => {
 
 }
 
+//오늘날 현재 날짜에서 -7일전 날짜를 yyyy-mm-dd 문자열로 만들기
 export const make7DaysAgoString = (dateStr) => {
     const date = new Date(dateStr);
     date.setDate(date.getDate() - 7);
@@ -54,4 +57,15 @@ export const make7DaysAgoString = (dateStr) => {
     const dd = String(date.getDate()).padStart(2, "0");
 
     return `${yyyy}-${mm}-${dd}`;
+}
+
+//두개의 날짜 범위로 조회시, 앞박스 날짜가 뒷박스날짜보다 큰경우, 순서를 바꿔서 배치
+export const checkDatesRanges = (startDateStr, endDateStr) => {
+    let startDate = new Date(startDateStr);
+    let endDate = new Date(endDateStr);
+    if (startDate > endDate) {
+        return { changed: true, startDate: endDateStr, endDate: startDateStr };
+    } else {
+        return { changed: false };
+    }
 }

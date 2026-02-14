@@ -17,6 +17,11 @@ import {
   fetchNotCompletedReuseRequests,
 } from "../../../api/dummyReuseRequests";
 import { reuseContext } from "../../../App";
+import {
+  makeTodayString,
+  make7DaysAgoString,
+  checkDatesRanges,
+} from "../../../util/utilFunction";
 
 export default function ReuseOperatorRequestPage() {
   //수거지점장-요청현황에서 취소버튼 혹은 완료버튼 누를시 함수를 가져옴
@@ -31,10 +36,15 @@ export default function ReuseOperatorRequestPage() {
   const [totalRequestCount, setTotalRequestCount] = useState(0);
   //로그인한 수거지점장이 완료한 요청갯수
   const [completedRequestCount, setCompletedRequestCount] = useState(0);
-  //조회기간 시작일자
-  const [startDate, setStartDate] = useState("");
-  //조회기간 종료일자
-  const [endDate, setEndDate] = useState("");
+
+  //<input type="date"> 는 Date 객체가 아니라 문자열 "yyyy-mm-dd" 형태로 값을 다룸
+  //조회기간 시작일자 => 디폴트 오늘날짜 - 7
+  const todayString = makeTodayString();
+  const days7AgoString = make7DaysAgoString(todayString);
+  const [startDate, setStartDate] = useState(days7AgoString);
+  //조회기간 종료일자 => 디폴트 오늘날짜
+  const [endDate, setEndDate] = useState(todayString);
+
   //제휴지점명
   const [partnerName, setPartnerName] = useState("");
   //선택한 탭바 내용 => 기본은 전체
@@ -49,11 +59,25 @@ export default function ReuseOperatorRequestPage() {
   const [page, setPage] = useState(1);
 
   const startDateChange = (startDate) => {
-    setStartDate(startDate);
+    let result = checkDatesRanges(startDate, endDate);
+
+    if (result.changed) {
+      setStartDate(result.startDate);
+      setEndDate(result.endDate);
+    } else {
+      setStartDate(startDate);
+    }
   };
 
-  const endDateChange = (startDate) => {
-    setEndDate(startDate);
+  const endDateChange = (endDate) => {
+    let result = checkDatesRanges(startDate, endDate);
+
+    if (result.changed) {
+      setStartDate(result.startDate);
+      setEndDate(result.endDate);
+    } else {
+      setEndDate(endDate);
+    }
   };
 
   const partnerNameChange = (partnerName) => {
@@ -168,6 +192,8 @@ export default function ReuseOperatorRequestPage() {
           <SearchContainer
             startDateChange={startDateChange}
             endDateChange={endDateChange}
+            startDate={startDate}
+            endDate={endDate}
             partnerNameChange={partnerNameChange}
           />
           {/* width, height 크기 조정시 값 변경, 버튼을 누를시 onClick이라는 함수를 넘겨줌 */}

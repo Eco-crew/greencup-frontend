@@ -11,6 +11,7 @@ import ReuseStatsPeriodTotalLoanTypes from "../../../components/reuse-operator/s
 import {
   makeTodayString,
   make7DaysAgoString,
+  checkDatesRanges,
 } from "../../../util/utilFunction";
 
 export default function ReuseOperatorStatsPage() {
@@ -35,11 +36,27 @@ export default function ReuseOperatorStatsPage() {
   const [searchLoading, setSearchLoading] = useState(true);
 
   const startDateChange = (startDate) => {
-    setStartDate(startDate);
+    let result = checkDatesRanges(startDate, endDate);
+
+    if (result.changed){
+      setStartDate(result.startDate);
+      setEndDate(result.endDate);
+    } else {
+      setStartDate(startDate);
+    }
+
   };
 
   const endDateChange = (endDate) => {
-    setEndDate(endDate);
+    let result = checkDatesRanges(startDate, endDate);
+
+    if (result.changed){
+      setStartDate(result.startDate);
+      setEndDate(result.endDate);
+    } else {
+      setEndDate(endDate);
+    }
+    
   };
 
   const handleFetchReuseStats = async () => {

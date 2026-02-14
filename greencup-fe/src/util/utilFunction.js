@@ -1,3 +1,5 @@
+import { fetchReturnedCountReuseRequest } from "../api/dummyReuseRequests";
+
 //01012345678처럼 번호에 -이 없으므로 - 추가하여 화면 렌더링
 export const makePhoneNumberHyphen = (phoneNumber) => {
     let splitedPhoneNumber = phoneNumber.split('');
@@ -68,4 +70,18 @@ export const checkDatesRanges = (startDateStr, endDateStr) => {
     } else {
         return { changed: false };
     }
+}
+
+//파손및 분실 개수 유효성 검증
+//요청현황아이디를 가지고 반납개수를 불러온다
+//그리고 나서 -음수이거나 반납개수 이하인지 확인한다
+export const checkMissedCount = async(requestId, missedCount) => {
+    let returnedCount = await fetchReturnedCountReuseRequest(requestId);
+    //console.log(missedCount);
+    //console.log(returnedCount);
+
+    if(missedCount > returnedCount || missedCount < 0){
+        return false;
+    }
+    return true;
 }

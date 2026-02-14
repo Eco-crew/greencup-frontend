@@ -12,6 +12,7 @@ export default function CompleteModal({
   confirmClick,
   cancelClick,
   inputChange,
+  reuseCompleteMissedCountValid,
 }) {
   const modalWhiteBackgroundStyle = () => ({
     width: width,
@@ -19,21 +20,40 @@ export default function CompleteModal({
   });
   return (
     <>
-      <div className="completeModalWhiteBackground" style={modalWhiteBackgroundStyle()}>
+      <div
+        className="completeModalWhiteBackground"
+        style={modalWhiteBackgroundStyle()}
+      >
         <div className="completeModalContentContainer">
           <div className="completeModalContentText">
             파손 및 분실 개수를 입력해주세요
           </div>
           <input
             className="completeModalInputNumber"
+            type="number"
             defaultValue={0}
             onChange={(e) => {
               inputChange(e.target.value);
             }}
           />
-          <div className="completeModalInputText">0이상을 입력해주세요.</div>
+          <div className="completeModalInputText">
+            0이상~반납개수 이하를 입력해주세요.
+          </div>
+          {reuseCompleteMissedCountValid ? (
+            ""
+          ) : (
+            <div className="completeModalInputErrorText">
+              유효한 개수가 아닙니다.
+            </div>
+          )}
           <div className="completeModalButtonContainer">
-            <ConfirmButton width={120} height={50} onClick={(e)=>{confirmClick()}} />
+            <ConfirmButton
+              width={120}
+              height={50}
+              onClick={(e) => {
+                confirmClick();
+              }}
+            />
             <CancelButton width={120} height={50} onClick={cancelClick} />
           </div>
         </div>

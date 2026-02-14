@@ -145,3 +145,10 @@ export async function fetchDetailReuseRequest(requestId) {
     //console.log(tmpReuseRequests);
     return tmpReuseRequests;
 }
+
+//요청아이디를 가지고 반납할 개수 찾기
+export async function fetchReturnedCountReuseRequest(requestId){
+    await sleep(API_DELAY_MS);
+    //console.log(requestId);
+    return reuseRequests.requests.filter((request) => request.requestId === requestId)[0].returnCount;
+}

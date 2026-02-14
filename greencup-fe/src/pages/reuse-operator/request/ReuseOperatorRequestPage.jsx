@@ -166,13 +166,13 @@ export default function ReuseOperatorRequestPage() {
     }
   }, [tabBarContent, page, reuseCancelReloadKey, reuseCompleteReloadKey]);
 
-  //완료 버튼을 누를시 실행해야하는것
+  //table칸에 있는 완료 버튼을 누를시 실행해야하는것
   const afterCompleted = (e) => {
     //console.log(e.currentTarget.dataset.id);
     reuseRequestCompleteClick(e.currentTarget.dataset.id);
   };
 
-  //취소 버튼을 누를시 실행해야하는것
+  //table 칸에 있는 취소 버튼을 누를시 실행해야하는것
   const afterCanceled = (e) => {
     //console.log(e.currentTarget.dataset.id);
     reuseRequestCancelClick(e.currentTarget.dataset.id);

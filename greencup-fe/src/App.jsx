@@ -2,12 +2,8 @@ import { useState, createContext, useMemo } from "react";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 
 import "./App.css";
-import { REUSE_OPERATOR, PARTNER } from "./util/constant";
 
 import LoginPage from "./pages/login/LoginPage";
-//인증 모듈에서 로그인/로그아웃 등등 가져오기
-import { useAuth } from "./auth/AuthProvider.jsx";
-
 import TopContainer from "./components/topcontainer/TopContainer";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
@@ -30,6 +26,12 @@ import PartnerRequestSettingsPage from "./pages/partner/request/PartnerRequestSe
 import PartnerRequestsPage from "./pages/partner/request/PartnerRequestsPage";
 import PartnerStatsPage from "./pages/partner/stats/PartnerStatsPage";
 import CompleteModal from "./components/reuse-operator/request/list/completemodal/CompleteModal.jsx";
+
+import { REUSE_OPERATOR, PARTNER } from "./util/constant";
+import { checkMissedCount } from "./util/utilFunction.js";
+
+//인증 모듈에서 로그인/로그아웃 등등 가져오기
+import { useAuth } from "./auth/AuthProvider.jsx";
 
 //상태 저장하기 위한 context
 //수거지점장-요청현황에서 취소버튼을 누를시의 함수
@@ -111,6 +113,9 @@ function App() {
   const [reuseCompleteRequestId, setReuseCompleteRequestId] = useState("");
   //수거지점장-요청현황-완료로 변경 모달시, 파손 및 분실한 개수
   const [reuseCompleteMissedCount, setReuseCompleteMissedCount] = useState(0);
+  //수거지점장-요청현황-완료로 변경 모달시, 파손 및 분실한 개수의 유효여부
+  const [reuseCompleteMissedCountValid, setReuseCompleteMissedCountValid] =
+    useState(true);
 
   //변경후, 페이지내에서 다시 수정한 목록을 바로 보여줘야하는데 그러면 바로 fetch를 실행해야함
   //하지만 여기서는 react query를 사용할수없으므로 임의로 useEffect에 의존성배열을 변화시키기 위해 사용
@@ -123,18 +128,30 @@ function App() {
   const reuseComplete_CancelClick = () => {
     //reuseCompletemodal open 상태변수를 바꾸자
     setReuseCompleteModalOpen(false);
+    setReuseCompleteMissedCountValid(true);
   };
 
   //수거지점장-요청현황-완료로 변경 모달에서 확인버튼을 클릭시
-  const reuseComplete_ConfirmClick = () => {
-    //reusecancelmodal open 상태변수를 바꾸자
-    setReuseCompleteModalOpen(false);
-
+  const reuseComplete_ConfirmClick = async () => {
     //요청아이디 상태변수를 가져온다
     //파손 및 분실된 컵 상태변수를 가져온다
-    //fetch로 completed true로 업데이트, 분실 컵 업데이트후
-    //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
-    reuseCompleteTriggerReload();
+    //유효성 검증을 한다
+    const validResult = await checkMissedCount(
+      reuseCompleteRequestId,
+      reuseCompleteMissedCount,
+    );
+
+    setReuseCompleteMissedCountValid(validResult);
+
+    //유효성 검증이 true일때만 업데이트 실행
+    if (validResult) {
+      //reusecancelmodal open 상태변수를 바꾸자
+      setReuseCompleteModalOpen(false);
+
+      //fetch로 completed true로 업데이트, 분실 컵 업데이트후
+      //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
+      reuseCompleteTriggerReload();
+    } 
 
     //console.log("reuseComplete_ConfirmClick 눌림");
   };
@@ -194,6 +211,7 @@ function App() {
             confirmClick={reuseComplete_ConfirmClick}
             cancelClick={reuseComplete_CancelClick}
             inputChange={reuseCompleteInputChange}
+            reuseCompleteMissedCountValid={reuseCompleteMissedCountValid}
           />
         </ModalBackground>
       ) : (

@@ -1,0 +1,61 @@
+/* 페이지네이션: <이전 | 다음> 느낌 */
+.pagination {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+
+  border-top: 1px solid #ededed;
+  padding-top: 12px;
+}
+
+/* 부트스트랩 기본 li */
+.pagination .page-item {
+  list-style: none;
+}
+
+/* a 링크를 버튼처럼 */
+.pagination .page-link {
+  border: 0 !important;
+  background: transparent !important;
+
+  padding: 6px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+
+  cursor: pointer;
+  box-shadow: none !important;
+}
+
+/* 가운데 구분선 | 만들기 */
+.pagination .page-item:first-child .page-link {
+  position: relative;
+  padding-right: 22px;
+}
+
+.pagination .page-item:first-child .page-link::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 1px;
+  height: 18px;
+  background: #dcdcdc;
+}
+
+.pagination .page-item:last-child .page-link {
+  padding-left: 22px;
+}
+
+/* hover */
+.pagination .page-link:hover {
+  color: #111;
+  text-decoration: none;
+}

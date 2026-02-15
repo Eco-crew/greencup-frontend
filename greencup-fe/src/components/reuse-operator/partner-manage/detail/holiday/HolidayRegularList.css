@@ -2,20 +2,18 @@
   width: 100%;
   height: 90%;
 
-  padding: 30px 0px;
+  padding: 18px 14px;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 
-  gap: 10px;
-
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  background-color: lightgray;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
-
 
 .reuse-partner-manage-regular-holiday-list {
   width: 90%;
@@ -28,21 +26,51 @@
 
   /* 자식요소의 갯수에 따라 높이가 줄어들지 않게 */
   flex: 0 0 auto;
+  overflow: hidden;
 }
 
 .reuse-partner-manage-regular-holiday-element {
   width: 100%;
-  height: 40px;
+  height: 44px;
 
-  text-align: center;
-  line-height: 40px;
-
-  display:flex;
-  justify-content: center;
+  display: flex;
   align-items: center;
-  gap:20px;
+  justify-content: center;
+  gap: 12px;
+
+  padding: 0 14px;
+
+  border-radius: 12px;
 }
 
-.reuse-partner-manage-regular-holiday-checkbox{
-    
+/* 줄 구분 + 살짝 hover */
+.reuse-partner-manage-regular-holiday-element:not(:last-child) {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.reuse-partner-manage-regular-holiday-element:hover {
+  background: #fafafa;
+}
+
+/* 요일 텍스트 */
+.reuse-partner-manage-regular-holiday-element > div {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 체크박스 예쁘게 */
+.reuse-partner-manage-regular-holiday-checkbox {
+  width: 18px;
+  height: 18px;
+
+  accent-color: #4caf50; /* 체크 색 */
+  cursor: default;
+}
+
+/* 체크된 날은 텍스트도 살짝 강조(지원 브라우저에서만 동작) */
+.reuse-partner-manage-regular-holiday-element:has(
+  .reuse-partner-manage-regular-holiday-checkbox:checked
+) > div {
+  color: #111;
 }

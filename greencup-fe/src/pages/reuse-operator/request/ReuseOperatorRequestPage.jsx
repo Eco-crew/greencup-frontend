@@ -10,7 +10,12 @@ import IsCompleteButton from "../../../components/reuse-operator/request/iscompl
 import Table from "../../../components/reuse-operator/request/list/table/Table";
 import Pagination from "../../../components/pagination/Pagination";
 
-import { TOTAL, COMPLETED, NOTCOMPLETED } from "../../../util/constant";
+import {
+  TOTAL,
+  COMPLETED,
+  NOTCOMPLETED,
+  SHOW_POSTS_COUNT,
+} from "../../../util/constant";
 import {
   fetchTotalReuseRequests,
   fetchCompletedReuseRequests,
@@ -103,33 +108,92 @@ export default function ReuseOperatorRequestPage() {
   };
 
   //전체목록 불러온후 상태관리하는 함수
-  const handleFetchTotalReuseRequests = () => {
+  const handleFetchTotalReuseRequests = async () => {
     fetchTotalReuseRequests().then((data) => {
       setRequests(data.requests);
-      //console.log(data.requests);
       setRequestCount(data.searchRequestCount);
       setLoading(false);
     });
+
+    // const response = await fetch(
+    //   `/api/reuse-operator/requests/total?startDate=${startDate}&endDate=${endDate}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+    //   {
+    //     method: "GET",
+    //     credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+    //   },
+    // );
+
+    // if (response.ok) {
+    //   const data = await response.json();
+    //   setRequests(data.requests);
+    //   //console.log(data.requests);
+    //   setRequestCount(data.searchRequestCount);
+    //   setTotalRequestCount(data.totalRequestCount);
+    //   setCompletedRequestCount(data.totalCompletedCount);
+    //   setLoading(false);
+    // } else {
+    //   console.log("수거지점장- 전체 요청현황 불러오기 오류");
+    // }
+
   };
 
   //완료된 목록만 불러온후 상태관리하는 함수
-  const handleFetchCompletedReuseRequests = () => {
+  const handleFetchCompletedReuseRequests = async () => {
     fetchCompletedReuseRequests().then((data) => {
       setRequests(data.requests);
-      //console.log(data.requests);
       setRequestCount(data.searchRequestCount);
       setLoading(false);
-    });
+    });  
+
+    // const response = await fetch(
+    //   `/api/reuse-operator/requests/completed?startDate=${startDate}&endDate=${endDate}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+    //   {
+    //     method: "GET",
+    //     credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+    //   },
+    // );
+
+    // if (response.ok) {
+    //   const data = await response.json();
+    //   setRequests(data.requests);
+    //   //console.log(data.requests);
+    //   setRequestCount(data.searchRequestCount);
+    //   setTotalRequestCount(data.totalRequestCount);
+    //   setCompletedRequestCount(data.totalCompletedCount);
+    //   setLoading(false);
+    // } else {
+    //   console.log("수거지점장- 완료된 요청현황 불러오기 오류");
+    // }
+    
   };
 
   //미완료된 목록만 불러온후 상태관리하는 함수
-  const handleFetchNotCompletedReuseRequests = () => {
+  const handleFetchNotCompletedReuseRequests = async () => {
     fetchNotCompletedReuseRequests().then((data) => {
       setRequests(data.requests);
-      //console.log(data.requests);
       setRequestCount(data.searchRequestCount);
       setLoading(false);
-    });
+    });  
+
+    // const response = await fetch(
+    //   `/api/reuse-operator/requests/notcompleted?startDate=${startDate}&endDate=${endDate}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+    //   {
+    //     method: "GET",
+    //     credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+    //   },
+    // );
+
+    // if (response.ok) {
+    //   const data = await response.json();
+    //   setRequests(data.requests);
+    //   //console.log(data.requests);
+    //   setRequestCount(data.searchRequestCount);
+    //   setTotalRequestCount(data.totalRequestCount);
+    //   setCompletedRequestCount(data.totalCompletedCount);
+    //   setLoading(false);
+    // } else {
+    //   console.log("수거지점장- 미완료된 요청현황 불러오기 오류");
+    // }
   };
 
   useEffect(() => {
@@ -187,6 +251,10 @@ export default function ReuseOperatorRequestPage() {
     <>
       <div className="reuse_request_container">
         <div className="reuse_request_title">수거 현황</div>
+        {/* <PercentBar
+          totalRequest={totalRequestCount}
+          completedRequest={completedRequestCount}
+        /> */}
         <PercentBar totalRequest={1000} completedRequest={590} />
         <div className="reuse_request_search">
           <SearchContainer
@@ -210,7 +278,7 @@ export default function ReuseOperatorRequestPage() {
                 requests={requests}
                 afterCompleted={afterCompleted}
                 afterCanceled={afterCanceled}
-              />{" "}
+              />
               <Pagination
                 totalCount={requestCount}
                 page={page}

@@ -1,31 +1,22 @@
-.reuse_parter_manage_detail_partner_message_container{
-    width:100%;
-    height:100%;
+.reuse_parter_manage_detail_partner_message_container {
+  width: 100%;
+  height: 100%;
 
-    display:flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 
-    border:1px solid lightgray;
-    border-radius: 10px;
-    overflow:hidden;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
 }
 
-.reuse_parter_manage_detail_partner_message_content_container{
-    width:100%;
-    height:50px;
+#reuse_parter_manage_detail_partner_message {
+  width: 100%;
+  height: 100%;
 
-    text-align: center;
-    line-height: 50px;
-
-    border-bottom:1px solid lightgray;
-    background-color: lightgray;
-}
-
-#reuse_parter_manage_detail_partner_message{
-    width:100%;
-    height:100px;
-
-    text-align: center;
+  text-align: center;
 }

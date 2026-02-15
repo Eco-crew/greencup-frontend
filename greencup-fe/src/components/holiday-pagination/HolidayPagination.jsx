@@ -39,8 +39,8 @@ export default function HolidayPagination({
     // setNextButton(nextButton);
 
     //임의 테스트
-    //prevButton = true;
-    //nextButton = true;
+    prevButton = true;
+    nextButton = true;
 
     const buttonList = [];
     if (prevButton) {

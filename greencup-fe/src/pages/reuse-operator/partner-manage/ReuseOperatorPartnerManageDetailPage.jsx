@@ -90,7 +90,7 @@ export default function ReuseOperatorPartnerManageDetailPage() {
         />
         <div className="reuse_partner_manage_detail_partner_setting_memo_container">
           <div className="reuse_partner_manage_detail_partner_setting_total_container">
-            <div>기본 설정</div>
+            <div className="reuse_partner_manage_holiday_title">기본 설정</div>
             <PartnerSetting
               defaultNeedCount={settingInfo.defaultNeedCount}
               defaultReturnCount={settingInfo.defaultReturnCount}
@@ -98,21 +98,21 @@ export default function ReuseOperatorPartnerManageDetailPage() {
             />
           </div>
           <div className="reuse_partner_manage_detail_partner_message_total_container">
-            <div>비고 메세지</div>
+            <div className="reuse_partner_manage_holiday_title">비고 메세지</div>
             <PartnerMessage memo={settingInfo.memo} />
           </div>
         </div>
         <div className="reuse_partner_manage_holiday_container">
           <div className="reuse_partner_manage_holiday_calendar_total_container">
-            <div>비정기 휴무 캘린더</div>
+            <div className="reuse_partner_manage_holiday_title">비정기 휴무 캘린더</div>
             <HolidayCalendar offDates={offDates} />
           </div>
           <div className="reuse_partner_manage_holiday_list_total_container">
-            <div>비정기 휴무일</div>
+            <div className="reuse_partner_manage_holiday_title">비정기 휴무일</div>
             <HolidayList offDates={offDates} />
           </div>
           <div className="reuse_partner_manage_regular_holiday_list_total_container">
-            <div>정기 휴무일</div>
+            <div className="reuse_partner_manage_holiday_title">정기 휴무일</div>
             <HolidayRegularList weeklyOffDays={weeklyOffDays} />
           </div>
           <div className="reuse_partner_manage_detail_golist_container">

@@ -76,7 +76,7 @@ export default function HolidayPagination({
 
   return (
     <>
-      <ul className="pagination justify-content-center">{buttonList}</ul>
+      <ul className="holiday-pagination pagination justify-content-center">{buttonList}</ul>
     </>
   );
 }

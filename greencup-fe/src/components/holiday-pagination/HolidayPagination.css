@@ -1,4 +1,4 @@
-.pagination {
+.holiday-pagination.pagination {
   width: 100%;
   margin: 0;
   padding: 0;
@@ -13,12 +13,12 @@
 }
 
 /* 부트스트랩 기본 li */
-.pagination .page-item {
+.holiday-pagination.pagination .page-item {
   list-style: none;
 }
 
 /* a 링크를 버튼처럼 */
-.pagination .page-link {
+.holiday-pagination.pagination .page-link {
   border: 0 !important;
   background: transparent !important;
 
@@ -32,12 +32,12 @@
 }
 
 /* 가운데 구분선 | 만들기 */
-.pagination .page-item:first-child .page-link {
+.holiday-pagination.pagination .page-item:first-child .page-link {
   position: relative;
   padding-right: 10px;
 }
 
-.pagination .page-item:first-child .page-link::after {
+.holiday-pagination.pagination .page-item:first-child .page-link::after {
   content: "";
   position: absolute;
   right: 0;
@@ -49,12 +49,12 @@
   background: #dcdcdc;
 }
 
-.pagination .page-item:last-child .page-link {
+.holiday-pagination.pagination .page-item:last-child .page-link {
   padding-left: 10px;
 }
 
 /* hover */
-.pagination .page-link:hover {
+.holiday-pagination.pagination .page-link:hover {
   color: #111;
   text-decoration: none;
 }

@@ -109,91 +109,104 @@ export default function ReuseOperatorRequestPage() {
 
   //전체목록 불러온후 상태관리하는 함수
   const handleFetchTotalReuseRequests = async () => {
-    fetchTotalReuseRequests().then((data) => {
-      setRequests(data.requests);
-      setRequestCount(data.searchRequestCount);
-      setLoading(false);
-    });
-
-    // const response = await fetch(
-    //   `/api/reuse-operator/requests/total?startDate=${startDate}&endDate=${endDate}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
-    //   {
-    //     method: "GET",
-    //     credentials: "include", // 세션에 관한 쿠키도 꼭 전송
-    //   },
-    // );
-
-    // if (response.ok) {
-    //   const data = await response.json();
+    // fetchTotalReuseRequests().then((data) => {
     //   setRequests(data.requests);
-    //   //console.log(data.requests);
     //   setRequestCount(data.searchRequestCount);
-    //   setTotalRequestCount(data.totalRequestCount);
-    //   setCompletedRequestCount(data.totalCompletedCount);
     //   setLoading(false);
-    // } else {
-    //   console.log("수거지점장- 전체 요청현황 불러오기 오류");
-    // }
+    // });
 
+    const response = await fetch(
+      `/api/reuse-operator/requests/total?startDate=${startDate}&endDate=${endDate}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+      {
+        method: "GET",
+        credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+      },
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      setRequests(data.requests);
+      //console.log(data.requests);
+      setRequestCount(data.searchRequestCount);
+      setTotalRequestCount(data.totalRequestCount);
+      setCompletedRequestCount(data.totalCompletedCount);
+      setLoading(false);
+    } else {
+      console.log("수거지점장- 전체 요청현황 불러오기 오류");
+    }
   };
 
   //완료된 목록만 불러온후 상태관리하는 함수
   const handleFetchCompletedReuseRequests = async () => {
-    fetchCompletedReuseRequests().then((data) => {
-      setRequests(data.requests);
-      setRequestCount(data.searchRequestCount);
-      setLoading(false);
-    });  
-
-    // const response = await fetch(
-    //   `/api/reuse-operator/requests/completed?startDate=${startDate}&endDate=${endDate}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
-    //   {
-    //     method: "GET",
-    //     credentials: "include", // 세션에 관한 쿠키도 꼭 전송
-    //   },
-    // );
-
-    // if (response.ok) {
-    //   const data = await response.json();
+    // fetchCompletedReuseRequests().then((data) => {
     //   setRequests(data.requests);
-    //   //console.log(data.requests);
     //   setRequestCount(data.searchRequestCount);
-    //   setTotalRequestCount(data.totalRequestCount);
-    //   setCompletedRequestCount(data.totalCompletedCount);
     //   setLoading(false);
-    // } else {
-    //   console.log("수거지점장- 완료된 요청현황 불러오기 오류");
-    // }
-    
+    // });
+
+    const response = await fetch(
+      `/api/reuse-operator/requests/completed?startDate=${startDate}&endDate=${endDate}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+      {
+        method: "GET",
+        credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+      },
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      setRequests(data.requests);
+      //console.log(data.requests);
+      setRequestCount(data.searchRequestCount);
+      setTotalRequestCount(data.totalRequestCount);
+      setCompletedRequestCount(data.totalCompletedCount);
+      setLoading(false);
+    } else {
+      console.log("수거지점장- 완료된 요청현황 불러오기 오류");
+    }
   };
 
   //미완료된 목록만 불러온후 상태관리하는 함수
   const handleFetchNotCompletedReuseRequests = async () => {
-    fetchNotCompletedReuseRequests().then((data) => {
-      setRequests(data.requests);
-      setRequestCount(data.searchRequestCount);
-      setLoading(false);
-    });  
-
-    // const response = await fetch(
-    //   `/api/reuse-operator/requests/notcompleted?startDate=${startDate}&endDate=${endDate}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
-    //   {
-    //     method: "GET",
-    //     credentials: "include", // 세션에 관한 쿠키도 꼭 전송
-    //   },
-    // );
-
-    // if (response.ok) {
-    //   const data = await response.json();
+    // fetchNotCompletedReuseRequests().then((data) => {
     //   setRequests(data.requests);
-    //   //console.log(data.requests);
     //   setRequestCount(data.searchRequestCount);
-    //   setTotalRequestCount(data.totalRequestCount);
-    //   setCompletedRequestCount(data.totalCompletedCount);
     //   setLoading(false);
-    // } else {
-    //   console.log("수거지점장- 미완료된 요청현황 불러오기 오류");
-    // }
+    // });
+
+    const response = await fetch(
+      `/api/reuse-operator/requests/notcompleted?startDate=${startDate}&endDate=${endDate}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+      {
+        method: "GET",
+        credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+      },
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      setRequests(data.requests);
+      //console.log(data.requests);
+      setRequestCount(data.searchRequestCount);
+      setTotalRequestCount(data.totalRequestCount);
+      setCompletedRequestCount(data.totalCompletedCount);
+      setLoading(false);
+    } else {
+      console.log("수거지점장- 미완료된 요청현황 불러오기 오류");
+    }
+  };
+
+  //탭바에 따라 목록 불러오는 함수
+  const fetchListWithTabbarContent = (tabBarContent) => {
+    switch (tabBarContent) {
+      case TOTAL:
+        handleFetchTotalReuseRequests();
+        break;
+      case COMPLETED:
+        handleFetchCompletedReuseRequests();
+        break;
+      case NOTCOMPLETED:
+        handleFetchNotCompletedReuseRequests();
+        break;
+    }
   };
 
   useEffect(() => {
@@ -214,21 +227,14 @@ export default function ReuseOperatorRequestPage() {
     //기본 mount 되자마자
     //fetch로 전체, 완료 갯수를 불러오기
     //fetch로 전체 요청 목록 불러오기
-
     //console.log(tabBarContent);
-
-    switch (tabBarContent) {
-      case TOTAL:
-        handleFetchTotalReuseRequests();
-        break;
-      case COMPLETED:
-        handleFetchCompletedReuseRequests();
-        break;
-      case NOTCOMPLETED:
-        handleFetchNotCompletedReuseRequests();
-        break;
-    }
+    fetchListWithTabbarContent(tabBarContent);
   }, [tabBarContent, page, reuseCancelReloadKey, reuseCompleteReloadKey]);
+
+  //조회버튼을 누를 시 실행해야 하는 것
+  const afterSearchClicked = () => {
+    fetchListWithTabbarContent(tabBarContent);
+  }
 
   //table칸에 있는 완료 버튼을 누를시 실행해야하는것
   const afterCompleted = (e) => {
@@ -251,11 +257,11 @@ export default function ReuseOperatorRequestPage() {
     <>
       <div className="reuse_request_container">
         <div className="reuse_request_title">수거 현황</div>
-        {/* <PercentBar
+        <PercentBar
           totalRequest={totalRequestCount}
           completedRequest={completedRequestCount}
-        /> */}
-        <PercentBar totalRequest={1000} completedRequest={590} />
+        />
+        {/* <PercentBar totalRequest={1000} completedRequest={590} /> */}
         <div className="reuse_request_search">
           <SearchContainer
             startDateChange={startDateChange}
@@ -265,7 +271,7 @@ export default function ReuseOperatorRequestPage() {
             partnerNameChange={partnerNameChange}
           />
           {/* width, height 크기 조정시 값 변경, 버튼을 누를시 onClick이라는 함수를 넘겨줌 */}
-          <SearchButton width={100} height={100} />
+          <SearchButton width={100} height={100} onClick={afterSearchClicked}/>
         </div>
         <TabBar tabBarContent={tabBarContent} tabBarClicked={tabBarClicked} />
 

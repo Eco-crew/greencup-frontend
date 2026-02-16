@@ -80,7 +80,7 @@ export default function Table({ requests, afterCompleted, afterCanceled }) {
         if (key === REQUEST_ID) {
           tmpTrIds.push(value);
         } else if (key === REQUEST_COMPLETED) {
-          if (value) {
+          if (value === 'true') {
             tmpTds.push("완료");
           } else {
             tmpTds.push("미완료");

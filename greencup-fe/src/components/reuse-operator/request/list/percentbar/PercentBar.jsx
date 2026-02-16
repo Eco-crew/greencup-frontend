@@ -15,9 +15,12 @@ export default function PercentBar({ totalRequest, completedRequest }) {
   const [textPosition, setTextPosition] = useState(0);
 
   useEffect(() => {
-    //현재는 임의로 갯수들이 온다 가정하고 계산하여 넣어본다
-    let currentPercent = Math.floor((completedRequest / totalRequest) * 100);
-    //console.log(currentPercent);
+    const total = Number(totalRequest) || 0;
+    const completed = Number(completedRequest) || 0;
+
+    // total이 0이면 0%로 처리
+    const currentPercent =
+      total > 0 ? Math.floor((completed / total) * 100) : 0;
     setPercent(currentPercent);
 
     //getBoundingClientRect => dom의 실제 정보 => 미디어 쿼리시에도 적용되게끔
@@ -30,9 +33,10 @@ export default function PercentBar({ totalRequest, completedRequest }) {
         //console.log(tmpProgressWidth);
         setProgressWidth(tmpProgressWidth);
 
-        if (textRef.current){
+        if (textRef.current) {
           let textWidth = textRef.current.getBoundingClientRect().width;
-          setTextPosition(tmpProgressWidth - textWidth);
+          //20은 여유분
+          setTextPosition(tmpProgressWidth - textWidth - 20);
         }
       }
     };
@@ -64,7 +68,11 @@ export default function PercentBar({ totalRequest, completedRequest }) {
           id="progress_bar"
           style={progressBarStyle(progressWidth)}
         >
-          <div className="progress_text" ref={textRef} style={progressTextStyle(textPosition)}>
+          <div
+            className="progress_text"
+            ref={textRef}
+            style={progressTextStyle(textPosition)}
+          >
             {percent}%
           </div>
         </div>

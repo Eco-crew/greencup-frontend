@@ -1,0 +1,75 @@
+#partner-rental-manage-reuse-manager-table{
+  /* flex 컨테이너의 “직속 자식(flex item)” 
+  flex item은 기본이 min-width: auto라서 
+  안의 table(min-width:850)을 기준으로 “스스로도 850까지 커지려고” 해.
+  그래서 너가 기대한 “overflow-x:auto로 스크롤 생성” 대신, 
+  flex item이 그냥 커져버려서 clientWidth === scrollWidth가 되어버린 거야. 
+  */
+
+  flex: 1 1 0%; /* 내용 기준(auto) 말고 0부터 계산해서 줄어들게 */
+  min-width: 0; /* flex에서 overflow 먹게 */
+  max-width: 100%; /* 부모 폭을 절대 넘지 않게 */
+
+  overflow-x: auto;
+}
+
+#partner-rental-manage-reuse-manager-table table {
+  min-width: 410px;
+
+  /*
+  collapse → 외곽선 = 셀 border 계산 결과 → radius 적용 어려움
+  separate → table border와 셀 border 분리 → radius 정상 적용
+  */
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+
+/* 아래는 모두 부트스트랩 테이블 커스텀 - 필요시 주석 풀고 커스텀 */
+
+/* 
+#partner-rental-manage-reuse-manager-table .table.table-hover.custom-table > tbody > tr:hover > * {
+  --bs-table-bg-state: lightblue;
+  --bs-table-color-state: #0d6efd;
+}
+
+#partner-rental-manage-reuse-manager-table .table .table-group-divider {
+  color: lightblue;
+} 
+*/
+
+/* header */
+#partner-rental-manage-reuse-manager-table thead th {
+  background: #eef0f2;
+  font-weight: 600;
+  color: #495057;
+  padding: 14px 12px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* body */
+#partner-rental-manage-reuse-manager-table tbody td {
+  padding: 14px 12px;
+  color: #343a40;
+  font-size: 15px;
+  border: none;
+}
+
+/* 둥글게 */
+#partner-rental-manage-reuse-manager-table thead th:first-child {
+  border-top-left-radius: 12px;
+}
+#partner-rental-manage-reuse-manager-table thead th:last-child {
+  border-top-right-radius: 12px;
+}
+#partner-rental-manage-reuse-manager-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+#partner-rental-manage-reuse-manager-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}

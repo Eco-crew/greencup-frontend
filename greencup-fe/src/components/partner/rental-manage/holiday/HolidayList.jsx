@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import "./HolidayList.css";
 
-import HolidayPagination from "../../../../holiday-pagination/HolidayPagination";
-
-import { SHOW_OFF_DATES_SIZE } from "../../../../../util/constant";
+import HolidayPagination from "../../../holiday-pagination/HolidayPagination";
+import { SHOW_OFF_DATES_SIZE } from "../../../../util/constant";
 
 //수거지점장- 업체관리-상세페이지-휴무일 리스트
 export default function HolidayList({ offDates }) {
@@ -47,10 +46,10 @@ export default function HolidayList({ offDates }) {
 
   return (
     <>
-      <div className="reuse-partner-manage-holiday-list-container">
-        <div className="reuse-partner-manage-holiday-list">
+      <div className="partner-rental-manage-holiday-list-container">
+        <div className="partner-rental-manage-holiday-list">
           {showOffDates.map((date) => (
-            <div key={date} className="reuse-partner-manage-holiday-element">
+            <div key={date} className="partner-rental-manage-holiday-element">
               {date}
             </div>
           ))}

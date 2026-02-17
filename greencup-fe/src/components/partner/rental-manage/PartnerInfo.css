@@ -20,12 +20,29 @@
   background-size: contain;
 }
 
-.partner_rental_manage_partner_name {
+.partner_rental_manage_partner_name_container {
   width: 150px;
-  height: 50px;
+  height: 100px;
+
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   text-align: center;
   font-size: 20px;
   font-weight: 600;
   color: #222;
+}
+
+.partner_rental_manage_partner_name{
+  width:100%;
+  height:50px;
+  text-align: center;
+}
+
+.partner_rental_manage_partner_manager_name{
+  width:100%;
+  height:50px;
+  text-align: center;
 }

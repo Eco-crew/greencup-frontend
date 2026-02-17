@@ -13,6 +13,8 @@ import HolidayList from "../../../components/partner/rental-manage/holiday/Holid
 import HolidayRegularList from "../../../components/partner/rental-manage/holiday/HolidayRegularList";
 import GoUpdateFormButton from "../../../components/partner/util/GoUpdateFormButton";
 
+import PartnerSettingUpdateForm from "../../../components/partner/rental-manage-update-form/PartnerSettingUpdateForm";
+
 import { fetchPartnerRental } from "../../../api/dummyPartnerRental";
 
 //업체지점장-대여관리-대여정보
@@ -31,8 +33,8 @@ export default function PartnerRequestSettingsPage() {
   const [offDates, setOffDates] = useState([]);
   //fetch로 불러올동안 로딩중 여부
   const [loading, setLoading] = useState(true);
-
-  const navigate = useNavigate();
+  //대여수정 버튼을 눌러서 수정모드인지 여부
+  const [isUpdatingMode, setIsUpdatingMode] = useState(false);
 
   //해당 항목 불러온후 상태관리하는 함수
   const handleFetchReuseDetailPartner = async () => {
@@ -53,10 +55,19 @@ export default function PartnerRequestSettingsPage() {
     handleFetchReuseDetailPartner();
   }, []);
 
-  //목록으로 버튼 클릭시 실행해야하는것
+  //대여정보 수정 버튼 클릭시 실행해야하는것
   const goUpdateFormClick = () => {
-    //navigate("/reuse-operator/partner-manage");
+    setIsUpdatingMode((prev) => !prev);
   };
+
+  useEffect(() => {
+    //console.log(settingInfo);
+  },[settingInfo]);
+
+  //partnersetting 대여정보수정 input박스에 입력시
+  const partnerSettingOnchange= (e) => {
+    setSettingInfo((prev) => ({...prev, [e.target.name]:e.target.value}));
+  }
 
   //여기는 렌더링 하는 영역
   if (loading)
@@ -76,11 +87,21 @@ export default function PartnerRequestSettingsPage() {
             />
           </div>
           <div className="partner_rental_manage_goupdateform_container">
-            <GoUpdateFormButton
-              width={"100%"}
-              height={50}
-              onClick={goUpdateFormClick}
-            />
+            {isUpdatingMode ? (
+              <GoUpdateFormButton
+                width={"100%"}
+                height={50}
+                text={"대여정보 수정완료"}
+                onClick={goUpdateFormClick}
+              />
+            ) : (
+              <GoUpdateFormButton
+                width={"100%"}
+                height={50}
+                text={"대여정보 수정"}
+                onClick={goUpdateFormClick}
+              />
+            )}
           </div>
         </div>
         <div className="partner_rental_reuse_manager_partner_greencup_container">
@@ -103,11 +124,20 @@ export default function PartnerRequestSettingsPage() {
         <div className="partner_rental_partner_setting_memo_container">
           <div className="partner_rental_manage_partner_setting_total_container">
             <div className="partner_rental_manage_holiday_title">기본 설정</div>
-            <PartnerSetting
-              defaultNeedCount={settingInfo.defaultNeedCount}
-              defaultReturnCount={settingInfo.defaultReturnCount}
-              defaultVisitTime={settingInfo.defaultVisitTime}
-            />
+            {isUpdatingMode ? (
+              <PartnerSettingUpdateForm
+                defaultNeedCount={settingInfo.defaultNeedCount}
+                defaultReturnCount={settingInfo.defaultReturnCount}
+                defaultVisitTime={settingInfo.defaultVisitTime}
+                onChange={partnerSettingOnchange}
+              />
+            ) : (
+              <PartnerSetting
+                defaultNeedCount={settingInfo.defaultNeedCount}
+                defaultReturnCount={settingInfo.defaultReturnCount}
+                defaultVisitTime={settingInfo.defaultVisitTime}
+              />
+            )}
           </div>
           <div className="partner_rental_manage_partner_message_total_container">
             <div className="partner_rental_manage_holiday_title">

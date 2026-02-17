@@ -16,7 +16,7 @@
 }
 
 #partner-rental-manage-partner-cup-info-table table {
-  min-width: 800px;
+  min-width: 410px;
 
   /*
   collapse → 외곽선 = 셀 border 계산 결과 → radius 적용 어려움

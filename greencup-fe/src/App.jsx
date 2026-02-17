@@ -22,7 +22,7 @@ import ReuseOperatorStatsPage from "./pages/reuse-operator/stats/ReuseOperatorSt
 import ModalBackground from "./components/reuse-operator/util/modal/ModalBackground.jsx";
 import CancelModal from "./components/reuse-operator/request/list/cancelmodal/CancelModal.jsx";
 
-import PartnerRequestSettingsPage from "./pages/partner/request/PartnerRequestSettingsPage";
+import PartnerRequestSettingsPage from "./pages/partner/rental-manage/PartnerRequestSettingsPage";
 import PartnerRequestsPage from "./pages/partner/request/PartnerRequestsPage";
 import PartnerStatsPage from "./pages/partner/stats/PartnerStatsPage";
 import CompleteModal from "./components/reuse-operator/request/list/completemodal/CompleteModal.jsx";

@@ -33,13 +33,13 @@ const reuseDetailPartners = {
                 totalReturnCount: 880,
                 totalBrokenLostCount: 20,
                 contractDate: '2026-01-01',
-                memo: '도착전 연락 부탁드립니다.',
             },
 
             settingInfo: {
                 defaultNeedCount: 1000,
                 defaultReturnCount: 1000,
                 defaultVisitTime: '08:00',
+                 memo: '도착전 연락 부탁드립니다.',
             },
 
             weeklyOffDays: ['Sun','Mon','Tue'],
@@ -60,13 +60,13 @@ const reuseDetailPartners = {
                 totalReturnCount: 880,
                 totalBrokenLostCount: 20,
                 contractDate: '2026-01-01',
-                memo: '도착전 연락 부탁드립니다.',
             },
 
             settingInfo: {
                 defaultNeedCount: 1000,
                 defaultReturnCount: 1000,
                 defaultVisitTime: '08:00',
+                 memo: '도착전 연락 부탁드립니다.',
             },
 
             weeklyOffDays: ['Sun'],
@@ -87,13 +87,13 @@ const reuseDetailPartners = {
                 totalReturnCount: 880,
                 totalBrokenLostCount: 20,
                 contractDate: '2026-01-01',
-                memo: '도착전 연락 부탁드립니다.',
             },
 
             settingInfo: {
                 defaultNeedCount: 1000,
                 defaultReturnCount: 1000,
                 defaultVisitTime: '08:00',
+                memo: '도착전 연락 부탁드립니다.',
             },
 
             weeklyOffDays: ['Sun'],
@@ -114,13 +114,13 @@ const reuseDetailPartners = {
                 totalReturnCount: 880,
                 totalBrokenLostCount: 20,
                 contractDate: '2026-01-01',
-                memo: '도착전 연락 부탁드립니다.',
             },
 
             settingInfo: {
                 defaultNeedCount: 1000,
                 defaultReturnCount: 1000,
                 defaultVisitTime: '08:00',
+                memo: '도착전 연락 부탁드립니다.',
             },
 
             weeklyOffDays: ['Sun'],
@@ -141,13 +141,13 @@ const reuseDetailPartners = {
                 totalReturnCount: 880,
                 totalBrokenLostCount: 20,
                 contractDate: '2026-01-01',
-                memo: '도착전 연락 부탁드립니다.',
             },
 
             settingInfo: {
                 defaultNeedCount: 1000,
                 defaultReturnCount: 1000,
                 defaultVisitTime: '08:00',
+                memo: '도착전 연락 부탁드립니다.',
             },
 
             weeklyOffDays: ['Sun'],
@@ -168,13 +168,13 @@ const reuseDetailPartners = {
                 totalReturnCount: 880,
                 totalBrokenLostCount: 20,
                 contractDate: '2026-01-01',
-                memo: '도착전 연락 부탁드립니다.',
             },
 
             settingInfo: {
                 defaultNeedCount: 1000,
                 defaultReturnCount: 1000,
                 defaultVisitTime: '08:00',
+                memo: '도착전 연락 부탁드립니다.',
             },
 
             weeklyOffDays: ['Sun'],
@@ -195,13 +195,13 @@ const reuseDetailPartners = {
                 totalReturnCount: 880,
                 totalBrokenLostCount: 20,
                 contractDate: '2026-01-01',
-                memo: '도착전 연락 부탁드립니다.',
             },
 
             settingInfo: {
                 defaultNeedCount: 1000,
                 defaultReturnCount: 1000,
                 defaultVisitTime: '08:00',
+                memo: '도착전 연락 부탁드립니다.',
             },
 
             weeklyOffDays: ['Sun'],
@@ -222,13 +222,13 @@ const reuseDetailPartners = {
                 totalReturnCount: 880,
                 totalBrokenLostCount: 20,
                 contractDate: '2026-01-01',
-                memo: '도착전 연락 부탁드립니다.',
             },
 
             settingInfo: {
                 defaultNeedCount: 1000,
                 defaultReturnCount: 1000,
                 defaultVisitTime: '08:00',
+                memo: '도착전 연락 부탁드립니다.',
             },
 
             weeklyOffDays: ['Sun'],
@@ -249,13 +249,13 @@ const reuseDetailPartners = {
                 totalReturnCount: 880,
                 totalBrokenLostCount: 20,
                 contractDate: '2026-01-01',
-                memo: '도착전 연락 부탁드립니다.',
             },
 
             settingInfo: {
                 defaultNeedCount: 1000,
                 defaultReturnCount: 1000,
                 defaultVisitTime: '08:00',
+                memo: '도착전 연락 부탁드립니다.',
             },
 
             weeklyOffDays: ['Sun'],
@@ -276,13 +276,13 @@ const reuseDetailPartners = {
                 totalReturnCount: 880,
                 totalBrokenLostCount: 20,
                 contractDate: '2026-01-01',
-                memo: '도착전 연락 부탁드립니다.',
             },
 
             settingInfo: {
                 defaultNeedCount: 1000,
                 defaultReturnCount: 1000,
                 defaultVisitTime: '08:00',
+                memo: '도착전 연락 부탁드립니다.',
             },
 
             weeklyOffDays: ['Sun'],

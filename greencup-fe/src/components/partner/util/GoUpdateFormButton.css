@@ -1,0 +1,35 @@
+.goUpdateFormButton{
+    width:250px;
+    height:50px;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(180deg, #66c56c, #4caf50);
+
+    border-radius:14px;
+    cursor:pointer;
+
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+
+    transition: all 0.15s ease;
+}
+/* hover 시 살짝 올라오는 효과 */
+.goUpdateFormButton:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+/* 클릭 시 눌리는 효과 */
+.goUpdateFormButton:active{
+    transform: translateY(0px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.goUpdateFormText{
+    text-align: center;
+    font-size:15px;
+    font-weight:600;
+    color:white;
+    letter-spacing:1px;
+}

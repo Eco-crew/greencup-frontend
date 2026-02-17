@@ -1,3 +1,187 @@
-.box {
-      height: 2000px;  
-}      
+.partner_rental_manage_container {
+  height: 1200px;
+  width: 90%;
+  margin: 50px auto;
+}
+
+.partner_rental_manage_partner_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 50px;
+
+  width: 100%;
+  height: 200px;
+}
+
+.partner_rental_manage_partner_info_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+
+  width: 55%;
+  height: 100%;
+}
+
+.partner_rental_manage_goupdateform_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+  width: 18%;
+  height: 100%;
+
+  margin-left: 10%;
+}
+
+.partner_rental_reuse_manager_partner_greencup_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 50px;
+
+  width: 100%;
+  height: 130px;
+}
+
+.partner_rental_reuse_manager_container {
+  width: 45%;
+  height: 100%;
+}
+
+.partner_rental_partner_greencup_container {
+  width: 45%;
+  height: 100%;
+}
+
+.partner_rental_partner_setting_memo_container{
+  width: 100%;
+  height: 180px;
+
+  margin-bottom: 50px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.partner_rental_manage_partner_setting_total_container {
+  width: 50%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.partner_rental_manage_partner_message_total_container{
+  width: 40%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.partner_rental_manage_holiday_container {
+  height: 420px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+.reuse_partner_manage_holiday_calendar_total_container {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.partner_rental_manage_holiday_list_total_container {
+  height: 100%;
+  width: 20%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.partner_rental_manage_regular_holiday_list_total_container {
+  height: 100%;
+  width: 20%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.partner_rental_manage_holiday_title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #444;
+
+  letter-spacing: 0.5px;
+}
+
+/*
+참고 
+flex: 1 1 => 남는 공간 있으면 늘어남 => 공간 부족하면 줄어듦
+flex: 0 0 => 남는 공간 있어도 안 늘어남 => 공간 부족해도 안 줄어듦
+*/
+@media (max-width: 920px) {
+  .partner_rental_manage_container {
+    height: 1600px;
+  }
+
+  .partner_rental_manage_holiday_container {
+    flex-wrap: wrap;
+    gap: 16px;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    height: auto;
+  }
+
+  .partner_rental_manage_holiday_calendar_total_container{
+    flex: 0 0 310px;
+    min-width: 310px;
+    height: 420px;
+  }
+
+  .partner_rental_manage_holiday_list_total_container {
+    flex: 0 0 260px;
+    width: auto;
+    min-width: 260px;
+    height: 420px;
+  }
+
+  .partner_rental_manage_regular_holiday_list_total_container {
+    flex: 0 0 260px;
+    min-width: 260px;
+    height: 420px;
+  }
+
+  /* 캘린더 wrapper는 100% */
+  .partner-rental-manage-holiday-calendar-container {
+    width: 100%;
+  }
+}

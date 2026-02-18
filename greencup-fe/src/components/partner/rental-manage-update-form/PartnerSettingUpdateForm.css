@@ -90,6 +90,6 @@
   transition: all 0.15s ease;
 }
 .partner-rental-manage-partner-setting-input:focus {
-  border: 1px solid #8ab4ff;
+  border: 1px solid #2f7d32; 
   box-shadow: 0 0 0 2px rgba(138, 180, 255, 0.2);
 }

@@ -14,6 +14,7 @@ import HolidayRegularList from "../../../components/partner/rental-manage/holida
 import GoUpdateFormButton from "../../../components/partner/util/GoUpdateFormButton";
 
 import PartnerSettingUpdateForm from "../../../components/partner/rental-manage-update-form/PartnerSettingUpdateForm";
+import PartnerMessageUpdateForm from "../../../components/partner/rental-manage-update-form/PartnerMessageUpdateForm";
 
 import { fetchPartnerRental } from "../../../api/dummyPartnerRental";
 
@@ -62,12 +63,17 @@ export default function PartnerRequestSettingsPage() {
 
   useEffect(() => {
     //console.log(settingInfo);
-  },[settingInfo]);
+  }, [settingInfo]);
 
   //partnersetting 대여정보수정 input박스에 입력시
-  const partnerSettingOnchange= (e) => {
-    setSettingInfo((prev) => ({...prev, [e.target.name]:e.target.value}));
-  }
+  const partnerSettingOnChange = (e) => {
+    setSettingInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  //partnermemo 비고메모 수정 textarea에 입력시
+  const partnerMemoOnChange = (e) => {
+    setSettingInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   //여기는 렌더링 하는 영역
   if (loading)
@@ -129,7 +135,7 @@ export default function PartnerRequestSettingsPage() {
                 defaultNeedCount={settingInfo.defaultNeedCount}
                 defaultReturnCount={settingInfo.defaultReturnCount}
                 defaultVisitTime={settingInfo.defaultVisitTime}
-                onChange={partnerSettingOnchange}
+                onChange={partnerSettingOnChange}
               />
             ) : (
               <PartnerSetting
@@ -143,7 +149,14 @@ export default function PartnerRequestSettingsPage() {
             <div className="partner_rental_manage_holiday_title">
               비고 메세지
             </div>
-            <PartnerMessage memo={settingInfo.memo} />
+            {isUpdatingMode ? (
+              <PartnerMessageUpdateForm
+                memo={settingInfo.memo}
+                onChange={partnerMemoOnChange}
+              />
+            ) : (
+              <PartnerMessage memo={settingInfo.memo} />
+            )}
           </div>
         </div>
         <div className="partner_rental_manage_holiday_container">

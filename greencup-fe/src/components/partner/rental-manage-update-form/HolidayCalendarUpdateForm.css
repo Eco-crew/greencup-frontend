@@ -1,0 +1,13 @@
+.partner-rental-manage-holiday-calendar-container{
+    width:310px;
+    min-width: 310px;
+    height:100%;
+
+}
+
+#partner-rental-manage-holiday-calendar{
+    display: inline-block;
+    width:0px;
+    height:0px;
+    visibility: hidden;
+}

@@ -15,6 +15,7 @@ import GoUpdateFormButton from "../../../components/partner/util/GoUpdateFormBut
 
 import PartnerSettingUpdateForm from "../../../components/partner/rental-manage-update-form/PartnerSettingUpdateForm";
 import PartnerMessageUpdateForm from "../../../components/partner/rental-manage-update-form/PartnerMessageUpdateForm";
+import HolidayCalendarUpdateForm from "../../../components/partner/rental-manage-update-form/HolidayCalendarUpdateForm";
 
 import { fetchPartnerRental } from "../../../api/dummyPartnerRental";
 
@@ -32,6 +33,8 @@ export default function PartnerRequestSettingsPage() {
   const [weeklyOffDays, setWeeklyOffDays] = useState([]);
   //partnerId 조회한 해당 partner의 offDates 항목
   const [offDates, setOffDates] = useState([]);
+  //수정폼에서의 선택한 모든 날짜들
+  const [updateOffDates, setUpdateOffDates] = useState([]);
   //fetch로 불러올동안 로딩중 여부
   const [loading, setLoading] = useState(true);
   //대여수정 버튼을 눌러서 수정모드인지 여부
@@ -45,6 +48,7 @@ export default function PartnerRequestSettingsPage() {
       setSettingInfo(data.settingInfo);
       setWeeklyOffDays(data.weeklyOffDays);
       setOffDates(data.offDates);
+      setUpdateOffDates(data.offDates);
       setLoading(false);
     });
   };
@@ -65,6 +69,10 @@ export default function PartnerRequestSettingsPage() {
     //console.log(settingInfo);
   }, [settingInfo]);
 
+  useEffect(() => {
+    console.log(updateOffDates);
+  }, [updateOffDates]);
+
   //partnersetting 대여정보수정 input박스에 입력시
   const partnerSettingOnChange = (e) => {
     setSettingInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -73,6 +81,11 @@ export default function PartnerRequestSettingsPage() {
   //partnermemo 비고메모 수정 textarea에 입력시
   const partnerMemoOnChange = (e) => {
     setSettingInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  //holidaycalendar 달력수정폼에서 선택한것들
+  const holidayCalendarOnChange = (arr) => {
+    setUpdateOffDates(arr);
   };
 
   //여기는 렌더링 하는 영역
@@ -164,7 +177,14 @@ export default function PartnerRequestSettingsPage() {
             <div className="partner_rental_manage_holiday_title">
               비정기 휴무 캘린더
             </div>
-            <HolidayCalendar offDates={offDates} />
+            {isUpdatingMode ? (
+              <HolidayCalendarUpdateForm
+                updateOffDates={updateOffDates}
+                onChange={holidayCalendarOnChange}
+              />
+            ) : (
+              <HolidayCalendar offDates={offDates} />
+            )}
           </div>
           <div className="partner_rental_manage_holiday_list_total_container">
             <div className="partner_rental_manage_holiday_title">

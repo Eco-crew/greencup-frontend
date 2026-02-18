@@ -49,6 +49,13 @@
   background: #dcdcdc;
 }
 
+/* 버튼이 하나만 있을 때 구분선 제거 */
+.holiday-pagination.pagination
+.page-item:first-child:last-child
+.page-link::after {
+  display: none;
+}
+
 .holiday-pagination.pagination .page-item:last-child .page-link {
   padding-left: 10px;
 }

@@ -1,0 +1,113 @@
+.partner-rental-manage-holiday-list-container {
+  width: 100%;
+  height: 90%;
+
+  padding: 18px 14px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 18px;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.partner-rental-manage-holiday-list {
+  width: 95%;
+  height: 280px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  /* 자식요소의 갯수에 따라 높이가 줄어들지 않게 */
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.partner-rental-manage-holiday-row{
+  width: 100%;
+  height: 34px;
+
+  /* display: grid;
+  grid-template-columns: 1fr 34px; 
+  align-items: center; */
+
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.partner-rental-manage-holiday-element {
+  width: 70%;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 15px;
+  color: #9a9a9a;
+}
+
+.partner-rental-manage-holiday-remove{
+  width: 28px;
+  height: 28px;
+
+  justify-self: end;
+
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+  background: #fff;
+
+  cursor: pointer;
+  position: relative;
+
+  transition: all 0.15s ease;
+}
+
+.partner-rental-manage-holiday-remove::before,
+.partner-rental-manage-holiday-remove::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 14px;
+  height: 2px;
+
+  background: #9a9a9a;
+  border-radius: 2px;
+
+  transform-origin: center;
+}
+
+.partner-rental-manage-holiday-remove::before{
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.partner-rental-manage-holiday-remove::after{
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.partner-rental-manage-holiday-remove:hover{
+  border-color: #2f7d32;
+  box-shadow: 0 0 0 2px rgba(47, 125, 50, 0.12);
+}
+
+.partner-rental-manage-holiday-remove:hover::before,
+.partner-rental-manage-holiday-remove:hover::after{
+  background: #2f7d32;
+}
+
+.partner-rental-manage-holiday-remove:active{
+  transform: scale(0.96);
+}

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import "./HolidayList.css";
+import "./HolidayListUpdateForm.css";
 
-import HolidayPagination from "../../../holiday-pagination/HolidayPagination";
-import { SHOW_OFF_DATES_SIZE } from "../../../../util/constant";
+import HolidayPagination from "../../holiday-pagination/HolidayPagination";
+import { SHOW_OFF_DATES_SIZE } from "../../../util/constant";
 
 //업체지점장-대여관리-수정폼-휴무일 리스트
-export default function HolidayList({ offDates }) {
+export default function HolidayListUpdateForm({ updateOffDates }) {
   //비정기 휴무일 총 갯수
   const [offDatesTotalCount, setOffDatesTotalCount] = useState(0);
   //비정기 휴무일에서 현재 페이지
@@ -16,12 +16,12 @@ export default function HolidayList({ offDates }) {
 
   //마운트될때 총 비정기 휴무일 갯수와 보여줄 비정기휴무들 세팅
   useEffect(() => {
-    setOffDatesTotalCount(offDates.length);
-  }, [offDates]);
+    setOffDatesTotalCount(updateOffDates.length);
+  }, [updateOffDates]);
 
   //마운트 이후 총 비정기 휴무일 갯수 세팅이후 보여줄 비정기 휴무들 세팅
   useEffect(() => {
-    let tmpOffDates = offDates.slice(
+    let tmpOffDates = updateOffDates.slice(
       (page - 1) * SHOW_OFF_DATES_SIZE,
       page * SHOW_OFF_DATES_SIZE,
     );
@@ -32,7 +32,7 @@ export default function HolidayList({ offDates }) {
 
   //페이지숫자가 바뀔때마다 보여줄 비정기휴무들 세팅
   useEffect(() => {
-    let tmpOffDates = offDates.slice(
+    let tmpOffDates = updateOffDates.slice(
       (page - 1) * SHOW_OFF_DATES_SIZE,
       page * SHOW_OFF_DATES_SIZE,
     );
@@ -49,9 +49,20 @@ export default function HolidayList({ offDates }) {
       <div className="partner-rental-manage-holiday-list-container">
         <div className="partner-rental-manage-holiday-list">
           {showOffDates.map((date) => (
-            <div key={date} className="partner-rental-manage-holiday-element">
-              {date}
-            </div>
+            <>
+              <div key={date} className="partner-rental-manage-holiday-row">
+                <div className="partner-rental-manage-holiday-element">
+                  {date}
+                </div>
+
+                <button
+                  type="button"
+                  className="partner-rental-manage-holiday-remove"
+                  aria-label={`${date} 삭제`}
+                  onClick={() => onRemoveDate(date)} // 너가 가진 삭제함수로 연결
+                />
+              </div>
+            </>
           ))}
         </div>
         <HolidayPagination

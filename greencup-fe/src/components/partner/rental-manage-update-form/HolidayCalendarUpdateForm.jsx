@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 import "./HolidayCalendarUpdateForm.css";
 
-//수거지점장- 업체관리-상세페이지-휴무캘린더
+//업체지점장- 대여관리-수정폼-휴무캘린더
 export default function HolidayCalendarUpdateForm({
   updateOffDates,
   onChange,

@@ -16,6 +16,7 @@ import GoUpdateFormButton from "../../../components/partner/util/GoUpdateFormBut
 import PartnerSettingUpdateForm from "../../../components/partner/rental-manage-update-form/PartnerSettingUpdateForm";
 import PartnerMessageUpdateForm from "../../../components/partner/rental-manage-update-form/PartnerMessageUpdateForm";
 import HolidayCalendarUpdateForm from "../../../components/partner/rental-manage-update-form/HolidayCalendarUpdateForm";
+import HolidayListUpdateForm from "../../../components/partner/rental-manage-update-form/HolidayListUpdateForm";
 
 import { fetchPartnerRental } from "../../../api/dummyPartnerRental";
 
@@ -190,7 +191,7 @@ export default function PartnerRequestSettingsPage() {
             <div className="partner_rental_manage_holiday_title">
               비정기 휴무일
             </div>
-            <HolidayList offDates={offDates} />
+            {isUpdatingMode ? <HolidayListUpdateForm updateOffDates={updateOffDates}/> : <HolidayList offDates={offDates} />}
           </div>
           <div className="partner_rental_manage_regular_holiday_list_total_container">
             <div className="partner_rental_manage_holiday_title">

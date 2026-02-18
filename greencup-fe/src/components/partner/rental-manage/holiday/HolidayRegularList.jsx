@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import "./HolidayRegularList.css";
 
+//업체지점장-대여관리-정기휴일
 export default function HolidayRegularList({ weeklyOffDays }) {
   const [realWeeklyOffDays, setRealWeeklyOffDays] = useState({
     Mon: { text: "월요일", isHoliday: false },

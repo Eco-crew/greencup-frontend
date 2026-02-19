@@ -2,6 +2,12 @@ import "./PartnerGreenCupInfo.css";
 
 import IsCompleteButton from "../iscomplete-button/IsCompleteButton";
 
+import {
+  REQUEST_COMPLETED,
+  REQUEST_INCOMPLETED,
+  REQUEST_CANCELLED,
+} from "../../../../util/constant";
+
 //수거지점장- 요청현황- 상세페이지- 필요개수, 반납개수, 분실개수, 방문시간, 요청일, 완료여부
 export default function PartnerGreenCupInfo({
   requestId,
@@ -10,7 +16,7 @@ export default function PartnerGreenCupInfo({
   brokenLostCount,
   wantedVisitTime,
   requestedDate,
-  completed,
+  status,
   afterCompleted,
   afterCanceled,
 }) {
@@ -45,7 +51,7 @@ export default function PartnerGreenCupInfo({
               <td>{brokenLostCount}</td>
               <td>{wantedVisitTime}</td>
               <td>{requestedDate}</td>
-              {completed === true ? (
+              {status === REQUEST_COMPLETED ? (
                 <td>
                   <div className="reuse-request-detail-partner-cup-info-isCompleteButtonTd">
                     <span className="reuse-request-detail-partner-cup-info-isCompleteText">
@@ -65,7 +71,7 @@ export default function PartnerGreenCupInfo({
                     />
                   </div>
                 </td>
-              ) : (
+              ) : status === REQUEST_INCOMPLETED ? (
                 <td>
                   <div className="reuse-request-detail-partner-cup-info-isCompleteButtonTd">
                     <span className="reuse-request-detail-partner-cup-info-isCompleteText">
@@ -83,6 +89,14 @@ export default function PartnerGreenCupInfo({
                         afterCompleted(e);
                       }}
                     />
+                  </div>
+                </td>
+              ) : (
+                <td>
+                  <div className="reuse-request-detail-partner-cup-info-isCompleteButtonTd">
+                    <span className="reuse-request-detail-partner-cup-info-isCompleteText">
+                      취소
+                    </span>
                   </div>
                 </td>
               )}

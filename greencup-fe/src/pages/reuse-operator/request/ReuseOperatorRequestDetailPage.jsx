@@ -35,14 +35,27 @@ export default function ReuseOperatorRequestDetailPage() {
   const navigate = useNavigate();
 
   //해당 항목 불러온후 상태관리하는 함수
-  const handleFetchReuseRequest = (requestId) => {
-    fetchDetailReuseRequest(requestId).then((data) => {
-      //한개이므로
-      setRequest(data.requests[0]);
-      //console.log(data.requests);
+  const handleFetchReuseRequest = async (requestId) => {
+    // fetchDetailReuseRequest(requestId).then((data) => {
+    //   //한개이므로
+    //   setRequest(data.requests[0]);
+    //   //console.log(data.requests);
 
-      setLoading(false);
+    //   setLoading(false);
+    // });
+
+    const response = await fetch(`/api/reuse-operator/requests/${requestId}`, {
+      method: "GET",
+      credentials: "include", // 세션에 관한 쿠키도 꼭 전송
     });
+
+    if (response.ok) {
+      const data = await response.json();
+      setRequest(data.requestDetail);
+      setLoading(false);
+    } else {
+      console.log("수거지점장- 요청현황 상세페이지 불러오기 오류");
+    }
   };
 
   //주의 useEffect 인자에 직접적으로 async를 쓰면 안된다. 차라리 fetch then은 가능
@@ -69,6 +82,9 @@ export default function ReuseOperatorRequestDetailPage() {
     navigate("/reuse-operator/requests");
   };
 
+  if (loading) {
+    return <p>로딩중...</p>
+  }
   return (
     <>
       <div className="reuse_request_detail_container">
@@ -82,11 +98,21 @@ export default function ReuseOperatorRequestDetailPage() {
               partnerOperatingEnd={request.partnerOperatingEnd}
             />
           </div>
-          <PartnerMap partnerAddress={request.partnerAddress}/>
+          <PartnerMap partnerAddress={request.partnerAddress} />
         </div>
-        <PartnerGreenCupInfo requestId={request.requestId} needCount={request.needCount} returnCount={request.returnCount} brokenLostCount={request.brokenLostCount} wantedVisitTime={request.wantedVisitTime} requestedDate={request.requestedDate} completed={request.completed} afterCompleted={afterCompleted} afterCanceled={afterCanceled}/>
+        <PartnerGreenCupInfo
+          requestId={request.requestId}
+          needCount={request.needCount}
+          returnCount={request.returnCount}
+          brokenLostCount={request.brokenLostCount}
+          wantedVisitTime={request.wantedVisitTime}
+          requestedDate={request.requestedDate}
+          status={request.status}
+          afterCompleted={afterCompleted}
+          afterCanceled={afterCanceled}
+        />
         <div className="reuse_request_detail_partner_message_and_button_container">
-          <PartnerMessage memo={request.memo}/>
+          <PartnerMessage memo={request.memo} />
           <div className="reuse_request_detail_golist_container">
             <GoListButton width={200} height={50} onClick={goListClick} />
           </div>

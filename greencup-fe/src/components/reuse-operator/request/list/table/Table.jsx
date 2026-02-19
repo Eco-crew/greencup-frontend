@@ -13,7 +13,10 @@ import {
   PARTNER_NAME,
   WANTED_VISIT_TIME,
   REQUESTED_DATE,
+  REQUESTED_STATUS,
   REQUEST_COMPLETED,
+  REQUEST_INCOMPLETED,
+  REQUEST_CANCELLED,
 } from "../../../../../util/constant";
 
 //수거지점장- 요청현황 검색결과 데이터 테이블
@@ -61,7 +64,7 @@ export default function Table({ requests, afterCompleted, afterCanceled }) {
         case REQUESTED_DATE:
           tmpHeaders.push("요청일");
           break;
-        case REQUEST_COMPLETED:
+        case REQUESTED_STATUS:
           tmpHeaders.push("완료여부");
           break;
         default:
@@ -79,11 +82,13 @@ export default function Table({ requests, afterCompleted, afterCanceled }) {
         //행을 구분짓는 requestId를 따로 저장
         if (key === REQUEST_ID) {
           tmpTrIds.push(value);
-        } else if (key === REQUEST_COMPLETED) {
-          if (value === 'true') {
+        } else if (key === REQUESTED_STATUS) {
+          if (value === REQUEST_COMPLETED) {
             tmpTds.push("완료");
-          } else {
+          } else if (value === REQUEST_INCOMPLETED) {
             tmpTds.push("미완료");
+          } else {
+            tmpTds.push("취소");
           }
         } else {
           tmpTds.push(value);
@@ -149,7 +154,7 @@ export default function Table({ requests, afterCompleted, afterCanceled }) {
                         />
                       </div>
                     </td>
-                  ) : (
+                  ) : rd === "미완료" ? (
                     <td key={index2}>
                       <div className="reuse-request-isCompleteButtonTd">
                         <span className="reuse-request-isCompleteText">
@@ -167,6 +172,14 @@ export default function Table({ requests, afterCompleted, afterCanceled }) {
                             afterCompleted(e);
                           }}
                         />
+                      </div>
+                    </td>
+                  ) : (
+                    <td key={index2}>
+                      <div className="reuse-request-isCompleteButtonTd">
+                        <span className="reuse-request-isCompleteText">
+                          {rd}
+                        </span>
                       </div>
                     </td>
                   ),

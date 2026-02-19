@@ -14,6 +14,7 @@ import {
   TOTAL,
   COMPLETED,
   NOTCOMPLETED,
+  NOTCANCELLED,
   SHOW_POSTS_COUNT,
 } from "../../../util/constant";
 import {
@@ -102,6 +103,9 @@ export default function ReuseOperatorRequestPage() {
       case "tab_notcompleted":
         setTabBarContent(NOTCOMPLETED);
         break;
+      case "tab_cancelled":
+        setTabBarContent(NOTCANCELLED);
+        break;
       default:
         console.log("tabbar clicked error");
     }
@@ -128,8 +132,8 @@ export default function ReuseOperatorRequestPage() {
       setRequests(data.requests);
       //console.log(data.requests);
       setRequestCount(data.searchRequestCount);
-      setTotalRequestCount(data.totalRequestCount);
-      setCompletedRequestCount(data.totalCompletedCount);
+      setTotalRequestCount(data.searchRequestCount);
+      setCompletedRequestCount(data.completeCount);
       setLoading(false);
     } else {
       console.log("수거지점장- 전체 요청현황 불러오기 오류");
@@ -157,8 +161,8 @@ export default function ReuseOperatorRequestPage() {
       setRequests(data.requests);
       //console.log(data.requests);
       setRequestCount(data.searchRequestCount);
-      setTotalRequestCount(data.totalRequestCount);
-      setCompletedRequestCount(data.totalCompletedCount);
+      setTotalRequestCount(data.searchRequestCount);
+      setCompletedRequestCount(data.completeCount);
       setLoading(false);
     } else {
       console.log("수거지점장- 완료된 요청현황 불러오기 오류");
@@ -186,8 +190,8 @@ export default function ReuseOperatorRequestPage() {
       setRequests(data.requests);
       //console.log(data.requests);
       setRequestCount(data.searchRequestCount);
-      setTotalRequestCount(data.totalRequestCount);
-      setCompletedRequestCount(data.totalCompletedCount);
+      setTotalRequestCount(data.searchRequestCount);
+      setCompletedRequestCount(data.completeCount);
       setLoading(false);
     } else {
       console.log("수거지점장- 미완료된 요청현황 불러오기 오류");
@@ -205,6 +209,9 @@ export default function ReuseOperatorRequestPage() {
         break;
       case NOTCOMPLETED:
         handleFetchNotCompletedReuseRequests();
+        break;
+      case NOTCANCELLED:
+        handleFetchTotalReuseRequests();
         break;
     }
   };

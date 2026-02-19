@@ -6,6 +6,7 @@ export const PARTNER = "partner";
 export const TOTAL = "total";
 export const COMPLETED = "completed";
 export const NOTCOMPLETED = "notCompleted";
+export const NOTCANCELLED = "cancelled";
 
 //수거지점장-요청현황-백엔드에서 받은 헤더 키
 export const REQUEST_ID = "requestId";
@@ -15,7 +16,14 @@ export const BROKEN_LOST_COUNT = "brokenLostCount";
 export const PARTNER_NAME = "partnerName";
 export const WANTED_VISIT_TIME = "wantedVisitTime";
 export const REQUESTED_DATE = "requestedDate";
-export const REQUEST_COMPLETED = "completed";
+export const REQUESTED_STATUS = "status";
+
+//수거지점장-요청현황-완료
+export const REQUEST_COMPLETED = "complete";
+//수거지점장-요청현황-미완료
+export const REQUEST_INCOMPLETED = "incomplete";
+//수거지점장-요청현황-취소
+export const REQUEST_CANCELLED = "cancelled";
 
 //수거지점장-요청현황-한 페이지에 보여줄 버튼 갯수
 //수거지점장-업체관리-한 페이지에 보여줄 버튼 갯수

@@ -5,7 +5,10 @@ import HolidayPagination from "../../holiday-pagination/HolidayPagination";
 import { SHOW_OFF_DATES_SIZE } from "../../../util/constant";
 
 //업체지점장-대여관리-수정폼-휴무일 리스트
-export default function HolidayListUpdateForm({ updateOffDates }) {
+export default function HolidayListUpdateForm({
+  updateOffDates,
+  onRemoveDate,
+}) {
   //비정기 휴무일 총 갯수
   const [offDatesTotalCount, setOffDatesTotalCount] = useState(0);
   //비정기 휴무일에서 현재 페이지
@@ -27,6 +30,12 @@ export default function HolidayListUpdateForm({ updateOffDates }) {
     );
 
     //console.log(tmpOffDates);
+
+    //만약 현재 수정폼에서 계속 x버튼을 눌러 지울시 자동으로 이전페이지로 가기위해
+    if (tmpOffDates.length == 0 && page > 1) {
+      setPage(page - 1);
+    }
+
     setShowOffDates(tmpOffDates);
   }, [offDatesTotalCount]);
 
@@ -49,20 +58,18 @@ export default function HolidayListUpdateForm({ updateOffDates }) {
       <div className="partner-rental-manage-holiday-list-container">
         <div className="partner-rental-manage-holiday-list">
           {showOffDates.map((date) => (
-            <>
               <div key={date} className="partner-rental-manage-holiday-row">
                 <div className="partner-rental-manage-holiday-element">
                   {date}
                 </div>
 
                 <button
+                  data-date={date}
                   type="button"
                   className="partner-rental-manage-holiday-remove"
-                  aria-label={`${date} 삭제`}
-                  onClick={() => onRemoveDate(date)} // 너가 가진 삭제함수로 연결
+                  onClick={(e) => onRemoveDate(e.target.dataset.date)}
                 />
               </div>
-            </>
           ))}
         </div>
         <HolidayPagination

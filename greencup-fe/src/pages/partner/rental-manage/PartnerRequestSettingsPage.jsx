@@ -89,6 +89,12 @@ export default function PartnerRequestSettingsPage() {
     setUpdateOffDates(arr);
   };
 
+  //holidaylist에서 x 버튼을 눌러 지울때 
+  const onRemoveDate = (deleteDate) => {
+    const tmpOffDates = updateOffDates.filter((date)=> date != deleteDate);
+    setUpdateOffDates(tmpOffDates);
+  }
+
   //여기는 렌더링 하는 영역
   if (loading)
     return (
@@ -191,7 +197,11 @@ export default function PartnerRequestSettingsPage() {
             <div className="partner_rental_manage_holiday_title">
               비정기 휴무일
             </div>
-            {isUpdatingMode ? <HolidayListUpdateForm updateOffDates={updateOffDates}/> : <HolidayList offDates={offDates} />}
+            {isUpdatingMode ? (
+              <HolidayListUpdateForm updateOffDates={updateOffDates} onRemoveDate={onRemoveDate}/>
+            ) : (
+              <HolidayList offDates={offDates} />
+            )}
           </div>
           <div className="partner_rental_manage_regular_holiday_list_total_container">
             <div className="partner_rental_manage_holiday_title">

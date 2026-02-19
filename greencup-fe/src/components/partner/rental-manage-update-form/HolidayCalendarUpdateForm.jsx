@@ -9,9 +9,10 @@ export default function HolidayCalendarUpdateForm({
 }) {
   const inputRef = useRef(null);
   const wrapRef = useRef(null);
+  const fpRef = useRef(null);
 
   useEffect(() => {
-    const fp = window.flatpickr(inputRef.current, {
+    fpRef.current = window.flatpickr(inputRef.current, {
       inline: true, //캘린더 항상 열림
       clickOpens: false, //클릭해도 date picker 동작(선택 UI) 안 열림
       allowInput: true, //직접 입력 허용
@@ -34,7 +35,18 @@ export default function HolidayCalendarUpdateForm({
       },
     });
 
-    return () => fp.destroy();
+    return () => fpRef.current?.destroy();
+  }, []);
+
+  //부모의 updateOffDates가 바뀌면 "재생성" 말고 setDate로만 반영
+  useEffect(() => {
+    const fp = fpRef.current;
+    if (!fp) return;
+
+    // false: setDate로 인해 onChange 트리거 X
+    fp.setDate(updateOffDates ?? [], false);
+
+    //console.log('calendar에서 updateoffdates 변경');
   }, [updateOffDates]);
 
   return (

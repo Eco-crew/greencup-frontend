@@ -10,7 +10,7 @@ export default function HolidayCalendarUpdateForm({
   const inputRef = useRef(null);
   const wrapRef = useRef(null);
   const fpRef = useRef(null);
-
+  const prevDatesRef = useRef(updateOffDates ?? []);
   useEffect(() => {
     fpRef.current = window.flatpickr(inputRef.current, {
       inline: true, //캘린더 항상 열림
@@ -28,10 +28,26 @@ export default function HolidayCalendarUpdateForm({
         //instance : flatpickr 객체
 
         // 문자열 배열로 쓰고 싶으면
-        const arr = selectedDates.map((d) => instance.formatDate(d, "Y-m-d"));
-        //console.log(arr);
+        const formatted = selectedDates.map((d) =>
+          instance.formatDate(d, "Y-m-d"),
+        );
+
+        const prev = prevDatesRef.current;
+
+        const added = formatted.filter((d) => !prev.includes(d));
+        const removed = prev.filter((d) => !formatted.includes(d));
+
+        if (added.length > 0) {
+          console.log("새로 체크:", added[0]);
+        }
+
+        if (removed.length > 0) {
+          console.log("새로 해제:", removed[0]);
+        }
+
+        prevDatesRef.current = formatted;
         //부모컴포넌트 상태관리변수에 업데이트
-        onChange(arr);
+        onChange(formatted);
       },
     });
 
@@ -45,6 +61,9 @@ export default function HolidayCalendarUpdateForm({
 
     // false: setDate로 인해 onChange 트리거 X
     fp.setDate(updateOffDates ?? [], false);
+
+    // prevDatesRef도 외부 변경에 맞춰 동기화
+    prevDatesRef.current = (updateOffDates ?? []).slice();
 
     //console.log('calendar에서 updateoffdates 변경');
   }, [updateOffDates]);

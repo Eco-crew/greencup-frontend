@@ -1,0 +1,76 @@
+.partner-rental-manage-regular-holiday-list-container {
+  width: 100%;
+  height: 90%;
+
+  padding: 18px 14px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.partner-rental-manage-regular-holiday-list {
+  width: 90%;
+  height: 280px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  /* 자식요소의 갯수에 따라 높이가 줄어들지 않게 */
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.partner-rental-manage-regular-holiday-element {
+  width: 100%;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  padding: 0 14px;
+
+  border-radius: 12px;
+}
+
+/* 줄 구분 + 살짝 hover */
+.partner-rental-manage-regular-holiday-checkbox:not(:last-child) {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.partner-rental-manage-regular-holiday-checkbox:hover {
+  background: #fafafa;
+}
+
+/* 요일 텍스트 */
+.partner-rental-manage-regular-holiday-element > div {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 체크박스 예쁘게 */
+.partner-rental-manage-regular-holiday-checkbox {
+  width: 18px;
+  height: 18px;
+
+  accent-color: #4caf50; /* 체크 색 */
+  cursor: default;
+}
+
+/* 체크된 날은 텍스트도 살짝 강조(지원 브라우저에서만 동작) */
+.partner-rental-manage-regular-holiday-element:has(
+  .partner-rental-manage-regular-holiday-checkbox:checked
+) > div {
+  color: #111;
+}

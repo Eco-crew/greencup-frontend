@@ -17,6 +17,7 @@ import PartnerSettingUpdateForm from "../../../components/partner/rental-manage-
 import PartnerMessageUpdateForm from "../../../components/partner/rental-manage-update-form/PartnerMessageUpdateForm";
 import HolidayCalendarUpdateForm from "../../../components/partner/rental-manage-update-form/HolidayCalendarUpdateForm";
 import HolidayListUpdateForm from "../../../components/partner/rental-manage-update-form/HolidayListUpdateForm";
+import HolidayRegularListUpdateForm from "../../../components/partner/rental-manage-update-form/HolidayRegularListUpdateForm";
 
 import { fetchPartnerRental } from "../../../api/dummyPartnerRental";
 
@@ -30,12 +31,14 @@ export default function PartnerRequestSettingsPage() {
   const [partner, setPartner] = useState({});
   //partnerId 조회한 해당 partner의 settingInfo 항목
   const [settingInfo, setSettingInfo] = useState({});
-  //partnerId 조회한 해당 partner의 weeklyOffDays 항목
+  //partnerId 조회한 해당 partner의 weeklyOffDays 정기 휴무일 요일 항목
   const [weeklyOffDays, setWeeklyOffDays] = useState([]);
-  //partnerId 조회한 해당 partner의 offDates 항목
+  //partnerId 조회한 해당 partner의 offDates 비정기 휴무일 항목
   const [offDates, setOffDates] = useState([]);
-  //수정폼에서의 선택한 모든 날짜들
+  //수정폼에서의 선택한 비정기휴일 모든 날짜들
   const [updateOffDates, setUpdateOffDates] = useState([]);
+  //수정폼에서의 선택한 정기 휴무 요일
+  const [updateOffWeeklyOffDays, setUpdateOffWeeklyOffDays] = useState([]);
   //fetch로 불러올동안 로딩중 여부
   const [loading, setLoading] = useState(true);
   //대여수정 버튼을 눌러서 수정모드인지 여부
@@ -48,6 +51,7 @@ export default function PartnerRequestSettingsPage() {
       setReuse(data.reuse);
       setSettingInfo(data.settingInfo);
       setWeeklyOffDays(data.weeklyOffDays);
+      setUpdateOffWeeklyOffDays(data.weeklyOffDays);
       setOffDates(data.offDates);
       setUpdateOffDates(data.offDates);
       setLoading(false);
@@ -74,6 +78,10 @@ export default function PartnerRequestSettingsPage() {
     console.log(updateOffDates);
   }, [updateOffDates]);
 
+  useEffect(() => {
+    console.log(updateOffWeeklyOffDays);
+  }, [updateOffWeeklyOffDays]);
+
   //partnersetting 대여정보수정 input박스에 입력시
   const partnerSettingOnChange = (e) => {
     setSettingInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -89,10 +97,22 @@ export default function PartnerRequestSettingsPage() {
     setUpdateOffDates(arr);
   };
 
-  //holidaylist에서 x 버튼을 눌러 지울때 
+  //holidaylist에서 x 버튼을 눌러 지울때
   const onRemoveDate = (deleteDate) => {
-    const tmpOffDates = updateOffDates.filter((date)=> date != deleteDate);
+    const tmpOffDates = updateOffDates.filter((date) => date != deleteDate);
     setUpdateOffDates(tmpOffDates);
+  };
+
+  //holidayregularlist에서 체크박스를 토글하여 정기휴무 요일을 선택또는 해제시
+  const onToggledRegularList = (e) => {
+    let tmpUpdateOffWeeklyOffDays = {};
+    //체크시에는 추가하고, 해제시에는 삭제
+    if (e.target.checked){
+      tmpUpdateOffWeeklyOffDays = [...updateOffWeeklyOffDays, e.target.value];
+    } else {
+      tmpUpdateOffWeeklyOffDays = updateOffWeeklyOffDays.filter(d => d !== e.target.value);
+    }
+    setUpdateOffWeeklyOffDays(tmpUpdateOffWeeklyOffDays);
   }
 
   //여기는 렌더링 하는 영역
@@ -198,7 +218,10 @@ export default function PartnerRequestSettingsPage() {
               비정기 휴무일
             </div>
             {isUpdatingMode ? (
-              <HolidayListUpdateForm updateOffDates={updateOffDates} onRemoveDate={onRemoveDate}/>
+              <HolidayListUpdateForm
+                updateOffDates={updateOffDates}
+                onRemoveDate={onRemoveDate}
+              />
             ) : (
               <HolidayList offDates={offDates} />
             )}
@@ -207,7 +230,14 @@ export default function PartnerRequestSettingsPage() {
             <div className="partner_rental_manage_holiday_title">
               정기 휴무일
             </div>
-            <HolidayRegularList weeklyOffDays={weeklyOffDays} />
+            {isUpdatingMode ? (
+              <HolidayRegularListUpdateForm
+                updateOffWeeklyOffDays={updateOffWeeklyOffDays}
+                onChange={onToggledRegularList}
+              />
+            ) : (
+              <HolidayRegularList weeklyOffDays={weeklyOffDays} />
+            )}
           </div>
         </div>
       </div>

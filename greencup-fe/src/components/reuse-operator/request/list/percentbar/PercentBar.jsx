@@ -6,6 +6,7 @@ import "./PercentBar.css";
 //ReuseOperatorRequestPage에서 fetch로 받은 결과이다
 export default function PercentBar({ totalRequest, completedRequest }) {
   const containerRef = useRef(null);
+  const progressBarRef = useRef(null);
   const textRef = useRef(null);
   //초록 프로그래스바의 width
   const [progressWidth, setProgressWidth] = useState(0);
@@ -31,12 +32,20 @@ export default function PercentBar({ totalRequest, completedRequest }) {
 
         let tmpProgressWidth = Math.floor((parentWidth / 100) * currentPercent);
         //console.log(tmpProgressWidth);
-        setProgressWidth(tmpProgressWidth);
+        setProgressWidth(tmpProgressWidth == 0 ? 100 : tmpProgressWidth);
 
         if (textRef.current) {
           let textWidth = textRef.current.getBoundingClientRect().width;
-          //20은 여유분
-          setTextPosition(tmpProgressWidth - textWidth - 20);
+
+          if (currentPercent <= 0) {
+            //0%여도 글자는 나오게!!
+            setTextPosition(20);
+            progressBarRef.current.style.backgroundColor = "lightgray";
+          } else {
+            //20은 여유분
+            setTextPosition(tmpProgressWidth - textWidth - 20);
+            progressBarRef.current.style.backgroundColor = "green";
+          }
         }
       }
     };
@@ -66,6 +75,7 @@ export default function PercentBar({ totalRequest, completedRequest }) {
         <div
           className="progress"
           id="progress_bar"
+          ref={progressBarRef}
           style={progressBarStyle(progressWidth)}
         >
           <div

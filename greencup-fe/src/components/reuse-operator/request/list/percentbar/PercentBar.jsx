@@ -31,9 +31,15 @@ export default function PercentBar({ totalRequest, completedRequest }) {
         setProgressWidth(tmpProgressWidth);
 
         if (textRef.current){
-          let textWidth = textRef.current.getBoundingClientRect().width;
-          setTextPosition(tmpProgressWidth - textWidth);
-        }
+            let textWidth = textRef.current.getBoundingClientRect().width;
+
+            let safePosition = tmpProgressWidth - textWidth - 10;
+
+            // 너무 왼쪽으로 붙지 않게 최소값 설정
+            if (safePosition < 5) safePosition = 5;
+
+            setTextPosition(safePosition);
+      }
       }
     };
 
@@ -57,18 +63,19 @@ export default function PercentBar({ totalRequest, completedRequest }) {
   });
 
   return (
-    <>
-      <div className="progress" id="progress_container" ref={containerRef}>
+    <div className="percent_bar_container" ref={containerRef}>
+      <div
+        className="percent_bar_fill"
+        style={progressBarStyle(progressWidth)}
+      >
         <div
-          className="progress"
-          id="progress_bar"
-          style={progressBarStyle(progressWidth)}
+          className="percent_bar_text"
+          ref={textRef}
+          style={progressTextStyle(textPosition)}
         >
-          <div className="progress_text" ref={textRef} style={progressTextStyle(textPosition)}>
-            {percent}%
-          </div>
+          {percent}%
         </div>
       </div>
-    </>
+    </div>
   );
 }

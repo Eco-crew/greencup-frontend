@@ -1,44 +1,107 @@
-#reuse-request-search-table {
-  margin: 20px 0px;
-  /* #search-table이 flex 컨테이너의 “직속 자식(flex item)” 
-  flex item은 기본이 min-width: auto라서 
-  안의 table(min-width:850)을 기준으로 “스스로도 850까지 커지려고” 해.
-  그래서 너가 기대한 “#search-table에서 overflow-x:auto로 스크롤 생성” 대신, 
-  flex item(#search-table)이 그냥 커져버려서 clientWidth === scrollWidth가 되어버린 거야. 
-  */
+/* ==============================
+   테이블 전체 래퍼
+   ============================== */
 
-  flex: 1 1 0%; /* ✅ 내용 기준(auto) 말고 0부터 계산해서 줄어들게 */
-  min-width: 0; /* ✅ flex에서 overflow 먹게 */
-  max-width: 100%; /* ✅ 부모 폭을 절대 넘지 않게 */
+#reuse-request-search-table {
+  margin: 30px 0;
+
+  flex: 1 1 0%;
+  min-width: 0;
+  max-width: 100%;
 
   overflow-x: auto;
 }
 
+
+/* ==============================
+   테이블 기본 구조
+   ============================== */
+
 #reuse-request-search-table table {
-  min-width: 850px;
+  min-width: 950px;   /* 기존 850 → 여유 있게 */
+  border-collapse: collapse;
+  background: #ffffff;
 }
+
+
+/* ==============================
+   헤더 스타일
+   ============================== */
+
+#reuse-request-table-header th {
+  background-color: #f4f4f4;   /* 연한 회색 */
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+
+  padding: 14px 10px;
+
+  border-top: 2px solid #4a4a4a;
+  border-bottom: 1px solid #cfcfcf;
+
+  text-align: center;
+}
+
+
+/* ==============================
+   바디 행 스타일
+   ============================== */
+
+#reuse-request-table-body td {
+  padding: 14px 10px;
+  font-size: 14px;
+  color: #333;
+
+  border-bottom: 1px solid #e5e5e5;
+  text-align: center;
+}
+
+
+/* ==============================
+   hover 효과 (과하지 않게)
+   ============================== */
+
+#reuse-request-table-body tr:hover {
+  background-color: #f9faf9;
+  cursor: pointer;
+}
+
+
+/* ==============================
+   숫자 컬럼 정렬 개선
+   ============================== */
+
+/* 필요개수, 반납개수, 분실개수 중앙 고정 */
+#reuse-request-table-header th:nth-child(-n+3),
+#reuse-request-table-body td:nth-child(-n+3) {
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+/* ==============================
+   완료여부 영역 정렬
+   ============================== */
 
 .reuse-request-isCompleteButtonTd {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 14px;  /* 기존 20 → 14로 줄여 정돈 */
 }
 
 .reuse-request-isCompleteText{
-  width: 50px;
-  font-size: 15px;
+  width: 60px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-/* 아래는 모두 부트스트랩 테이블 커스텀 - 필요시 주석 풀고 커스텀 */
 
-/* 
-#reuse-request-search-table .table.table-hover.custom-table > tbody > tr:hover > * {
-  --bs-table-bg-state: lightblue;
-  --bs-table-color-state: #0d6efd;
+/* ==============================
+   테이블 외곽 강조선
+   ============================== */
+
+#reuse-request-search-table table {
+  border-top: 2px solid #333;
 }
-
-#reuse-request-search-table .table .table-group-divider {
-  color: lightblue;
-} 
-*/

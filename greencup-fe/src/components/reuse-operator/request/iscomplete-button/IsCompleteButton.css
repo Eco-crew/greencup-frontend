@@ -1,11 +1,39 @@
-#isCompleteButton{
-    display:flex;
-    justify-content: center;
-    align-items: center;
+/* ===============================
+   완료 / 취소 공통 버튼 스타일
+   =============================== */
 
-    border-radius: 5px;
+.isCompleteButton{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius: 10px;      /* 살짝 둥글게 */
+    cursor:pointer;
+
+    font-size:13px;
+    font-weight:600;
+    color:#1a1a1a;
+
+    transition: all 0.15s ease;
+
+    /* ERP 느낌의 가벼운 그림자 */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
+
+/* hover 시 살짝 어둡게 */
+.isCompleteButton:hover{
+    filter: brightness(0.95);
+}
+
+
+/* 클릭 시 눌리는 느낌 */
+.isCompleteButton:active{
+    transform: translateY(1px);
+}
+
+
+/* 텍스트 */
 .isCompleteText{
-    font-size: 10px;
+    pointer-events:none;  /* 클릭 이벤트 충돌 방지 */
 }

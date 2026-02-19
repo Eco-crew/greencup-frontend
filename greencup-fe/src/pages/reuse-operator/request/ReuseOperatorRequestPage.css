@@ -1,30 +1,74 @@
+/* =====================================
+   전체 컨테이너 (관리자 기준 폭)
+   ===================================== */
+
 .reuse_request_container {
-      height: 1000px;  
-      width:90%;
-      margin:0 auto;
-}      
+  width: 1200px;
+  margin: 60px auto;
+}
+
+
+/* =====================================
+   제목
+   ===================================== */
 
 .reuse_request_title{
-      width:200px;
-      height:50px;
+  font-size: 26px;
+  font-weight: 700;
 
-      font-size:20px;
-      font-weight:bold;
+  margin-bottom: 16px;  /* 24 → 16 (퍼센트와 더 가깝게) */
 }
+
+
+/* =====================================
+   퍼센트바
+   ===================================== */
+
+/* progress 공통 */
+.progress{
+  width: 100%;
+  max-width: 700px;     /* 검색 영역과 균형 맞춤 */
+  height: 40px;
+  border-radius: 50px;
+}
+
+/* 퍼센트바 아래 간격 */
+#progress_container{
+  margin-bottom: 32px;  /* 40 → 32 (리듬 통일) */
+}
+
+
+/* =====================================
+   검색 영역
+   ===================================== */
 
 .reuse_request_search{
-      display:flex;
-      justify-content: flex-start;
-      align-items: center;
+  display: flex;
+  align-items: center;       /* 버튼 세로 중앙 */
+  gap: 24px;
 
-      gap:20px;
+  padding: 12px 0;           /* 20 → 12 (불필요한 공백 제거) */
+  margin-bottom: 32px;       /* 퍼센트와 동일 리듬 */
 }
 
-.reuse_request_results{
-      display:flex;
-      flex-direction: column;
-      align-items:center;
-      justify-content: center;
 
-      gap:20px;
+/* =====================================
+   탭 영역 (테이블과 붙이기)
+   ===================================== */
+
+.tab_container{
+  margin: 16px 0 12px 0;     /* 50px → 정리 */
+}
+
+
+/* =====================================
+   결과 영역
+   ===================================== */
+
+.reuse_request_results{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  gap: 20px;  /* 24 → 20 (테이블 위 간격 정돈) */
 }

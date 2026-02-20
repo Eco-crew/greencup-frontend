@@ -84,12 +84,27 @@ function App() {
   };
 
   //수거지점장-요청현황-미완료로 변경 모달에서 확인버튼을 클릭시
-  const reuseCancel_ConfirmClick = () => {
+  const reuseCancel_ConfirmClick = async () => {
     //reusecancelmodal open 상태변수를 바꾸자
     setReuseCancelModalOpen(false);
 
     //요청아이디 상태변수를 가져온다
     //fetch로 completed false로 업데이트후
+    const response = await fetch(
+      `/api/reuse-operator/requests/${reuseCancelRequestId}/uncomplete`,
+      {
+        method: "PUT",
+        credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+      },
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      alert("요청 미완료로 변경 성공");
+    } else {
+      alert("요청 미완료로 변경 실패");
+    }
+
     //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
     reuseCancelTriggerReload();
     //console.log("reuseCancel_ConfirmClick 눌림");
@@ -151,7 +166,7 @@ function App() {
       //fetch로 completed true로 업데이트, 분실 컵 업데이트후
       //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
       reuseCompleteTriggerReload();
-    } 
+    }
 
     //console.log("reuseComplete_ConfirmClick 눌림");
   };

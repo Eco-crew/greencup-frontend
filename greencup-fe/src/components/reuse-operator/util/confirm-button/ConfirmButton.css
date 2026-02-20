@@ -1,17 +1,31 @@
-.confirmButton{
-    width:250px;
-    height:50px;
+.confirmButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    display:flex;
-    justify-content: center;
-    align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
 
-    background-color: green;
-    border-radius: 10px;
+  background: linear-gradient(180deg, #4caf50, #3aa54a);
+  box-shadow: 0 4px 10px rgba(58, 165, 74, 0.3);
+
+  transition: all 0.2s ease;
 }
 
-.confirmButtonText{
-    text-align: center;
-    font-size: 10px;
-    color:white;
+/* hover */
+.confirmButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(58, 165, 74, 0.35);
+}
+
+/* 클릭 */
+.confirmButton:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(58, 165, 74, 0.25);
+}
+
+.confirmButtonText {
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
 }

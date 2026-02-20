@@ -85,7 +85,6 @@ function App() {
 
   //수거지점장-요청현황-미완료로 변경 모달에서 확인버튼을 클릭시
   const reuseCancel_ConfirmClick = async () => {
-    
     //요청아이디 상태변수를 가져온다
     //fetch로 요청 미완료로 업데이트
     const response = await fetch(
@@ -99,15 +98,15 @@ function App() {
     if (response.ok) {
       const data = await response.json();
       alert("요청 미완료로 변경 성공");
+
+      //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
+      reuseCancelTriggerReload();
+
+      //reusecancelmodal open 상태변수를 바꾸자
+      setReuseCancelModalOpen(false);
     } else {
       alert("요청 미완료로 변경 실패");
     }
-
-    //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
-    reuseCancelTriggerReload();
-
-    //reusecancelmodal open 상태변수를 바꾸자
-    setReuseCancelModalOpen(false);
 
     //console.log("reuseCancel_ConfirmClick 눌림");
   };
@@ -175,32 +174,31 @@ function App() {
       if (response.ok) {
         const data = await response.json();
         alert("파손 및 분실개수 변경 성공");
+
+        //fetch로 요청 완료 처리
+        console.log(reuseCompleteMissedCount);
+        const response2 = await fetch(
+          `/api/reuse-operator/requests/${reuseCompleteRequestId}/complete`,
+          {
+            method: "PUT",
+            credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+          },
+        );
+
+        if (response2.ok) {
+          const data = await response2.json();
+          alert("요청 완료 처리 변경 성공");
+          //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
+          reuseCompleteTriggerReload();
+
+          //reusecancelmodal open 상태변수를 바꾸자
+          setReuseCompleteModalOpen(false);
+        } else {
+          alert("요청 완료 처리 변경 실패");
+        }
       } else {
         alert("파손 및 분실개수 변경 실패");
       }
-
-      //fetch로 요청 완료 처리
-      console.log(reuseCompleteMissedCount);
-      const response2 = await fetch(
-        `/api/reuse-operator/requests/${reuseCompleteRequestId}/complete`,
-        {
-          method: "PUT",
-          credentials: "include", // 세션에 관한 쿠키도 꼭 전송
-        },
-      );
-
-      if (response2.ok) {
-        const data = await response2.json();
-        alert("요청 완료 처리 변경 성공");
-      } else {
-        alert("요청 완료 처리 변경 실패");
-      }
-
-      //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
-      reuseCompleteTriggerReload();
-
-      //reusecancelmodal open 상태변수를 바꾸자
-      setReuseCompleteModalOpen(false);
     }
 
     //console.log("reuseComplete_ConfirmClick 눌림");
@@ -257,7 +255,7 @@ function App() {
         <ModalBackground>
           <CompleteModal
             width={500}
-            height={400}
+            height={350}
             confirmClick={reuseComplete_ConfirmClick}
             cancelClick={reuseComplete_CancelClick}
             inputChange={reuseCompleteInputChange}

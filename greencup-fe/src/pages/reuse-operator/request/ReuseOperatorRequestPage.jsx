@@ -241,7 +241,7 @@ export default function ReuseOperatorRequestPage() {
   //조회버튼을 누를 시 실행해야 하는 것
   const afterSearchClicked = () => {
     fetchListWithTabbarContent(tabBarContent);
-  }
+  };
 
   //table칸에 있는 완료 버튼을 누를시 실행해야하는것
   const afterCompleted = (e) => {
@@ -264,10 +264,13 @@ export default function ReuseOperatorRequestPage() {
     <>
       <div className="reuse_request_container">
         <div className="reuse_request_title">수거 현황</div>
-        <PercentBar
-          totalRequest={totalRequestCount}
-          completedRequest={completedRequestCount}
-        />
+        <div className="reuse_request_percent">
+          <PercentBar
+            totalRequest={totalRequestCount}
+            completedRequest={completedRequestCount}
+          />
+        </div>
+
         {/* <PercentBar totalRequest={1000} completedRequest={590} /> */}
         <div className="reuse_request_search">
           <SearchContainer
@@ -278,7 +281,7 @@ export default function ReuseOperatorRequestPage() {
             partnerNameChange={partnerNameChange}
           />
           {/* width, height 크기 조정시 값 변경, 버튼을 누를시 onClick이라는 함수를 넘겨줌 */}
-          <SearchButton width={100} height={100} onClick={afterSearchClicked}/>
+          <SearchButton width={100} height={100} onClick={afterSearchClicked} />
         </div>
         <TabBar tabBarContent={tabBarContent} tabBarClicked={tabBarClicked} />
 

@@ -1,4 +1,12 @@
-.percent_bar_container {
+/* progress 공통 */
+.progress {
+  width: 100%;
+  max-width: 700px; /* 검색 영역과 균형 맞춤 */
+  height: 40px;
+  border-radius: 50px;
+}
+
+#progress_container {
   width: 100%;
   max-width: 700px;
   height: 45px;
@@ -9,10 +17,10 @@
   overflow: hidden;
   position: relative;
 
-  margin-bottom: 30px;
+  margin-bottom: 32px; /* 40 → 32 (리듬 통일) */
 }
 
-.percent_bar_fill {
+#progress_bar {
   height: 100%;
   background: linear-gradient(90deg, #4caf50, #8bc34a);
   border-radius: 50px;
@@ -21,7 +29,7 @@
   transition: width 0.6s ease;
 }
 
-.percent_bar_text {
+.progress_text {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

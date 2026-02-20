@@ -101,7 +101,7 @@ export default function ReuseOperatorRequestDetailPage() {
           <PartnerMap partnerAddress={request.partnerAddress} />
         </div>
         <PartnerGreenCupInfo
-          requestId={request.requestId}
+          requestId={request.id}
           needCount={request.needCount}
           returnCount={request.returnCount}
           brokenLostCount={request.brokenLostCount}

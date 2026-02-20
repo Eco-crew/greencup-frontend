@@ -85,9 +85,7 @@ function App() {
 
   //수거지점장-요청현황-미완료로 변경 모달에서 확인버튼을 클릭시
   const reuseCancel_ConfirmClick = async () => {
-    //reusecancelmodal open 상태변수를 바꾸자
-    setReuseCancelModalOpen(false);
-
+    
     //요청아이디 상태변수를 가져온다
     //fetch로 요청 미완료로 업데이트
     const response = await fetch(
@@ -107,6 +105,10 @@ function App() {
 
     //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
     reuseCancelTriggerReload();
+
+    //reusecancelmodal open 상태변수를 바꾸자
+    setReuseCancelModalOpen(false);
+
     //console.log("reuseCancel_ConfirmClick 눌림");
   };
 
@@ -157,9 +159,6 @@ function App() {
 
     //유효성 검증이 true일때만 업데이트 실행
     if (validResult) {
-      //reusecancelmodal open 상태변수를 바꾸자
-      setReuseCompleteModalOpen(false);
-
       //fetch로 분실 컵 업데이트
       const response = await fetch(
         `/api/reuse-operator/requests/${reuseCompleteRequestId}/broken-lost`,
@@ -199,6 +198,9 @@ function App() {
 
       //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
       reuseCompleteTriggerReload();
+
+      //reusecancelmodal open 상태변수를 바꾸자
+      setReuseCompleteModalOpen(false);
     }
 
     //console.log("reuseComplete_ConfirmClick 눌림");

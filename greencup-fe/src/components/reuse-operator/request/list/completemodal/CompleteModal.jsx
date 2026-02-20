@@ -37,7 +37,7 @@ export default function CompleteModal({
             }}
           />
           <div className="completeModalInputText">
-            0이상~반납개수 이하를 입력해주세요.
+            0이상을 입력해주세요.
           </div>
           {reuseCompleteMissedCountValid ? (
             ""

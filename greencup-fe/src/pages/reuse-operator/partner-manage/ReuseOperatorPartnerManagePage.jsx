@@ -59,7 +59,7 @@ export default function ReuseOperatorPartnerManagePage() {
   }, [page]);
 
   useEffect(() => {
-    console.log(partnerName);
+    //console.log(partnerName);
   },[partnerName]);
 
   //조회버튼을 누를시 수행해야 하는것

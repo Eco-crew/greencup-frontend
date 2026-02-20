@@ -29,14 +29,21 @@ export default function PartnerRequestSettingsPage() {
   const [reuse, setReuse] = useState({});
   //partnerId 조회한 담당 업체지점장의 데이터
   const [partner, setPartner] = useState({});
-  //partnerId 조회한 해당 partner의 settingInfo 항목
+  //partnerId 조회한 해당 partner의 settingInfo  기본설정 항목
   const [settingInfo, setSettingInfo] = useState({});
-  //partnerId 조회한 해당 partner의 weeklyOffDays 정기 휴무일 요일 항목
-  const [weeklyOffDays, setWeeklyOffDays] = useState([]);
+  //기본설정 수정 버튼을 눌러서 수정모드인지 여부
+  const [isSettingInfoUpdatingMode, setIsSettingInfoUpdatingMode] =
+    useState(false);
+  //비고 메시지 수정 버튼을 눌러서 수정모드인지 여부 => 값은 settingInfo.memo에 존재
+  const [isMemoUpdatingMode, setIsMemoUpdatingMode] = useState(false);
   //partnerId 조회한 해당 partner의 offDates 비정기 휴무일 항목
   const [offDates, setOffDates] = useState([]);
   //수정폼에서의 선택한 비정기휴일 모든 날짜들
   const [updateOffDates, setUpdateOffDates] = useState([]);
+  //비정기 휴무 수정 버튼을 눌러서 수정모드인지 여부
+  const [isIrregularUpdatingMode, setIsIrregularUpdatingMode] = useState(false);
+  //partnerId 조회한 해당 partner의 weeklyOffDays 정기 휴무일 요일 항목
+  const [weeklyOffDays, setWeeklyOffDays] = useState([]);
   //수정폼에서의 선택한 정기 휴무 요일
   const [updateOffWeeklyOffDays, setUpdateOffWeeklyOffDays] = useState([]);
   //fetch로 불러올동안 로딩중 여부
@@ -70,16 +77,31 @@ export default function PartnerRequestSettingsPage() {
     setIsUpdatingMode((prev) => !prev);
   };
 
+  //기본 설정 수정버튼 클릭시 실행해야하는것
+  const goUpdateSettingInfoFormClick = () => {
+    setIsSettingInfoUpdatingMode((prev) => !prev);
+  };
+
+  //비고 메세지 수정버튼 클릭시 실행해야 하는 것
+  const goUpdateMemoFormClick = () => {
+    setIsMemoUpdatingMode((prev) => !prev);
+  };
+
+  //비정기휴무 수정버튼 클릭시 실행해야 하는 것
+  const goUpdateIrregularHolidayFormClick = () => {
+    setIsIrregularUpdatingMode((prev) => !prev);
+  };
+
   useEffect(() => {
     //console.log(settingInfo);
   }, [settingInfo]);
 
   useEffect(() => {
-    console.log(updateOffDates);
+    //console.log(updateOffDates);
   }, [updateOffDates]);
 
   useEffect(() => {
-    console.log(updateOffWeeklyOffDays);
+    //console.log(updateOffWeeklyOffDays);
   }, [updateOffWeeklyOffDays]);
 
   //partnersetting 대여정보수정 input박스에 입력시
@@ -107,13 +129,15 @@ export default function PartnerRequestSettingsPage() {
   const onToggledRegularList = (e) => {
     let tmpUpdateOffWeeklyOffDays = {};
     //체크시에는 추가하고, 해제시에는 삭제
-    if (e.target.checked){
+    if (e.target.checked) {
       tmpUpdateOffWeeklyOffDays = [...updateOffWeeklyOffDays, e.target.value];
     } else {
-      tmpUpdateOffWeeklyOffDays = updateOffWeeklyOffDays.filter(d => d !== e.target.value);
+      tmpUpdateOffWeeklyOffDays = updateOffWeeklyOffDays.filter(
+        (d) => d !== e.target.value,
+      );
     }
     setUpdateOffWeeklyOffDays(tmpUpdateOffWeeklyOffDays);
-  }
+  };
 
   //여기는 렌더링 하는 영역
   if (loading)
@@ -132,7 +156,7 @@ export default function PartnerRequestSettingsPage() {
               partnerManagerName={partner.partnerManagerName}
             />
           </div>
-          <div className="partner_rental_manage_goupdateform_container">
+          {/* <div className="partner_rental_manage_goupdateform_container">
             {isUpdatingMode ? (
               <GoUpdateFormButton
                 width={"100%"}
@@ -148,7 +172,7 @@ export default function PartnerRequestSettingsPage() {
                 onClick={goUpdateFormClick}
               />
             )}
-          </div>
+          </div> */}
         </div>
         <div className="partner_rental_reuse_manager_partner_greencup_container">
           <div className="partner_rental_reuse_manager_container">
@@ -169,8 +193,26 @@ export default function PartnerRequestSettingsPage() {
 
         <div className="partner_rental_partner_setting_memo_container">
           <div className="partner_rental_manage_partner_setting_total_container">
-            <div className="partner_rental_manage_holiday_title">기본 설정</div>
-            {isUpdatingMode ? (
+            <div className="partner_rental_manage_title_container">
+              <div className="partner_rental_manage_title">기본 설정</div>
+              {isSettingInfoUpdatingMode ? (
+                <GoUpdateFormButton
+                  width={150}
+                  height={50}
+                  text={"기본 설정 수정완료"}
+                  onClick={goUpdateSettingInfoFormClick}
+                />
+              ) : (
+                <GoUpdateFormButton
+                  width={150}
+                  height={50}
+                  text={"기본 설정 수정"}
+                  onClick={goUpdateSettingInfoFormClick}
+                />
+              )}
+            </div>
+
+            {isSettingInfoUpdatingMode ? (
               <PartnerSettingUpdateForm
                 defaultNeedCount={settingInfo.defaultNeedCount}
                 defaultReturnCount={settingInfo.defaultReturnCount}
@@ -186,10 +228,26 @@ export default function PartnerRequestSettingsPage() {
             )}
           </div>
           <div className="partner_rental_manage_partner_message_total_container">
-            <div className="partner_rental_manage_holiday_title">
-              비고 메세지
+            <div className="partner_rental_manage_title_container">
+              <div className="partner_rental_manage_title">비고 메세지</div>
+              {isMemoUpdatingMode ? (
+                <GoUpdateFormButton
+                  width={150}
+                  height={50}
+                  text={"메시지 수정완료"}
+                  onClick={goUpdateMemoFormClick}
+                />
+              ) : (
+                <GoUpdateFormButton
+                  width={150}
+                  height={50}
+                  text={"메시지 수정"}
+                  onClick={goUpdateMemoFormClick}
+                />
+              )}
             </div>
-            {isUpdatingMode ? (
+
+            {isMemoUpdatingMode ? (
               <PartnerMessageUpdateForm
                 memo={settingInfo.memo}
                 onChange={partnerMemoOnChange}
@@ -200,35 +258,71 @@ export default function PartnerRequestSettingsPage() {
           </div>
         </div>
         <div className="partner_rental_manage_holiday_container">
-          <div className="partner_rental_manage_holiday_calendar_total_container">
-            <div className="partner_rental_manage_holiday_title">
-              비정기 휴무 캘린더
+          <div className="partner_rental_irregular_holiday_total_container">
+            <div className="partner_rental_manage_title_container">
+              <div className="partner_rental_manage_title">비정기 휴무</div>
+              {isIrregularUpdatingMode ? (
+                <GoUpdateFormButton
+                  width={180}
+                  height={50}
+                  text={"비정기 휴무 수정완료"}
+                  onClick={goUpdateIrregularHolidayFormClick}
+                />
+              ) : (
+                <GoUpdateFormButton
+                  width={150}
+                  height={50}
+                  text={"비정기 휴무 수정"}
+                  onClick={goUpdateIrregularHolidayFormClick}
+                />
+              )}
             </div>
-            {isUpdatingMode ? (
-              <HolidayCalendarUpdateForm
-                updateOffDates={updateOffDates}
-                onChange={holidayCalendarOnChange}
-              />
-            ) : (
-              <HolidayCalendar offDates={offDates} />
-            )}
-          </div>
-          <div className="partner_rental_manage_holiday_list_total_container">
-            <div className="partner_rental_manage_holiday_title">
-              비정기 휴무일
+            <div className="partner_rental_irregular_holiday_container">
+              <div className="partner_rental_manage_holiday_calendar_total_container">
+                <div className="partner_rental_manage_title">
+                  비정기 휴무 캘린더
+                </div>
+                {isIrregularUpdatingMode ? (
+                  <HolidayCalendarUpdateForm
+                    updateOffDates={updateOffDates}
+                    onChange={holidayCalendarOnChange}
+                  />
+                ) : (
+                  <HolidayCalendar offDates={offDates} />
+                )}
+              </div>
+              <div className="partner_rental_manage_holiday_list_total_container">
+                <div className="partner_rental_manage_title">비정기 휴무일</div>
+                {isIrregularUpdatingMode ? (
+                  <HolidayListUpdateForm
+                    updateOffDates={updateOffDates}
+                    onRemoveDate={onRemoveDate}
+                  />
+                ) : (
+                  <HolidayList offDates={offDates} />
+                )}
+              </div>
             </div>
-            {isUpdatingMode ? (
-              <HolidayListUpdateForm
-                updateOffDates={updateOffDates}
-                onRemoveDate={onRemoveDate}
-              />
-            ) : (
-              <HolidayList offDates={offDates} />
-            )}
           </div>
+
           <div className="partner_rental_manage_regular_holiday_list_total_container">
-            <div className="partner_rental_manage_holiday_title">
-              정기 휴무일
+            <div className="partner_rental_manage_title_container">
+              <div className="partner_rental_manage_title">정기 휴무일</div>
+              {isMemoUpdatingMode ? (
+                <GoUpdateFormButton
+                  width={150}
+                  height={50}
+                  text={"메시지 수정완료"}
+                  onClick={goUpdateMemoFormClick}
+                />
+              ) : (
+                <GoUpdateFormButton
+                  width={150}
+                  height={50}
+                  text={"메시지 수정"}
+                  onClick={goUpdateMemoFormClick}
+                />
+              )}
             </div>
             {isUpdatingMode ? (
               <HolidayRegularListUpdateForm

@@ -5,7 +5,9 @@ import { TOTAL, COMPLETED, NOTCOMPLETED, NOTCANCELLED } from '../../../../../uti
 //tabBarClicked => 탭바를 클릭시 실행되는 함수
 export default function TabBar({tabBarContent, tabBarClicked}){
     const tabBarStyle = (isActive) => ({
-        background:isActive ? "green" : "white",
+    background: isActive ? "#5FAC4F" : "#f5f5f5",
+    color: isActive ? "#ffffff" : "#333333",
+    borderColor: isActive ? "#5FAC4F" : "#cfcfcf"
     })
 
     return(

@@ -1,0 +1,71 @@
+/* =====================================
+   페이지네이션 전체 영역
+   ===================================== */
+
+.pagination {
+  margin: 30px 0 10px 0;
+  gap: 6px;               /* 버튼 사이 간격 */
+}
+
+
+/* =====================================
+   기본 버튼 스타일
+   ===================================== */
+
+.page-item .page-link {
+  border: 1px solid #dcdcdc;
+  background-color: #ffffff;
+  color: #333;
+
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+
+  border-radius: 4px;
+
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+
+/* =====================================
+   hover 효과 (과하지 않게)
+   ===================================== */
+
+.page-item .page-link:hover {
+  background-color: #f3f6f3;
+  border-color: #bfcdbf;
+}
+
+
+/* =====================================
+   현재 페이지 (active)
+   ===================================== */
+
+.page-item.active .page-link {
+  background-color: #5FAC4F;   /* 요청한 색 */
+  border-color: #5FAC4F;
+  color: #ffffff;
+
+  font-weight: 600;
+}
+
+
+/* =====================================
+   이전 / 다음 버튼
+   ===================================== */
+
+.page-item:first-child .page-link,
+.page-item:last-child .page-link {
+  font-weight: 600;
+}
+
+
+/* =====================================
+   focus outline 제거 (Bootstrap 기본 제거)
+   ===================================== */
+
+.page-link:focus {
+  box-shadow: none;
+  outline: none;
+}

@@ -75,12 +75,13 @@ export const checkDatesRanges = (startDateStr, endDateStr) => {
 //파손및 분실 개수 유효성 검증
 //요청현황아이디를 가지고 반납개수를 불러온다
 //그리고 나서 -음수이거나 반납개수 이하인지 확인한다
-export const checkMissedCount = async(requestId, missedCount) => {
-    let returnedCount = await fetchReturnedCountReuseRequest(requestId);
+//일단 음수만 체크하기로 협의
+export const checkMissedCount = async(missedCount) => {
+    //let returnedCount = await fetchReturnedCountReuseRequest(requestId);
     //console.log(missedCount);
     //console.log(returnedCount);
 
-    if(missedCount > returnedCount || missedCount < 0){
+    if(missedCount < 0){
         return false;
     }
     return true;

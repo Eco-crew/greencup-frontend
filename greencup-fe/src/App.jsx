@@ -151,10 +151,7 @@ function App() {
     //요청아이디 상태변수를 가져온다
     //파손 및 분실된 컵 상태변수를 가져온다
     //유효성 검증을 한다
-    const validResult = await checkMissedCount(
-      reuseCompleteRequestId,
-      reuseCompleteMissedCount,
-    );
+    const validResult = await checkMissedCount(reuseCompleteMissedCount);
 
     setReuseCompleteMissedCountValid(validResult);
 

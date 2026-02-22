@@ -104,6 +104,9 @@ export default function Table({ requests, afterCompleted, afterCanceled }) {
     setRealTrIds(tmpTrIds);
   }, [requests]);
 
+  if (requests.length === 0) {
+    return <div style={{textAlign:"center"}}>현재 데이터 조회 결과는 존재하지 않습니다.</div>
+  }
   return (
     <>
       <div

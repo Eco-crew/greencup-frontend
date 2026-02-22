@@ -25,6 +25,7 @@
 
 .partner_rental_manage_partner_info_container {
   width: 100%;
+
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -56,16 +57,17 @@
 }
 
 /* =========================
-   Setting + Memo (2 columns fixed)
+   Setting + Memo
 ========================= */
 .partner_rental_partner_setting_memo_container {
   width: 100%;
 
   display: grid;
-  grid-template-columns: 1.2fr 1fr; /*  2열 고정 */
+  grid-template-columns: 1.2fr 1fr;
   gap: 18px;
 }
 
+/* 카드 공통 */
 .partner_rental_manage_partner_setting_total_container,
 .partner_rental_manage_partner_message_total_container {
   width: 100%;
@@ -84,28 +86,53 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
-.partner_rental_manage_partner_message_total_container textarea {
+/* 비고 메시지 입력/표시 높이 */
+.partner_rental_manage_partner_message_total_container textarea,
+#parter_rental_manage_partner_message {
   min-height: 100px;
-}
-#parter_rental_manage_partner_message{
-   min-height: 100px;
 }
 
 /* =========================
-   Holiday Area (Irregular + Regular)
+   Holiday Area (Irregular + Regular) - FLEX
 ========================= */
 .partner_rental_manage_holiday_container {
   width: 100%;
 
-  display: grid;
-  grid-template-columns: 1fr 320px; /* 비정기 + 정기 */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 18px;
-  align-items: start;
+
+  flex-wrap: nowrap; /* 기본 한 줄 */
 }
 
-/* ---------- Irregular Card (테두리/그림자 복구) ---------- */
+/* 왼쪽(비정기) : 남는 공간 먹되 너무 작아지지 않게 */
 .partner_rental_irregular_holiday_total_container {
-  width: 100%;
+  flex: 0 0 600px;
+  min-width: 600px;
+
+  padding: 16px 18px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+
+  /* 아주 좁아지면 내부(캘린더/리스트) 같은 줄 유지 위해 */
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+/* 오른쪽(정기) : 320px 고정 */
+.partner_rental_manage_regular_holiday_list_total_container {
+  flex: 0 0 320px;
+  width: 320px;
+  min-width: 320px;
+
   padding: 16px 18px;
 
   display: flex;
@@ -118,7 +145,9 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
-/* 비정기 내부: 캘린더(310 고정) + 리스트(180 고정), 양끝 배치 */
+/* =========================
+   Irregular inside (Calendar + List)
+========================= */
 .partner_rental_irregular_holiday_container {
   width: 100%;
 
@@ -127,46 +156,33 @@
   align-items: flex-start;
   flex-wrap: nowrap;
 
-  gap: clamp(8px, 2vw, 16px); /* 간격은 줄어들 수 있게 */
+  gap: clamp(8px, 2vw, 16px);
 }
 
-/* 캘린더 영역 310px 고정 */
+/* 캘린더 310px 고정 */
 .partner_rental_manage_holiday_calendar_total_container {
   flex: 0 0 310px;
   width: 310px;
   min-width: 310px;
 
   min-height: 420px;
+
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* 비정기 휴무일 리스트 180px 고정 */
+/* 리스트 180px 고정 */
 .partner_rental_manage_holiday_list_total_container {
   flex: 0 0 180px;
   width: 180px;
   min-width: 180px;
 
   min-height: 420px;
+
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-/* ---------- Regular Card ---------- */
-.partner_rental_manage_regular_holiday_list_total_container {
-  width: 100%;
-  padding: 16px 18px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  background: #ffffff;
-  border: 1px solid #e6e6e6;
-  border-radius: 18px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
 /* =========================
@@ -195,12 +211,25 @@
    Responsive
 ========================= */
 @media (max-width: 1000px) {
+  /* 위에 2개 카드(수거담당/그린컵)만 1열로 */
   .partner_rental_reuse_manager_partner_greencup_container {
     grid-template-columns: 1fr;
   }
 
+  /* holiday는 grid가 아니라 flex니까 grid-template-columns 삭제 */
   .partner_rental_manage_holiday_container {
-    grid-template-columns: 1fr;
+    flex-wrap: wrap; /* 줄바꿈 허용 */
+  }
+
+  .partner_rental_irregular_holiday_total_container {
+    flex: 1 1 100%;
+    min-width: 0; /*  wrap되게 */
+  }
+
+  .partner_rental_manage_regular_holiday_list_total_container {
+    flex: 1 1 320px; /* 아래로 내려가도 적당 폭 유지 */
+    width: 100%;
+    min-width: 0;
   }
 }
 
@@ -220,21 +249,21 @@
     justify-content: flex-start;
   }
 
+  /* 기본설정/비고메시지: 좁아지면 세로 1열 */
   .partner_rental_partner_setting_memo_container {
-    grid-template-columns: 1fr; /* 세로 한줄 */
+    grid-template-columns: 1fr;
   }
 
   .partner_rental_manage_partner_setting_total_container,
   .partner_rental_manage_partner_message_total_container {
-    min-width: 0; /* 이거 중요 (안 넣으면 안 줄어듦) */
+    min-width: 0;
   }
 
-  /* 간격 더 줄여서 같은 줄 유지 */
+  /* 비정기 내부 gap 더 타이트 */
   .partner_rental_irregular_holiday_container {
     gap: 8px;
   }
 
-  /* 캘린더 wrapper는 100% */
   .partner-rental-manage-holiday-calendar-container {
     width: 100%;
   }

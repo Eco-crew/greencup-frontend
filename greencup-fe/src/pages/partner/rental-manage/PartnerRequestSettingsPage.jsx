@@ -50,12 +50,16 @@ export default function PartnerRequestSettingsPage() {
   const [weeklyOffDays, setWeeklyOffDays] = useState([]);
   //수정폼에서의 선택한 정기 휴무 요일
   const [updateOffWeeklyOffDays, setUpdateOffWeeklyOffDays] = useState([]);
+  //비교를 해서 추가할 비정기휴일
+  const [insertWeeklyOffDates, setInsertWeeklyOffDates] = useState([]);
+  //비교를 해서 삭제할 비정기휴일
+  const [deleteWeeklyOffDates, setDeleteWeeklyOffDates] = useState([]);
   //정기 휴무일 수정 버튼을 눌러서 수정모드인지 여부
   const [isRegularUpdatingMode, setIsRegularUpdatingMode] = useState(false);
   //fetch로 불러올동안 로딩중 여부
   const [loading, setLoading] = useState(true);
   //대여수정 버튼을 눌러서 수정모드인지 여부
-  const [isUpdatingMode, setIsUpdatingMode] = useState(false);
+  //const [isUpdatingMode, setIsUpdatingMode] = useState(false);
 
   //해당 항목 불러온후 상태관리하는 함수
   const handleFetchReuseDetailPartner = async () => {
@@ -79,9 +83,9 @@ export default function PartnerRequestSettingsPage() {
   }, []);
 
   //대여정보 수정 버튼 클릭시 실행해야하는것
-  const goUpdateFormClick = () => {
-    setIsUpdatingMode((prev) => !prev);
-  };
+  // const goUpdateFormClick = () => {
+  //   setIsUpdatingMode((prev) => !prev);
+  // };
 
   //기본 설정 수정버튼 클릭시 실행해야하는것
   const goUpdateSettingInfoFormClick = () => {
@@ -130,11 +134,31 @@ export default function PartnerRequestSettingsPage() {
     console.log("tmpDeleteOffDates",tmpDeleteOffDates);
     setInsertOffDates(tmpInsertOffDates);
     setDeleteOffDates(tmpDeleteOffDates);
-    
   }, [updateOffDates]);
 
   useEffect(() => {
-    //console.log(updateOffWeeklyOffDays);
+    console.log(updateOffWeeklyOffDays);
+
+    // const tmpInsertWeeklyOffDates = [];
+    // const tmpDeleteWeeklyOffDates = [];
+    // weeklyOffDays.forEach((offDate) => {
+    //   //업데이트된 배열에 없는거면 삭제할 대상
+    //   if(!updateOffWeeklyOffDays.includes(offDate)){
+    //     tmpDeleteWeeklyOffDates.push(offDate);
+    //   }
+    // });
+
+    // updateOffWeeklyOffDays.forEach((updateOffDate) => {
+    //   //기존 배열에 없는거면 추가할 대상
+    //   if (!weeklyOffDays.includes(updateOffDate)){
+    //     tmpInsertWeeklyOffDates.push(updateOffDate);
+    //   }
+    // });
+    
+    // console.log("tmpInsertWeeklyOffDates",tmpInsertWeeklyOffDates);
+    // console.log("tmpDeleteWeeklyOffDates",tmpDeleteWeeklyOffDates);
+    // setInsertOffDates(tmpInsertWeeklyOffDates);
+    // setDeleteOffDates(tmpDeleteWeeklyOffDates);
   }, [updateOffWeeklyOffDays]);
 
   //partnersetting 대여정보수정 input박스에 입력시

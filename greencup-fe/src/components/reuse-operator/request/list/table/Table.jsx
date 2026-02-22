@@ -36,6 +36,9 @@ export default function Table({ requests, afterCompleted, afterCanceled }) {
   useEffect(() => {
     if (!requests || requests.length === 0) {
       setRealHeaders([]);
+      setRealTrs([]);
+      setRealTrIds([]);
+
       return;
     }
 

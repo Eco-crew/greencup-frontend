@@ -129,6 +129,7 @@ export default function ReuseOperatorRequestPage() {
 
     if (response.ok) {
       const data = await response.json();
+      console.log(data);
       setRequests(data.requests);
       //console.log(data.requests);
       setRequestCount(data.searchRequestCount);

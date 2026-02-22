@@ -109,15 +109,27 @@ export default function PartnerRequestSettingsPage() {
 
   useEffect(() => {
     //console.log(updateOffDates);
+
     const tmpInsertOffDates = [];
     const tmpDeleteOffDates = [];
     offDates.forEach((offDate) => {
       //업데이트된 배열에 없는거면 삭제할 대상
-      if(!updateOffDates.include(offDate)){
+      if(!updateOffDates.includes(offDate)){
         tmpDeleteOffDates.push(offDate);
       }
-    })
+    });
+
+    updateOffDates.forEach((updateOffDate) => {
+      //기존 배열에 없는거면 추가할 대상
+      if (!offDates.includes(updateOffDate)){
+        tmpInsertOffDates.push(updateOffDate);
+      }
+    });
     
+    console.log("tmpInsertOffDates",tmpInsertOffDates);
+    console.log("tmpDeleteOffDates",tmpDeleteOffDates);
+    setInsertOffDates(tmpInsertOffDates);
+    setDeleteOffDates(tmpDeleteOffDates);
     
   }, [updateOffDates]);
 

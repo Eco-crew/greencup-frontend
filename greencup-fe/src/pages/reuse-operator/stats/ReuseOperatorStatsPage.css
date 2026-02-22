@@ -1,32 +1,73 @@
+/* =====================================
+   전체 컨테이너 (요청현황과 동일한 리듬)
+   ===================================== */
+
 .reuse_stats_container {
-      height: 1000px;  
-      width:90%;
-      margin:0 auto;
-}      
-
-.reuse_stats_title{
-      width:250px;
-      height:50px;
-
-      font-size:20px;
-      font-weight:bold;
+  width: 90%;
+  margin: 60px auto;
 }
 
-.reuse_stats_period_container{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap:50px;
 
-      margin-top:100px;
+/* =====================================
+   제목 (완전 중앙 + 리듬 통일)
+   ===================================== */
+
+.reuse_stats_title {
+  font-size: 26px;
+  font-weight: 700;
+
+  margin-bottom: 32px;
+
+  display: flex;
+  justify-content: center;   /* 중앙 정렬 추가 */
+  align-items: center;
 }
 
-.reuse_stats_period_total{
-    width:45%;
-    height:500px;
+
+/* =====================================
+   상단 요약 영역 (현재 대여 현황 표)
+   ===================================== */
+
+.reuse_stats_summary {
+  margin-bottom: 6px;   /* 아래 조회 영역과 간격 확보 */
 }
 
-.reuse_stats_period_total_loan_types{
-      width:45%;
-      height:500px;
+
+/* =====================================
+   조회 기간 영역
+   ===================================== */
+
+.reuse_stats_period_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 24px;
+  padding: 12px 0;
+  margin-top: 40px;
+  margin-bottom: 60px;   /* 차트와 간격 통일 */
+}
+
+
+/* =====================================
+   차트 영역 전체 래퍼
+   ===================================== */
+
+.reuse_stats_chart_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 32px;     /* 차트 간격 조금 더 여유 */
+}
+
+
+/* =====================================
+   개별 차트 영역
+   ===================================== */
+
+.reuse_stats_period_total,
+.reuse_stats_period_total_loan_types {
+  width: 50%;      /* 균형 맞춤 */
+  min-height: 420px;   /* height 고정 대신 최소 높이 */
 }

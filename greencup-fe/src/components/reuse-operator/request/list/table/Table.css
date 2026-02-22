@@ -1,8 +1,9 @@
 /* ==============================
-   테이블 전체 래퍼
+   요청현황 테이블 래퍼
    ============================== */
 
-#reuse-request-search-table {
+#reuse-request-search-table,
+#reuse-partner-search-table {
   margin: 30px 0;
 
   flex: 1 1 0%;
@@ -14,22 +15,26 @@
 
 
 /* ==============================
-   테이블 기본 구조
+   테이블 기본 구조 (공통)
    ============================== */
 
-#reuse-request-search-table table {
-  min-width: 950px;   /* 기존 850 → 여유 있게 */
+#reuse-request-search-table table,
+#reuse-partner-search-table table {
+  min-width: 950px;
   border-collapse: collapse;
   background: #ffffff;
+
+  border-top: 2px solid #333;
 }
 
 
 /* ==============================
-   헤더 스타일
+   헤더 스타일 (공통)
    ============================== */
 
-#reuse-request-table-header th {
-  background-color: #f4f4f4;   /* 연한 회색 */
+#reuse-request-table-header th,
+#reuse-partner-table-header th {
+  background-color: #f4f4f4;
   font-size: 15px;
   font-weight: 600;
   color: #222;
@@ -44,10 +49,11 @@
 
 
 /* ==============================
-   바디 행 스타일
+   바디 스타일 (공통)
    ============================== */
 
-#reuse-request-table-body td {
+#reuse-request-table-body td,
+#reuse-partner-search-table tbody td {
   padding: 14px 10px;
   font-size: 14px;
   color: #333;
@@ -58,50 +64,46 @@
 
 
 /* ==============================
-   hover 효과 (과하지 않게)
+   hover 효과 (공통)
    ============================== */
 
-#reuse-request-table-body tr:hover {
+#reuse-request-table-body tr:hover,
+#reuse-partner-search-table tbody tr:hover {
   background-color: #f9faf9;
   cursor: pointer;
 }
 
 
 /* ==============================
-   숫자 컬럼 정렬 개선
+   숫자 컬럼 정렬
    ============================== */
 
-/* 필요개수, 반납개수, 분실개수 중앙 고정 */
+/* 요청현황: 1~3번째 컬럼 */
 #reuse-request-table-header th:nth-child(-n+3),
 #reuse-request-table-body td:nth-child(-n+3) {
   text-align: center;
-  padding-left: 10px;
-  padding-right: 10px;
+}
+
+/* 업체목록: 3번째 컬럼 */
+#reuse-partner-table-header th:nth-child(3),
+#reuse-partner-search-table tbody td:nth-child(3) {
+  text-align: center;
 }
 
 
 /* ==============================
-   완료여부 영역 정렬
+   완료여부 영역 (요청현황 전용)
    ============================== */
 
 .reuse-request-isCompleteButtonTd {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 14px;  /* 기존 20 → 14로 줄여 정돈 */
+  gap: 14px;
 }
 
-.reuse-request-isCompleteText{
+.reuse-request-isCompleteText {
   width: 60px;
   font-size: 14px;
   font-weight: 500;
-}
-
-
-/* ==============================
-   테이블 외곽 강조선
-   ============================== */
-
-#reuse-request-search-table table {
-  border-top: 2px solid #333;
 }

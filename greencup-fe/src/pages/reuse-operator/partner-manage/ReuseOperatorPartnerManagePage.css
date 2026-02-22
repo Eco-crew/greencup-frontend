@@ -1,38 +1,51 @@
+/* =====================================
+   전체 컨테이너 (요청현황과 동일)
+   ===================================== */
+
 .reuse_partner_container {
-      height: 750px;  
-      width:90%;
-      margin:0 auto;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-
-      gap:20px;
-}      
-
-.reuse_partner_title{
-      width:200px;
-      height:50px;
-
-      font-size:20px;
-      font-weight:bold;
-      text-align: center;
+  width: 90%;
+  margin: 60px auto;
 }
 
-.reuse_partner_search{
-      display:flex;
-      justify-content: space-between;
-      align-items: center;
 
-      gap:20px;
+/* =====================================
+   제목
+   ===================================== */
+
+.reuse_partner_title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.reuse_partner_results{
-      display:flex;
-      flex-direction: column;
-      align-items:center;
-      justify-content: center;
 
-      gap:20px;
+/* =====================================
+   검색 영역
+   ===================================== */
+
+.reuse_partner_search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 24px;
+  padding: 12px 0;
+  margin-bottom: 32px;
+}
+
+
+/* =====================================
+   결과 영역
+   ===================================== */
+
+.reuse_partner_results {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  gap: 20px;
 }

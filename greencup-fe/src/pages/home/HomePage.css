@@ -1,3 +1,153 @@
-.box {
-      height: 2000px;  
-}    
+/* =========================
+   전체
+========================= */
+
+.home_container {
+  width: 90%;
+  margin: 60px auto;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.home_hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.home_hero_left {
+  width: 45%;
+}
+
+.home_hero_left h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.green {
+  color: #2e7d32;
+}
+
+.home_process {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.process_item {
+  text-align: center;
+}
+
+.process_item img {
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+.process_arrow {
+  font-size: 28px;
+}
+
+.home_description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+}
+
+
+/* HERO RIGHT IMAGE */
+
+.home_hero_right {
+  width: 50%;
+}
+
+.home_hero_right img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+
+/* =========================
+   MAP SECTION
+========================= */
+
+.home_map_section {
+  margin-bottom: 80px;
+}
+
+.home_map_section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.home_map_card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.home_map_card img {
+  width: 100%;
+  display: block;
+}
+
+.map_overlay {
+  position: absolute;
+  top: 30%;
+  left: 40px;
+  color: white;
+}
+
+.map_overlay span {
+  color: #7CFF7A;
+}
+
+
+/* =========================
+   BOTTOM SECTION
+========================= */
+
+.home_bottom_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.home_notice,
+.home_photo_news,
+.home_other {
+  margin-bottom: 60px;
+}
+
+.home_bottom_section h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.card_placeholder {
+  background: #e0e0e0;
+  height: 220px;
+  border-radius: 20px;
+}
+
+.card_placeholder.large {
+  height: 300px;
+}
+
+.photo_cards {
+  display: flex;
+  gap: 20px;
+}
+
+.photo_card {
+  background: #e0e0e0;
+  height: 220px;
+  flex: 1;
+  border-radius: 20px;
+}
+

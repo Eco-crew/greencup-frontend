@@ -63,7 +63,12 @@
   background-size: cover;
   background-position: center center;
 }
-
 .user_role_icon_partner{
-  
+  background-image: url('/img/topcontainer/partner-icon.png');
+  width:22px;
+  height:22px;
+
+  background-repeat: no-repeat;
+  background-size: contain;   /* cover → contain */
+  background-position: center;
 }

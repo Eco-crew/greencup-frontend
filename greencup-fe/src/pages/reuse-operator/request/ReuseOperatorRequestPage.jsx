@@ -120,7 +120,7 @@ export default function ReuseOperatorRequestPage() {
     // });
 
     const response = await fetch(
-      `/api/reuse-operator/requests/total?startDate=${startDate}&endDate=${endDate}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+      `/api/reuse-operator/requests/total?startDate=${startDate}&endDate=${endDate}&partnerName=${encodeURIComponent(partnerName)}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
       {
         method: "GET",
         credentials: "include", // 세션에 관한 쿠키도 꼭 전송
@@ -150,7 +150,7 @@ export default function ReuseOperatorRequestPage() {
     // });
 
     const response = await fetch(
-      `/api/reuse-operator/requests/completed?startDate=${startDate}&endDate=${endDate}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+      `/api/reuse-operator/requests/completed?startDate=${startDate}&endDate=${endDate}&partnerName=${encodeURIComponent(partnerName)}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
       {
         method: "GET",
         credentials: "include", // 세션에 관한 쿠키도 꼭 전송
@@ -179,7 +179,7 @@ export default function ReuseOperatorRequestPage() {
     // });
 
     const response = await fetch(
-      `/api/reuse-operator/requests/notcompleted?startDate=${startDate}&endDate=${endDate}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+      `/api/reuse-operator/requests/notcompleted?startDate=${startDate}&endDate=${endDate}&partnerName=${encodeURIComponent(partnerName)}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
       {
         method: "GET",
         credentials: "include", // 세션에 관한 쿠키도 꼭 전송
@@ -199,6 +199,31 @@ export default function ReuseOperatorRequestPage() {
     }
   };
 
+
+  //취소된 목록만 불러온후 상태관리하는 함수
+  const handleFetchCancelledReuseRequests = async () => {
+
+    const response = await fetch(
+      `/api/reuse-operator/requests/cancelled?startDate=${startDate}&endDate=${endDate}&partnerName=${encodeURIComponent(partnerName)}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+      {
+        method: "GET",
+        credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+      },
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      setRequests(data.requests);
+      //console.log(data.requests);
+      setRequestCount(data.searchRequestCount);
+      setTotalRequestCount(data.searchRequestCount);
+      setCompletedRequestCount(data.completeCount);
+      setLoading(false);
+    } else {
+      console.log("수거지점장- 취소된 요청현황 불러오기 오류");
+    }
+  };
+
   //탭바에 따라 목록 불러오는 함수
   const fetchListWithTabbarContent = (tabBarContent) => {
     switch (tabBarContent) {
@@ -212,7 +237,7 @@ export default function ReuseOperatorRequestPage() {
         handleFetchNotCompletedReuseRequests();
         break;
       case NOTCANCELLED:
-        handleFetchTotalReuseRequests();
+        handleFetchCancelledReuseRequests();
         break;
     }
   };

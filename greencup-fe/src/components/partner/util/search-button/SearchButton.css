@@ -1,0 +1,35 @@
+/* ===============================
+   조회 버튼 (공기업 스타일)
+   =============================== */
+
+#searchButton{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width:110px;
+    padding: 0 18px;   /* 버튼 좌우 여백 */
+
+    height: 44px;      /* 버튼 고정 높이 (자연스러움) */
+
+    background-color: #5fac4f;
+    border: 1px solid #5fac4f;
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+#searchButton:hover{
+    background-color: #276b2a;
+}
+
+#searchButton:active{
+    background-color: #1f5521;
+}
+
+.searchText{
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:0.5px;
+}

@@ -11,7 +11,7 @@ import PartnerMessage from "../../../components/partner/rental-manage/PartnerMes
 import HolidayCalendar from "../../../components/partner/rental-manage/holiday/HolidayCalendar";
 import HolidayList from "../../../components/partner/rental-manage/holiday/HolidayList";
 import HolidayRegularList from "../../../components/partner/rental-manage/holiday/HolidayRegularList";
-import GoUpdateFormButton from "../../../components/partner/util/GoUpdateFormButton";
+import GoUpdateFormButton from "../../../components/partner/util/update-button/GoUpdateFormButton";
 
 import PartnerSettingUpdateForm from "../../../components/partner/rental-manage-update-form/PartnerSettingUpdateForm";
 import PartnerMessageUpdateForm from "../../../components/partner/rental-manage-update-form/PartnerMessageUpdateForm";

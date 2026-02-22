@@ -46,6 +46,8 @@ export default function PartnerRequestSettingsPage() {
   const [weeklyOffDays, setWeeklyOffDays] = useState([]);
   //수정폼에서의 선택한 정기 휴무 요일
   const [updateOffWeeklyOffDays, setUpdateOffWeeklyOffDays] = useState([]);
+  //정기 휴무일 수정 버튼을 눌러서 수정모드인지 여부
+  const [isRegularUpdatingMode, setIsRegularUpdatingMode] = useState(false);
   //fetch로 불러올동안 로딩중 여부
   const [loading, setLoading] = useState(true);
   //대여수정 버튼을 눌러서 수정모드인지 여부
@@ -90,6 +92,11 @@ export default function PartnerRequestSettingsPage() {
   //비정기휴무 수정버튼 클릭시 실행해야 하는 것
   const goUpdateIrregularHolidayFormClick = () => {
     setIsIrregularUpdatingMode((prev) => !prev);
+  };
+
+  //정기휴무 수정버튼 클릭시 실행해야 하는 것
+  const goUpdateRegularHolidayFormClick = () => {
+    setIsRegularUpdatingMode((prev) => !prev);
   };
 
   useEffect(() => {
@@ -308,23 +315,23 @@ export default function PartnerRequestSettingsPage() {
           <div className="partner_rental_manage_regular_holiday_list_total_container">
             <div className="partner_rental_manage_title_container">
               <div className="partner_rental_manage_title">정기 휴무일</div>
-              {isMemoUpdatingMode ? (
+              {isRegularUpdatingMode ? (
                 <GoUpdateFormButton
                   width={150}
                   height={50}
-                  text={"메시지 수정완료"}
-                  onClick={goUpdateMemoFormClick}
+                  text={"정기 휴무 수정완료"}
+                  onClick={goUpdateRegularHolidayFormClick}
                 />
               ) : (
                 <GoUpdateFormButton
                   width={150}
                   height={50}
-                  text={"메시지 수정"}
-                  onClick={goUpdateMemoFormClick}
+                  text={"정기 휴무 수정"}
+                  onClick={goUpdateRegularHolidayFormClick}
                 />
               )}
             </div>
-            {isUpdatingMode ? (
+            {isRegularUpdatingMode ? (
               <HolidayRegularListUpdateForm
                 updateOffWeeklyOffDays={updateOffWeeklyOffDays}
                 onChange={onToggledRegularList}

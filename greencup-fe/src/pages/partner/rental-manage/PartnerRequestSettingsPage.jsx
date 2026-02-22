@@ -40,6 +40,10 @@ export default function PartnerRequestSettingsPage() {
   const [offDates, setOffDates] = useState([]);
   //수정폼에서의 선택한 비정기휴일 모든 날짜들
   const [updateOffDates, setUpdateOffDates] = useState([]);
+  //비교를 해서 추가할 비정기휴일
+  const [insertOffDates, setInsertOffDates] = useState([]);
+  //비교를 해서 삭제할 비정기휴일
+  const [deleteOffDates, setDeleteOffDates] = useState([]);
   //비정기 휴무 수정 버튼을 눌러서 수정모드인지 여부
   const [isIrregularUpdatingMode, setIsIrregularUpdatingMode] = useState(false);
   //partnerId 조회한 해당 partner의 weeklyOffDays 정기 휴무일 요일 항목
@@ -105,6 +109,16 @@ export default function PartnerRequestSettingsPage() {
 
   useEffect(() => {
     //console.log(updateOffDates);
+    const tmpInsertOffDates = [];
+    const tmpDeleteOffDates = [];
+    offDates.forEach((offDate) => {
+      //업데이트된 배열에 없는거면 삭제할 대상
+      if(!updateOffDates.include(offDate)){
+        tmpDeleteOffDates.push(offDate);
+      }
+    })
+    
+    
   }, [updateOffDates]);
 
   useEffect(() => {

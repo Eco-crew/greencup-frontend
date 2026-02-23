@@ -91,8 +91,6 @@ export default function ReuseOperatorRequestPage() {
   };
 
   const tabBarClicked = (e) => {
-    setLoading(true);
-
     switch (e.target.id) {
       case "tab_total":
         setTabBarContent(TOTAL);
@@ -261,6 +259,8 @@ export default function ReuseOperatorRequestPage() {
     //fetch로 전체, 완료 갯수를 불러오기
     //fetch로 전체 요청 목록 불러오기
     //console.log(tabBarContent);
+
+    setLoading(true);
     fetchListWithTabbarContent(tabBarContent);
   }, [tabBarContent, page, reuseCancelReloadKey, reuseCompleteReloadKey]);
 

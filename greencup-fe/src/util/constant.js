@@ -55,3 +55,21 @@ export const PERIOD_TOTAL_LOAN_TYPE_NAME_CAFE = "cafe";
 export const REQUESTING = "requesting";
 //export const COMPLETED = "completed";
 //export const CANCELLED = "cancelled";
+
+
+//업체지점장-대여기록-백엔드에서 받은 헤더 키
+//위와 겹침
+//export const REQUEST_ID = "requestId";
+//export const NEED_COUNT = "needCount";
+//export const RETURN_COUNT = "returnCount";
+//export const BROKEN_LOST_COUNT = "brokenLostCount";
+//export const WANTED_VISIT_TIME = "wantedVisitTime";
+//export const REQUESTED_DATE = "requestedDate";
+//export const REQUESTED_STATUS = "status";
+
+//업체지점장-대여기록-요청중
+export const REQUEST_REQUESTING = "requesting";
+//업체지점장-대여기록-완료
+//export const REQUEST_COMPLETED = "complete";
+//업체지점장-대여기록-취소
+//export const REQUEST_CANCELLED = "cancelled";

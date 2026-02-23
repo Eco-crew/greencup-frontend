@@ -21,11 +21,13 @@ import ReuseOperatorStatsPage from "./pages/reuse-operator/stats/ReuseOperatorSt
 
 import ModalBackground from "./components/reuse-operator/util/modal/ModalBackground.jsx";
 import CancelModal from "./components/reuse-operator/request/list/cancelmodal/CancelModal.jsx";
+import CompleteModal from "./components/reuse-operator/request/list/completemodal/CompleteModal.jsx";
+import PartnerModalBackground from "./components/partner/util/modal/PartnerModalBackground.jsx";
+import PartnerCancelModal from "./components/partner/request/cancelmodal/PartnerCancelModal.jsx";
 
 import PartnerRequestSettingsPage from "./pages/partner/rental-manage/PartnerRequestSettingsPage";
 import PartnerRequestsPage from "./pages/partner/request/PartnerRequestsPage";
 import PartnerStatsPage from "./pages/partner/stats/PartnerStatsPage";
-import CompleteModal from "./components/reuse-operator/request/list/completemodal/CompleteModal.jsx";
 
 import { REUSE_OPERATOR, PARTNER } from "./util/constant";
 import { checkMissedCount } from "./util/utilFunction.js";
@@ -38,6 +40,11 @@ import { useAuth } from "./auth/AuthProvider.jsx";
 //수거지점장-요청현황에서 완료버튼을 누를시의 함수
 //이것들을 특정 어느 컴포넌트던지 자유롭게 사용할수있도록
 export const reuseContext = createContext(null);
+
+//상태 저장하기 위한 context
+//업체지점장-요청현황에서 취소버튼을 누를시의 함수
+//업체지점장-요청현황에서 완료버튼을 누를시의 함수
+export const partnerContext = createContext(null);
 
 function App() {
   const { isAuthed, user, logout } = useAuth();
@@ -221,6 +228,68 @@ function App() {
   };
   //--------------------수거지점장 완료로 변경 영역 끝-----------------------
 
+  //--------------------업체 지점장 요청 취소로 변경 영역 시작-----------------
+  //업체지점장-대여관리-미완료로 변경 모달 띄울지 여부
+  const [partnerCancelModalOpen, setPartnerCancelModalOpen] = useState(false);
+  //지점장-요청현황-미완료로 변경 모달시, 현재 관련있는 요청 아이디
+  const [partnerCancelRequestId, setPartnerCancelRequestId] = useState("");
+
+  //변경후, 페이지내에서 다시 수정한 목록을 바로 보여줘야하는데 그러면 바로 fetch를 실행해야함
+  //하지만 여기서는 react query를 사용할수없으므로 임의로 useEffect에 의존성배열을 변화시키기 위해 사용
+  const [partnerCancelReloadKey, setPartnerCancelReloadKey] = useState(0);
+  const partnerCancelTriggerReload = () => {
+    setPartnerCancelReloadKey((k) => k + 1);
+  };
+
+  //수거지점장-요청현황-미완료로 변경 모달에서 취소버튼을 클릭시
+  const partnerCancel_CancelClick = () => {
+    //reusecancelmodal open 상태변수를 바꾸자
+    setPartnerCancelModalOpen(false);
+  };
+
+  //수거지점장-요청현황-미완료로 변경 모달에서 확인버튼을 클릭시
+  const partnerCancel_ConfirmClick = async () => {
+    //요청아이디 상태변수를 가져온다
+    //fetch로 요청 미완료로 업데이트
+    // const response = await fetch(
+    //   `/api/reuse-operator/requests/${reuseCancelRequestId}/uncomplete`,
+    //   {
+    //     method: "PUT",
+    //     credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+    //   },
+    // );
+
+    // if (response.ok) {
+    //   const data = await response.json();
+    //   alert("요청 미완료로 변경 성공");
+
+    //   //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
+    //   reuseCancelTriggerReload();
+
+    //   //reusecancelmodal open 상태변수를 바꾸자
+    //   setReuseCancelModalOpen(false);
+    // } else {
+    //   alert("요청 미완료로 변경 실패");
+    // }
+
+    //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
+    partnerCancelTriggerReload();
+
+    //reusecancelmodal open 상태변수를 바꾸자
+    setPartnerCancelModalOpen(false);
+  };
+
+  //수거지점장-요청현황에서 취소버튼을 누를시
+  const partnerRequestCancelClick = (requestId) => {
+    //modal open 상태변수를 바꾸자
+    setPartnerCancelModalOpen(true);
+
+    //요청아이디 상태변수를 지정
+    setPartnerCancelRequestId(requestId);
+    //console.log(requestId);
+  };
+  //--------------------업체 지점장 요청 취소로 변경 영역 끝-------------------
+
   const reuseValue = useMemo(() => {
     return {
       reuseRequestCancelClick,
@@ -234,6 +303,13 @@ function App() {
     reuseRequestCompleteClick,
     reuseCompleteReloadKey,
   ]);
+
+  const partnerValue = useMemo(() => {
+    return {
+      partnerCancelReloadKey,
+      partnerRequestCancelClick,
+    };
+  }, [partnerCancelReloadKey, partnerRequestCancelClick]);
 
   return (
     <>
@@ -266,6 +342,19 @@ function App() {
         ""
       )}
 
+      {partnerCancelModalOpen ? (
+        <PartnerModalBackground>
+          <PartnerCancelModal
+            width={550}
+            height={300}
+            confirmClick={partnerCancel_ConfirmClick}
+            cancelClick={partnerCancel_CancelClick}
+          />
+        </PartnerModalBackground>
+      ) : (
+        ""
+      )}
+
       <div className="wrapper">
         <div className="fixedBar">
           <div className="fixedBarContentCenter">
@@ -277,101 +366,103 @@ function App() {
         <main className="main">
           {/* <main> */}
           <reuseContext.Provider value={reuseValue}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/login" element={<LoginPage />} />
+            <partnerContext.Provider value={partnerValue}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<LoginPage />} />
 
-              {/* 주의사항: 자식은 상대경로로 쓴다 */}
-              {/* 수거지점장 */}
+                {/* 주의사항: 자식은 상대경로로 쓴다 */}
+                {/* 수거지점장 */}
 
-              <Route path="/reuse-operator">
-                {/* 요청받은 현황들 */}
-                <Route
-                  path="requests"
-                  element={
-                    <ProtectedRoute>
-                      <ReuseOperatorRequestPage />
-                    </ProtectedRoute>
-                  }
-                />
-                {/* 요청받은 현황들 상세페이지 */}
-                <Route
-                  path="requests/:requestId"
-                  element={
-                    <ProtectedRoute>
-                      <ReuseOperatorRequestDetailPage />
-                    </ProtectedRoute>
-                  }
-                />
-                {/* 업체관리 페이지 */}
-                <Route
-                  path="partner-manage"
-                  element={
-                    <ProtectedRoute>
-                      <ReuseOperatorPartnerManagePage />
-                    </ProtectedRoute>
-                  }
-                />
-                {/* 업체관리 상세 페이지 */}
-                <Route
-                  path="partner-manage/:partnerId"
-                  element={
-                    <ProtectedRoute>
-                      <ReuseOperatorPartnerManageDetailPage />
-                    </ProtectedRoute>
-                  }
-                />
-                {/* 수거목록 통계 페이지 */}
-                <Route
-                  path="stats"
-                  element={
-                    <ProtectedRoute>
-                      <ReuseOperatorStatsPage />
-                    </ProtectedRoute>
-                  }
-                />
-              </Route>
+                <Route path="/reuse-operator">
+                  {/* 요청받은 현황들 */}
+                  <Route
+                    path="requests"
+                    element={
+                      <ProtectedRoute>
+                        <ReuseOperatorRequestPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  {/* 요청받은 현황들 상세페이지 */}
+                  <Route
+                    path="requests/:requestId"
+                    element={
+                      <ProtectedRoute>
+                        <ReuseOperatorRequestDetailPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  {/* 업체관리 페이지 */}
+                  <Route
+                    path="partner-manage"
+                    element={
+                      <ProtectedRoute>
+                        <ReuseOperatorPartnerManagePage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  {/* 업체관리 상세 페이지 */}
+                  <Route
+                    path="partner-manage/:partnerId"
+                    element={
+                      <ProtectedRoute>
+                        <ReuseOperatorPartnerManageDetailPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  {/* 수거목록 통계 페이지 */}
+                  <Route
+                    path="stats"
+                    element={
+                      <ProtectedRoute>
+                        <ReuseOperatorStatsPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                </Route>
 
-              {/* 제휴 지점장 */}
-              <Route path="/partner">
-                {/* 대여 관리 및 수정 */}
-                <Route
-                  path="request-settings"
-                  element={
-                    <ProtectedRoute>
-                      <PartnerRequestSettingsPage />
-                    </ProtectedRoute>
-                  }
-                />
-                {/*전체 목록, 요청중인 목록, 대여 및 반납 완료된 목록, 취소한 목록,*/}
-                <Route
-                  path="requests"
-                  element={
-                    <ProtectedRoute>
-                      <PartnerRequestsPage />
-                    </ProtectedRoute>
-                  }
-                />
-                {/* 이용 통계 페이지 */}
-                <Route
-                  path="stats"
-                  element={
-                    <ProtectedRoute>
-                      <PartnerStatsPage />
-                    </ProtectedRoute>
-                  }
-                />
-              </Route>
+                {/* 제휴 지점장 */}
+                <Route path="/partner">
+                  {/* 대여 관리 및 수정 */}
+                  <Route
+                    path="request-settings"
+                    element={
+                      <ProtectedRoute>
+                        <PartnerRequestSettingsPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  {/*전체 목록, 요청중인 목록, 대여 및 반납 완료된 목록, 취소한 목록,*/}
+                  <Route
+                    path="requests"
+                    element={
+                      <ProtectedRoute>
+                        <PartnerRequestsPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  {/* 이용 통계 페이지 */}
+                  <Route
+                    path="stats"
+                    element={
+                      <ProtectedRoute>
+                        <PartnerStatsPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                </Route>
 
-              {/* 후순위-마이페이지 */}
-              <Route path="/me">
-                <Route path="reuse-operator" />
-                <Route path="partner" />
-              </Route>
+                {/* 후순위-마이페이지 */}
+                <Route path="/me">
+                  <Route path="reuse-operator" />
+                  <Route path="partner" />
+                </Route>
 
-              {/* 404 페이지 */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+                {/* 404 페이지 */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </partnerContext.Provider>
           </reuseContext.Provider>
         </main>
 

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import "./ModalBackground.css";
+import "./PartnerModalBackground.css";
 
 //모달안에 들어갈 내용은 children => 태그 가능
 //업체지점장의 취소 모달
-export default function ModalBackground({ children }) {
+export default function PartnerModalBackground({ children }) {
 
   useEffect(() => {
     //index.css 참조

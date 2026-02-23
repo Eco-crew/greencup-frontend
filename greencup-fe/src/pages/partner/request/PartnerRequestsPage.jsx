@@ -8,6 +8,8 @@ import TabBar from "../../../components/partner/request/tabbar/TabBar";
 import Table from "../../../components/partner/request/table/Table";
 import Pagination from "../../../components/pagination/Pagination";
 
+import { partnerContext } from "../../../App";
+
 import {
   TOTAL,
   REQUESTING,
@@ -28,6 +30,8 @@ import {
 
 //업체지점장- 대여기록
 export default function PartnerRequestsPage() {
+  //업체지점장- 대여기록에서 취소버튼을 누를시 함수를 가져옴
+  const {partnerCancelReloadKey, partnerRequestCancelClick} = useContext(partnerContext);
   //<input type="date"> 는 Date 객체가 아니라 문자열 "yyyy-mm-dd" 형태로 값을 다룸
   //조회기간 시작일자 => 디폴트 오늘날짜 - 7
   const todayString = makeTodayString();
@@ -160,7 +164,7 @@ export default function PartnerRequestsPage() {
 
     setLoading(true);
     fetchListWithTabbarContent(tabBarContent);
-  }, [tabBarContent, page]);
+  }, [tabBarContent, page, partnerCancelReloadKey]);
 
   //조회버튼을 누를 시 실행해야 하는 것
   const afterSearchClicked = () => {
@@ -170,6 +174,7 @@ export default function PartnerRequestsPage() {
   //table 칸에 있는 취소 버튼을 누를시 실행해야하는것
   const afterCanceled = (e) => {
     //console.log(e.currentTarget.dataset.id);
+    partnerRequestCancelClick(e.currentTarget.dataset.id);
   };
 
   //페이지네이션 버튼을 누를시 실행해야 하는 것

@@ -89,3 +89,9 @@
     font-size:13px;
     color:#333;
 }
+
+@media (max-width: 830px) {
+  .reuse_stats_search_element:first-child {
+    width: 30%;
+  }
+}

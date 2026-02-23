@@ -12,8 +12,8 @@ export default function SearchButton({width, height, onClick}){
 
     return(
         <>
-        <div id="searchButton" style={searchButtonStyle()} onClick={onClick}>
-            <div className="searchText">조회</div>
+        <div id="partner-request-search-button" style={searchButtonStyle()} onClick={onClick}>
+            <div className="partner-request-search-text">조회</div>
         </div>
         </>
     );

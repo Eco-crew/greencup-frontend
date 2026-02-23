@@ -14,7 +14,7 @@ import {
   TOTAL,
   COMPLETED,
   NOTCOMPLETED,
-  NOTCANCELLED,
+  CANCELLED,
   SHOW_POSTS_COUNT,
 } from "../../../util/constant";
 import {
@@ -102,7 +102,7 @@ export default function ReuseOperatorRequestPage() {
         setTabBarContent(NOTCOMPLETED);
         break;
       case "tab_cancelled":
-        setTabBarContent(NOTCANCELLED);
+        setTabBarContent(CANCELLED);
         break;
       default:
         console.log("tabbar clicked error");
@@ -234,7 +234,7 @@ export default function ReuseOperatorRequestPage() {
       case NOTCOMPLETED:
         handleFetchNotCompletedReuseRequests();
         break;
-      case NOTCANCELLED:
+      case CANCELLED:
         handleFetchCancelledReuseRequests();
         break;
     }

@@ -2,7 +2,7 @@
    조회 버튼 (공기업 스타일)
    =============================== */
 
-#searchButton{
+#partner-request-search-button{
     display:flex;
     justify-content: center;
     align-items: center;
@@ -19,15 +19,15 @@
     cursor: pointer;
 }
 
-#searchButton:hover{
+#partner-request-search-button:hover{
     background-color: #276b2a;
 }
 
-#searchButton:active{
+#partner-request-search-button:active{
     background-color: #1f5521;
 }
 
-.searchText{
+.partner-request-search-text{
     color:white;
     font-size:16px;
     font-weight:600;

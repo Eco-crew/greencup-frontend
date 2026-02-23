@@ -1,5 +1,5 @@
 import './TabBar.css';
-import { TOTAL, COMPLETED, NOTCOMPLETED, NOTCANCELLED } from '../../../../../util/constant';
+import { TOTAL, COMPLETED, NOTCOMPLETED, CANCELLED } from '../../../../../util/constant';
 
 //수거지점장- 요청현황- 전체, 완료, 미완료 탭
 //tabBarClicked => 탭바를 클릭시 실행되는 함수
@@ -17,7 +17,7 @@ export default function TabBar({tabBarContent, tabBarClicked}){
             <div className="tab_element" id="tab_total" style={tabBarStyle(tabBarContent === TOTAL)}>전체</div>
             <div className="tab_element" id="tab_completed" style={tabBarStyle(tabBarContent === COMPLETED)}>완료</div>
             <div className="tab_element" id="tab_notcompleted" style={tabBarStyle(tabBarContent === NOTCOMPLETED)}>미완료</div>
-            <div className="tab_element" id="tab_cancelled" style={tabBarStyle(tabBarContent === NOTCANCELLED)}>취소</div>
+            <div className="tab_element" id="tab_cancelled" style={tabBarStyle(tabBarContent === CANCELLED)}>취소</div>
         </div>
         </>
     );

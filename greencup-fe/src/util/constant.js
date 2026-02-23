@@ -6,7 +6,7 @@ export const PARTNER = "partner";
 export const TOTAL = "total";
 export const COMPLETED = "completed";
 export const NOTCOMPLETED = "notCompleted";
-export const NOTCANCELLED = "cancelled";
+export const CANCELLED = "cancelled";
 
 //수거지점장-요청현황-백엔드에서 받은 헤더 키
 export const REQUEST_ID = "requestId";
@@ -48,3 +48,10 @@ export const PERIOD_TOTAL_LOAN_TYPE_NAME_OFFICE = "office";
 export const PERIOD_TOTAL_LOAN_TYPE_NAME_PUBLIC = "public";
 export const PERIOD_TOTAL_LOAN_TYPE_NAME_EVENT = "event";
 export const PERIOD_TOTAL_LOAN_TYPE_NAME_CAFE = "cafe";
+
+//업체지점장- 대여기록에서 무슨 탭바를 눌렀는지
+//위와 겹침
+//export const TOTAL = "total";
+export const REQUESTING = "requesting";
+//export const COMPLETED = "completed";
+//export const CANCELLED = "cancelled";

@@ -38,9 +38,9 @@ export default function ReuseOperatorRequestPage() {
     reuseCompleteReloadKey,
   } = useContext(reuseContext);
 
-  //로그인한 수거지점장에게 온 전체 요청갯수
+  //로그인한 수거지점장에게 온 조회조건으로 검색한 전체 요청갯수
   const [totalRequestCount, setTotalRequestCount] = useState(0);
-  //로그인한 수거지점장이 완료한 요청갯수
+  //로그인한 수거지점장이 완료한 조회조건으로 검색한 요청갯수
   const [completedRequestCount, setCompletedRequestCount] = useState(0);
 
   //<input type="date"> 는 Date 객체가 아니라 문자열 "yyyy-mm-dd" 형태로 값을 다룸

@@ -1,4 +1,4 @@
-import './IsCompleteButton.css';
+import './RequestCancelButton.css';
 
 //업체지점장- 대여기록- 요청중 취소버튼 구현시에 쓸 버튼
 //props로 텍스트 및 버튼 색깔 

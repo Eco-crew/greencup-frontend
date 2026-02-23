@@ -1,3 +1,49 @@
-.box {
-      height: 2000px;  
-}      
+/* =====================================
+   전체 컨테이너 (관리자 기준 폭)
+   ===================================== */
+
+.partner_request_container {
+  width: 90%;
+  margin: 60px auto;
+}
+
+/* =====================================
+   제목
+   ===================================== */
+
+.partner_request_title{
+  font-size: 26px;
+  font-weight: 700;
+
+  margin-bottom: 16px;  /* 24 → 16 (퍼센트와 더 가깝게) */
+
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =====================================
+   검색 영역
+   ===================================== */
+
+.partner_request_search{
+  display: flex;
+  justify-content: center;
+  align-items: center;       /* 버튼 세로 중앙 */
+  gap: 24px;
+
+  padding: 12px 0;           /* 20 → 12 (불필요한 공백 제거) */
+  margin-bottom: 32px;       /* 퍼센트와 동일 리듬 */
+}
+
+/* =====================================
+   결과 영역
+   ===================================== */
+
+.partner_request_results{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  gap: 20px;  /* 24 → 20 (테이블 위 간격 정돈) */
+}

@@ -31,7 +31,8 @@ import {
 //업체지점장- 대여기록
 export default function PartnerRequestsPage() {
   //업체지점장- 대여기록에서 취소버튼을 누를시 함수를 가져옴
-  const {partnerCancelReloadKey, partnerRequestCancelClick} = useContext(partnerContext);
+  const { partnerCancelReloadKey, partnerRequestCancelClick } =
+    useContext(partnerContext);
   //<input type="date"> 는 Date 객체가 아니라 문자열 "yyyy-mm-dd" 형태로 값을 다룸
   //조회기간 시작일자 => 디폴트 오늘날짜 - 7
   const todayString = makeTodayString();
@@ -155,7 +156,7 @@ export default function PartnerRequestsPage() {
   }, [endDate]);
 
   //주의 useEffect 인자에 직접적으로 async를 쓰면 안된다. 차라리 fetch then은 가능
-  //페이지네이션 페이지가 변화할때마다, 검색결과를 할때마다도
+  //페이지네이션 페이지가 변화할때마다, 요청현황이 완료혹은 취소로 바뀔때마다도
   useEffect(() => {
     //기본 mount 되자마자
     //fetch로 전체, 완료 갯수를 불러오기
@@ -164,10 +165,18 @@ export default function PartnerRequestsPage() {
 
     setLoading(true);
     fetchListWithTabbarContent(tabBarContent);
-  }, [tabBarContent, page, partnerCancelReloadKey]);
+  }, [page, partnerCancelReloadKey]);
+
+  //탭 내용을 바꿀시에는 무조건 1페이지로 초기화하고 fetch로 해당목록 불러오기
+  useEffect(() => {
+    setPage(1);
+    setLoading(true);
+    fetchListWithTabbarContent(tabBarContent);
+  }, [tabBarContent]);
 
   //조회버튼을 누를 시 실행해야 하는 것
   const afterSearchClicked = () => {
+    setLoading(true);
     fetchListWithTabbarContent(tabBarContent);
   };
 
@@ -203,10 +212,7 @@ export default function PartnerRequestsPage() {
             <p>로딩중...</p>
           ) : (
             <>
-              <Table
-                requests={requests}
-                afterCanceled={afterCanceled}
-              />
+              <Table requests={requests} afterCanceled={afterCanceled} />
               <Pagination
                 totalCount={requestCount}
                 page={page}

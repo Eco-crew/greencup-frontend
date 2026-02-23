@@ -1,0 +1,30 @@
+.partnerCancelButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+  cursor: pointer;
+
+  background: #f5f5f5;
+  border: 1px solid #dcdcdc;
+
+  transition: all 0.2s ease;
+}
+
+/* hover */
+.partnerCancelButton:hover {
+  background: #eeeeee;
+  border-color: #cfcfcf;
+}
+
+/* 클릭 */
+.partnerCancelButton:active {
+  background: #e5e5e5;
+}
+
+.partnerCancelButtonText {
+  font-size: 15px;
+  font-weight: 600;
+  color: #888;
+}

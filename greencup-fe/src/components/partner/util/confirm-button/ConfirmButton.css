@@ -1,0 +1,31 @@
+.partnerConfirmButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+  cursor: pointer;
+
+  background: linear-gradient(180deg, #4caf50, #3aa54a);
+  box-shadow: 0 4px 10px rgba(58, 165, 74, 0.3);
+
+  transition: all 0.2s ease;
+}
+
+/* hover */
+.partnerConfirmButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(58, 165, 74, 0.35);
+}
+
+/* 클릭 */
+.partnerConfirmButton:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(58, 165, 74, 0.25);
+}
+
+.partnerConfirmButtonText {
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+}

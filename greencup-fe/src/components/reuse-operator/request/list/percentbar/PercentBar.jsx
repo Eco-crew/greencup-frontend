@@ -32,18 +32,19 @@ export default function PercentBar({ totalRequest, completedRequest }) {
 
         let tmpProgressWidth = Math.floor((parentWidth / 100) * currentPercent);
         //console.log(tmpProgressWidth);
-        setProgressWidth(tmpProgressWidth == 0 ? 100 : tmpProgressWidth);
-
+        setProgressWidth(tmpProgressWidth == 0 ? 50 : 50 + tmpProgressWidth);
+        if (currentPercent == 100) {
+          setProgressWidth(tmpProgressWidth);
+        }
         if (textRef.current) {
           let textWidth = textRef.current.getBoundingClientRect().width;
 
           if (currentPercent <= 0) {
             //0%여도 글자는 나오게!!
-            setTextPosition(20);
+            setTextPosition(0);
             progressBarRef.current.style.backgroundColor = "lightgray";
           } else {
-            //20은 여유분
-            setTextPosition(tmpProgressWidth - textWidth - 20);
+            setTextPosition(tmpProgressWidth - textWidth);
             progressBarRef.current.style.backgroundColor = "green";
           }
         }

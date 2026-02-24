@@ -51,10 +51,10 @@ export default function PartnerRequestsPage() {
   const [loading, setLoading] = useState(true);
   //무슨 페이지를 눌렀는지
   const [page, setPage] = useState(1);
-  //useEffect 의존성 문제때문에 fetch가 2번 호출되는것 막기
-  const [skipNextFetch, setSkipNextFetch] = useState(false);
   //첫 mount시에 fetch가 2번 호출되는것 막기
   const firstTabEffect = useRef(true);
+  //useEffect 의존성 문제때문에 원래 1페이지인 상태에서 다른 탭 이동시 trigger유발
+  const [reloadKey, setReloadKey] = useState(0);
 
   const startDateChange = (startDate) => {
     let result = checkDatesRanges(startDate, endDate);
@@ -135,21 +135,21 @@ export default function PartnerRequestsPage() {
 
   //탭바에 따라 목록 불러오는 함수
   const fetchListWithTabbarContent = (tabBarContent, pageNum) => {
-      switch (tabBarContent) {
-        case TOTAL:
+    switch (tabBarContent) {
+      case TOTAL:
         handleFetchTotalPartnerRequests(pageNum);
         break;
       case REQUESTING:
         handleFetchRequestingPartnerRequests(pageNum);
-          break;
-        case COMPLETED:
+        break;
+      case COMPLETED:
         handleFetchCompletedPartnerRequests(pageNum);
-          break;
-        case CANCELLED:
+        break;
+      case CANCELLED:
         handleFetchCancelledPartnerRequests(pageNum);
-          break;
-      }
-    };
+        break;
+    }
+  };
 
   useEffect(() => {
     //console.log(startDate);
@@ -166,38 +166,29 @@ export default function PartnerRequestsPage() {
     //fetch로 전체, 완료 갯수를 불러오기
     //fetch로 전체 요청 목록 불러오기
     //console.log(tabBarContent);
-    if (skipNextFetch) {
-      setSkipNextFetch(false);
-      return;
-    }
 
     setLoading(true);
     fetchListWithTabbarContent(tabBarContent, page);
-  }, [page, partnerCancelReloadKey]);
+  }, [page, reloadKey, partnerCancelReloadKey]);
 
   //탭 내용을 바꿀시에는 무조건 1페이지로 초기화하고 fetch로 해당목록 불러오기
   useEffect(() => {
-     //다음 page effect 막기
-    setSkipNextFetch(true);
-
     //첫 마운트는 여기서 중단
     if (firstTabEffect.current) {
       firstTabEffect.current = false;
       return;
     }
 
-    setPage(1);
-    setLoading(true);
-    fetchListWithTabbarContent(tabBarContent, 1);
+    //이전탭에서도 1페이지였어도 트리거를 발생시키기 위해
+    if (page === 1) setReloadKey((k) => k + 1);
+    else setPage(1);
   }, [tabBarContent]);
 
   //조회버튼을 누를 시 실행해야 하는 것
   const afterSearchClicked = () => {
-     //다음 page effect 막기
-    setSkipNextFetch(true);
-    setPage(1);
-    setLoading(true);
-    fetchListWithTabbarContent(tabBarContent, 1);
+    //조회를 누르기전 1페이지였어도 트리거를 발생시키기 위해
+    if (page === 1) setReloadKey((k) => k + 1);
+    else setPage(1);
   };
 
   //table 칸에 있는 취소 버튼을 누를시 실행해야하는것

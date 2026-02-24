@@ -21,8 +21,8 @@ export default function ReuseOperatorPartnerManagePage() {
   const [loading, setLoading] = useState(true);
   //무슨 페이지를 눌렀는지
   const [page, setPage] = useState(1);
-  //useEffect 의존성 문제때문에 fetch가 2번 호출되는것 막기
-  const [skipNextFetch, setSkipNextFetch] = useState(false);
+  //useEffect 의존성 문제때문에 원래 1페이지인 상태에서 다른 탭 이동시 trigger유발
+  const [reloadKey, setReloadKey] = useState(0);
 
   //input박스에 입력시마다 실행할 함수
   const partnerNameChange = (partnerName) => {
@@ -56,14 +56,10 @@ export default function ReuseOperatorPartnerManagePage() {
     //기본 mount 되자마자
     //fetch로 전체, 완료 갯수를 불러오기
     //fetch로 전체 요청 목록 불러오기
-    if (skipNextFetch) {
-      setSkipNextFetch(false);
-      return;
-    }
     
     setLoading(true);
     handleFetchReusePartners(page);
-  }, [page]);
+  }, [page, reloadKey]);
 
   useEffect(() => {
     //console.log(partnerName);
@@ -71,11 +67,9 @@ export default function ReuseOperatorPartnerManagePage() {
 
   //조회버튼을 누를시 수행해야 하는것
   const afterSearchButtonClicked = () => {
-    //다음 page effect 막기
-    setSkipNextFetch(true);
-    setPage(1);
-    setLoading(true);
-    handleFetchReusePartners(1);
+    //조회를 누르기전 1페이지였어도 트리거를 발생시키기 위해
+    if (page === 1) setReloadKey((k) => k + 1);
+    else setPage(1);
   };
 
   //페이지네이션 버튼을 누를시 실행해야 하는 것

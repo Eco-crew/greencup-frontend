@@ -21,6 +21,8 @@ export default function ReuseOperatorPartnerManagePage() {
   const [loading, setLoading] = useState(true);
   //무슨 페이지를 눌렀는지
   const [page, setPage] = useState(1);
+  //useEffect 의존성 문제때문에 fetch가 2번 호출되는것 막기
+  const [skipNextFetch, setSkipNextFetch] = useState(false);
 
   //input박스에 입력시마다 실행할 함수
   const partnerNameChange = (partnerName) => {
@@ -28,9 +30,9 @@ export default function ReuseOperatorPartnerManagePage() {
   };
 
   //전체목록 불러온후 상태관리하는 함수
-  const handleFetchReusePartners = async () => {
+  const handleFetchReusePartners = async (pageNum) => {
     const response = await fetch(
-      `/api/reuse-operator/partners?partnerName=${encodeURIComponent(partnerName)}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+      `/api/reuse-operator/partners?partnerName=${encodeURIComponent(partnerName)}&page=${pageNum}&pageRowSize=${SHOW_POSTS_COUNT}`,
       {
         method: "GET",
         credentials: "include", // 세션에 관한 쿠키도 꼭 전송
@@ -54,18 +56,26 @@ export default function ReuseOperatorPartnerManagePage() {
     //기본 mount 되자마자
     //fetch로 전체, 완료 갯수를 불러오기
     //fetch로 전체 요청 목록 불러오기
-
-    handleFetchReusePartners();
+    if (skipNextFetch) {
+      setSkipNextFetch(false);
+      return;
+    }
+    
+    setLoading(true);
+    handleFetchReusePartners(page);
   }, [page]);
 
   useEffect(() => {
     //console.log(partnerName);
-  },[partnerName]);
+  }, [partnerName]);
 
   //조회버튼을 누를시 수행해야 하는것
   const afterSearchButtonClicked = () => {
+    //다음 page effect 막기
+    setSkipNextFetch(true);
+    setPage(1);
     setLoading(true);
-    handleFetchReusePartners();
+    handleFetchReusePartners(1);
   };
 
   //페이지네이션 버튼을 누를시 실행해야 하는 것
@@ -81,7 +91,11 @@ export default function ReuseOperatorPartnerManagePage() {
         <div className="reuse_partner_search">
           <SearchContainer partnerNameChange={partnerNameChange} />
           {/* width, height 크기 조정시 값 변경, 버튼을 누를시 onClick이라는 함수를 넘겨줘야함 */}
-          <SearchButton width={100} height={50} onClick={afterSearchButtonClicked}/>
+          <SearchButton
+            width={100}
+            height={50}
+            onClick={afterSearchButtonClicked}
+          />
         </div>
 
         <div className="reuse_partner_results">

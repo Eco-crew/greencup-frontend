@@ -51,6 +51,10 @@ export default function PartnerRequestsPage() {
   const [loading, setLoading] = useState(true);
   //무슨 페이지를 눌렀는지
   const [page, setPage] = useState(1);
+  //useEffect 의존성 문제때문에 fetch가 2번 호출되는것 막기
+  const [skipNextFetch, setSkipNextFetch] = useState(false);
+  //첫 mount시에 fetch가 2번 호출되는것 막기
+  const firstTabEffect = useRef(true);
 
   const startDateChange = (startDate) => {
     let result = checkDatesRanges(startDate, endDate);
@@ -94,7 +98,7 @@ export default function PartnerRequestsPage() {
   };
 
   //전체목록 불러온후 상태관리하는 함수
-  const handleFetchTotalPartnerRequests = async () => {
+  const handleFetchTotalPartnerRequests = async (pageNum) => {
     fetchTotalPartnerRequests().then((data) => {
       setRequests(data.requests);
       setRequestCount(data.searchRequestCount);
@@ -103,7 +107,7 @@ export default function PartnerRequestsPage() {
   };
 
   //요청중인 목록만 불러온후 상태관리하는 함수
-  const handleFetchRequestingPartnerRequests = async () => {
+  const handleFetchRequestingPartnerRequests = async (pageNum) => {
     fetchRequestingPartnerRequests().then((data) => {
       setRequests(data.requests);
       setRequestCount(data.searchRequestCount);
@@ -112,7 +116,7 @@ export default function PartnerRequestsPage() {
   };
 
   //완료된 목록만 불러온후 상태관리하는 함수
-  const handleFetchCompletedPartnerRequests = async () => {
+  const handleFetchCompletedPartnerRequests = async (pageNum) => {
     fetchCompletedPartnerRequests().then((data) => {
       setRequests(data.requests);
       setRequestCount(data.searchRequestCount);
@@ -121,7 +125,7 @@ export default function PartnerRequestsPage() {
   };
 
   //취소된 목록만 불러온후 상태관리하는 함수
-  const handleFetchCancelledPartnerRequests = async () => {
+  const handleFetchCancelledPartnerRequests = async (pageNum) => {
     fetchCancelledPartnerRequests().then((data) => {
       setRequests(data.requests);
       setRequestCount(data.searchRequestCount);
@@ -130,22 +134,22 @@ export default function PartnerRequestsPage() {
   };
 
   //탭바에 따라 목록 불러오는 함수
-  const fetchListWithTabbarContent = (tabBarContent) => {
-    switch (tabBarContent) {
-      case TOTAL:
-        handleFetchTotalPartnerRequests();
+  const fetchListWithTabbarContent = (tabBarContent, pageNum) => {
+      switch (tabBarContent) {
+        case TOTAL:
+        handleFetchTotalPartnerRequests(pageNum);
         break;
       case REQUESTING:
-        handleFetchRequestingPartnerRequests();
-        break;
-      case COMPLETED:
-        handleFetchCompletedPartnerRequests();
-        break;
-      case CANCELLED:
-        handleFetchCancelledPartnerRequests();
-        break;
-    }
-  };
+        handleFetchRequestingPartnerRequests(pageNum);
+          break;
+        case COMPLETED:
+        handleFetchCompletedPartnerRequests(pageNum);
+          break;
+        case CANCELLED:
+        handleFetchCancelledPartnerRequests(pageNum);
+          break;
+      }
+    };
 
   useEffect(() => {
     //console.log(startDate);
@@ -162,22 +166,38 @@ export default function PartnerRequestsPage() {
     //fetch로 전체, 완료 갯수를 불러오기
     //fetch로 전체 요청 목록 불러오기
     //console.log(tabBarContent);
+    if (skipNextFetch) {
+      setSkipNextFetch(false);
+      return;
+    }
 
     setLoading(true);
-    fetchListWithTabbarContent(tabBarContent);
+    fetchListWithTabbarContent(tabBarContent, page);
   }, [page, partnerCancelReloadKey]);
 
   //탭 내용을 바꿀시에는 무조건 1페이지로 초기화하고 fetch로 해당목록 불러오기
   useEffect(() => {
+     //다음 page effect 막기
+    setSkipNextFetch(true);
+
+    //첫 마운트는 여기서 중단
+    if (firstTabEffect.current) {
+      firstTabEffect.current = false;
+      return;
+    }
+
     setPage(1);
     setLoading(true);
-    fetchListWithTabbarContent(tabBarContent);
+    fetchListWithTabbarContent(tabBarContent, 1);
   }, [tabBarContent]);
 
   //조회버튼을 누를 시 실행해야 하는 것
   const afterSearchClicked = () => {
+     //다음 page effect 막기
+    setSkipNextFetch(true);
+    setPage(1);
     setLoading(true);
-    fetchListWithTabbarContent(tabBarContent);
+    fetchListWithTabbarContent(tabBarContent, 1);
   };
 
   //table 칸에 있는 취소 버튼을 누를시 실행해야하는것

@@ -110,7 +110,7 @@ export default function ReuseOperatorRequestPage() {
   };
 
   //전체목록 불러온후 상태관리하는 함수
-  const handleFetchTotalReuseRequests = async () => {
+  const handleFetchTotalReuseRequests = async (pageNum) => {
     // fetchTotalReuseRequests().then((data) => {
     //   setRequests(data.requests);
     //   setRequestCount(data.searchRequestCount);
@@ -118,7 +118,7 @@ export default function ReuseOperatorRequestPage() {
     // });
 
     const response = await fetch(
-      `/api/reuse-operator/requests/total?startDate=${startDate}&endDate=${endDate}&partnerName=${encodeURIComponent(partnerName)}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+      `/api/reuse-operator/requests/total?startDate=${startDate}&endDate=${endDate}&partnerName=${encodeURIComponent(partnerName)}&page=${pageNum}&pageRowSize=${SHOW_POSTS_COUNT}`,
       {
         method: "GET",
         credentials: "include", // 세션에 관한 쿠키도 꼭 전송
@@ -140,7 +140,7 @@ export default function ReuseOperatorRequestPage() {
   };
 
   //완료된 목록만 불러온후 상태관리하는 함수
-  const handleFetchCompletedReuseRequests = async () => {
+  const handleFetchCompletedReuseRequests = async (pageNum) => {
     // fetchCompletedReuseRequests().then((data) => {
     //   setRequests(data.requests);
     //   setRequestCount(data.searchRequestCount);
@@ -148,7 +148,7 @@ export default function ReuseOperatorRequestPage() {
     // });
 
     const response = await fetch(
-      `/api/reuse-operator/requests/completed?startDate=${startDate}&endDate=${endDate}&partnerName=${encodeURIComponent(partnerName)}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+      `/api/reuse-operator/requests/completed?startDate=${startDate}&endDate=${endDate}&partnerName=${encodeURIComponent(partnerName)}&page=${pageNum}&pageRowSize=${SHOW_POSTS_COUNT}`,
       {
         method: "GET",
         credentials: "include", // 세션에 관한 쿠키도 꼭 전송
@@ -169,7 +169,7 @@ export default function ReuseOperatorRequestPage() {
   };
 
   //미완료된 목록만 불러온후 상태관리하는 함수
-  const handleFetchNotCompletedReuseRequests = async () => {
+  const handleFetchNotCompletedReuseRequests = async (pageNum) => {
     // fetchNotCompletedReuseRequests().then((data) => {
     //   setRequests(data.requests);
     //   setRequestCount(data.searchRequestCount);
@@ -177,7 +177,7 @@ export default function ReuseOperatorRequestPage() {
     // });
 
     const response = await fetch(
-      `/api/reuse-operator/requests/notcompleted?startDate=${startDate}&endDate=${endDate}&partnerName=${encodeURIComponent(partnerName)}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+      `/api/reuse-operator/requests/notcompleted?startDate=${startDate}&endDate=${endDate}&partnerName=${encodeURIComponent(partnerName)}&page=${pageNum}&pageRowSize=${SHOW_POSTS_COUNT}`,
       {
         method: "GET",
         credentials: "include", // 세션에 관한 쿠키도 꼭 전송
@@ -198,9 +198,9 @@ export default function ReuseOperatorRequestPage() {
   };
 
   //취소된 목록만 불러온후 상태관리하는 함수
-  const handleFetchCancelledReuseRequests = async () => {
+  const handleFetchCancelledReuseRequests = async (pageNum) => {
     const response = await fetch(
-      `/api/reuse-operator/requests/cancelled?startDate=${startDate}&endDate=${endDate}&partnerName=${encodeURIComponent(partnerName)}&page=${page}&pageRowSize=${SHOW_POSTS_COUNT}`,
+      `/api/reuse-operator/requests/cancelled?startDate=${startDate}&endDate=${endDate}&partnerName=${encodeURIComponent(partnerName)}&page=${pageNum}&pageRowSize=${SHOW_POSTS_COUNT}`,
       {
         method: "GET",
         credentials: "include", // 세션에 관한 쿠키도 꼭 전송
@@ -221,19 +221,19 @@ export default function ReuseOperatorRequestPage() {
   };
 
   //탭바에 따라 목록 불러오는 함수
-  const fetchListWithTabbarContent = (tabBarContent) => {
+  const fetchListWithTabbarContent = (tabBarContent, pageNum) => {
     switch (tabBarContent) {
       case TOTAL:
-        handleFetchTotalReuseRequests();
+        handleFetchTotalReuseRequests(pageNum);
         break;
       case COMPLETED:
-        handleFetchCompletedReuseRequests();
+        handleFetchCompletedReuseRequests(pageNum);
         break;
       case NOTCOMPLETED:
-        handleFetchNotCompletedReuseRequests();
+        handleFetchNotCompletedReuseRequests(pageNum);
         break;
       case CANCELLED:
-        handleFetchCancelledReuseRequests();
+        handleFetchCancelledReuseRequests(pageNum);
         break;
     }
   };
@@ -259,20 +259,19 @@ export default function ReuseOperatorRequestPage() {
     //console.log(tabBarContent);
 
     setLoading(true);
-    fetchListWithTabbarContent(tabBarContent);
+    fetchListWithTabbarContent(tabBarContent, page);
   }, [page, reuseCancelReloadKey, reuseCompleteReloadKey]);
 
   //탭 내용을 바꿀시에는 무조건 1페이지로 초기화하고 fetch로 해당목록 불러오기
   useEffect(() => {
     setPage(1);
-    setLoading(true);
-    fetchListWithTabbarContent(tabBarContent);
+    fetchListWithTabbarContent(tabBarContent,1);
   }, [tabBarContent]);
 
   //조회버튼을 누를 시 실행해야 하는 것
   const afterSearchClicked = () => {
-    setLoading(true);
-    fetchListWithTabbarContent(tabBarContent);
+    setPage(1);
+    fetchListWithTabbarContent(tabBarContent,1);
   };
 
   //table칸에 있는 완료 버튼을 누를시 실행해야하는것

@@ -135,7 +135,7 @@ export default function ReuseOperatorRequestPage() {
       setRequests(data.requests);
       //console.log(data.requests);
       setRequestCount(data.searchRequestCount);
-      setTotalRequestCount(data.searchRequestCount);
+      setTotalRequestCount(data.incompleteCount + data.completeCount + data.cancelledCount);
       setCompletedRequestCount(data.completeCount);
       setLoading(false);
     } else {
@@ -164,7 +164,7 @@ export default function ReuseOperatorRequestPage() {
       setRequests(data.requests);
       //console.log(data.requests);
       setRequestCount(data.searchRequestCount);
-      setTotalRequestCount(data.searchRequestCount);
+      setTotalRequestCount(data.incompleteCount + data.completeCount + data.cancelledCount);
       setCompletedRequestCount(data.completeCount);
       setLoading(false);
     } else {
@@ -193,7 +193,7 @@ export default function ReuseOperatorRequestPage() {
       setRequests(data.requests);
       //console.log(data.requests);
       setRequestCount(data.searchRequestCount);
-      setTotalRequestCount(data.searchRequestCount);
+      setTotalRequestCount(data.incompleteCount + data.completeCount + data.cancelledCount);
       setCompletedRequestCount(data.completeCount);
       setLoading(false);
     } else {
@@ -216,7 +216,7 @@ export default function ReuseOperatorRequestPage() {
       setRequests(data.requests);
       //console.log(data.requests);
       setRequestCount(data.searchRequestCount);
-      setTotalRequestCount(data.searchRequestCount);
+      setTotalRequestCount(data.incompleteCount + data.completeCount + data.cancelledCount);
       setCompletedRequestCount(data.completeCount);
       setLoading(false);
     } else {

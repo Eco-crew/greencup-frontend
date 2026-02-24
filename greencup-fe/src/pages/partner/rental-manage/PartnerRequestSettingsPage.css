@@ -92,6 +92,10 @@
   min-height: 100px;
 }
 
+.settingTimeError{
+  text-align: center;
+  color:red;
+}
 /* =========================
    Holiday Area (Irregular + Regular) - FLEX
 ========================= */

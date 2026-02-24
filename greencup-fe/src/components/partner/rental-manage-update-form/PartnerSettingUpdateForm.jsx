@@ -7,6 +7,7 @@ export default function PartnerSettingUpdateForm({
   defaultVisitTime,
   onChange,
 }) {
+
   return (
     <>
       <div
@@ -31,8 +32,8 @@ export default function PartnerSettingUpdateForm({
           >
             <tr>
               <td><input id="partner-rental-manage-form-default-need-count" className="partner-rental-manage-partner-setting-input" value={defaultNeedCount} name={"defaultNeedCount"} onChange={(e)=>{onChange(e)}}/></td>
-              <td><input id="partner-rental-manage-form-default-return-count" className="partner-rental-manage-partner-setting-input" value={defaultReturnCount} name={"defaultReturnCount"} onChange={(e)=>{onChange(e)}}/></td>
-              <td><input id="partner-rental-manage-form-default-visit-time" className="partner-rental-manage-partner-setting-input" value={defaultVisitTime} name={"defaultVisitTime"} onChange={(e)=>{onChange(e)}}/></td>
+              <td>{defaultReturnCount}</td>
+              <td><input type="text" id="partner-rental-manage-form-default-visit-time" className="partner-rental-manage-partner-setting-input" value={defaultVisitTime} name={"defaultVisitTime"} onChange={(e)=>{onChange(e)}}/></td>
             </tr>
           </tbody>
         </table>

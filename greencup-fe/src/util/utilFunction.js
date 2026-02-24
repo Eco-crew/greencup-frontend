@@ -76,13 +76,22 @@ export const checkDatesRanges = (startDateStr, endDateStr) => {
 //요청현황아이디를 가지고 반납개수를 불러온다
 //그리고 나서 -음수이거나 반납개수 이하인지 확인한다
 //일단 음수만 체크하기로 협의
-export const checkMissedCount = async(missedCount) => {
+export const checkMissedCount = async (missedCount) => {
     //let returnedCount = await fetchReturnedCountReuseRequest(requestId);
     //console.log(missedCount);
     //console.log(returnedCount);
 
-    if(missedCount < 0){
+    if (missedCount < 0) {
         return false;
     }
     return true;
+}
+
+//입력한 문자열이 HH:MM 형식인지 검사
+export const isValidTime = (str) => {
+    //[01]\d => 첫 번째 자리가 0 또는 1, 두 번째 자리가 숫자(0~9)
+    //2[0-3] => 첫 번째 자리가 무조건 2, 두 번째 자리가 0~3
+    //[0-5]\d => 첫 번째 자리가 0~5, 두 번째 자리가 0~9
+    const regex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+    return regex.test(str);
 }

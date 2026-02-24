@@ -20,6 +20,7 @@ import HolidayListUpdateForm from "../../../components/partner/rental-manage-upd
 import HolidayRegularListUpdateForm from "../../../components/partner/rental-manage-update-form/HolidayRegularListUpdateForm";
 
 import { fetchPartnerRental } from "../../../api/dummyPartnerRental";
+import { isValidTime } from "../../../util/utilFunction";
 
 //업체지점장-대여관리-대여정보
 export default function PartnerRequestSettingsPage() {
@@ -31,6 +32,8 @@ export default function PartnerRequestSettingsPage() {
   const [partner, setPartner] = useState({});
   //partnerId 조회한 해당 partner의 settingInfo  기본설정 항목
   const [settingInfo, setSettingInfo] = useState({});
+  //기본설정 시간 입력값 형식이 HH:MM이 아니라면
+  const [settingTimeError, setSettingTimeError] = useState(false);
   //기본설정 수정 버튼을 눌러서 수정모드인지 여부
   const [isSettingInfoUpdatingMode, setIsSettingInfoUpdatingMode] =
     useState(false);
@@ -50,10 +53,6 @@ export default function PartnerRequestSettingsPage() {
   const [weeklyOffDays, setWeeklyOffDays] = useState([]);
   //수정폼에서의 선택한 정기 휴무 요일
   const [updateOffWeeklyOffDays, setUpdateOffWeeklyOffDays] = useState([]);
-  //비교를 해서 추가할 비정기휴일
-  const [insertWeeklyOffDates, setInsertWeeklyOffDates] = useState([]);
-  //비교를 해서 삭제할 비정기휴일
-  const [deleteWeeklyOffDates, setDeleteWeeklyOffDates] = useState([]);
   //정기 휴무일 수정 버튼을 눌러서 수정모드인지 여부
   const [isRegularUpdatingMode, setIsRegularUpdatingMode] = useState(false);
   //fetch로 불러올동안 로딩중 여부
@@ -158,31 +157,19 @@ export default function PartnerRequestSettingsPage() {
 
   useEffect(() => {
     console.log(updateOffWeeklyOffDays);
-
-    // const tmpInsertWeeklyOffDates = [];
-    // const tmpDeleteWeeklyOffDates = [];
-    // weeklyOffDays.forEach((offDate) => {
-    //   //업데이트된 배열에 없는거면 삭제할 대상
-    //   if(!updateOffWeeklyOffDays.includes(offDate)){
-    //     tmpDeleteWeeklyOffDates.push(offDate);
-    //   }
-    // });
-
-    // updateOffWeeklyOffDays.forEach((updateOffDate) => {
-    //   //기존 배열에 없는거면 추가할 대상
-    //   if (!weeklyOffDays.includes(updateOffDate)){
-    //     tmpInsertWeeklyOffDates.push(updateOffDate);
-    //   }
-    // });
-
-    // console.log("tmpInsertWeeklyOffDates",tmpInsertWeeklyOffDates);
-    // console.log("tmpDeleteWeeklyOffDates",tmpDeleteWeeklyOffDates);
-    // setInsertOffDates(tmpInsertWeeklyOffDates);
-    // setDeleteOffDates(tmpDeleteWeeklyOffDates);
   }, [updateOffWeeklyOffDays]);
 
   //partnersetting 대여정보수정 input박스에 입력시
   const partnerSettingOnChange = (e) => {
+    //만약 시간설정이면 HH:MM인지 검사
+    if (e.target.name === "defaultVisitTime"){
+      const result = isValidTime(e.target.value);
+      if (!result){
+        setSettingTimeError(true);
+      } else {
+        setSettingTimeError(false);
+      }
+    }
     setSettingInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -303,6 +290,7 @@ export default function PartnerRequestSettingsPage() {
                 defaultVisitTime={settingInfo.defaultVisitTime}
               />
             )}
+            {settingTimeError ? <div className="settingTimeError">HH:MM형식으로 시간을 입력해주세요.</div> :""}
           </div>
           <div className="partner_rental_manage_partner_message_total_container">
             <div className="partner_rental_manage_title_container">

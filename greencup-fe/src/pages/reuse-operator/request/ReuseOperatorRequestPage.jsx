@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 
 import "./ReuseOperatorRequestPage.css";
 
@@ -63,6 +63,10 @@ export default function ReuseOperatorRequestPage() {
   const [loading, setLoading] = useState(true);
   //무슨 페이지를 눌렀는지
   const [page, setPage] = useState(1);
+  //useEffect 의존성 문제때문에 fetch가 2번 호출되는것 막기
+  const [skipNextFetch, setSkipNextFetch] = useState(false);
+  //첫 mount시에 fetch가 2번 호출되는것 막기
+  const firstTabEffect = useRef(true);
 
   const startDateChange = (startDate) => {
     let result = checkDatesRanges(startDate, endDate);
@@ -257,6 +261,10 @@ export default function ReuseOperatorRequestPage() {
     //fetch로 전체, 완료 갯수를 불러오기
     //fetch로 전체 요청 목록 불러오기
     //console.log(tabBarContent);
+    if (skipNextFetch) {
+      setSkipNextFetch(false);
+      return;
+    }
 
     setLoading(true);
     fetchListWithTabbarContent(tabBarContent, page);
@@ -264,14 +272,27 @@ export default function ReuseOperatorRequestPage() {
 
   //탭 내용을 바꿀시에는 무조건 1페이지로 초기화하고 fetch로 해당목록 불러오기
   useEffect(() => {
+    //다음 page effect 막기
+    setSkipNextFetch(true);
+
+    //첫 마운트는 여기서 중단
+    if (firstTabEffect.current) {
+      firstTabEffect.current = false;
+      return;
+    }
+
     setPage(1);
-    fetchListWithTabbarContent(tabBarContent,1);
+    setLoading(true);
+    fetchListWithTabbarContent(tabBarContent, 1);
   }, [tabBarContent]);
 
   //조회버튼을 누를 시 실행해야 하는 것
   const afterSearchClicked = () => {
+    //다음 page effect 막기
+    setSkipNextFetch(true);
     setPage(1);
-    fetchListWithTabbarContent(tabBarContent,1);
+    setLoading(true);
+    fetchListWithTabbarContent(tabBarContent, 1);
   };
 
   //table칸에 있는 완료 버튼을 누를시 실행해야하는것

@@ -1,6 +1,10 @@
 /* 헤더 배경 영역 */
 .fixedBarHeader {
-  background-color: #5FAC4F;
+  /*background-color: #5FAC4F;*/
+  /* background: linear-gradient(135deg, #5FAC4F 0%, #3E8E41 50%, #2E7D32 100%); */
+  background: linear-gradient(135deg, #2E7D32 0%, #3E8E41 50%, #5FAC4F 100%);
+  /*background: linear-gradient(135deg, #0b2a1e 0%, #0f3a2d 50%, #134a3a 100%);*/
+  box-shadow: 0 5px 12px rgba(63, 143, 65, 0.25);
 }
 
 /* 네비게이션 레이아웃 */

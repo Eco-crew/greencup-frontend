@@ -63,16 +63,36 @@ export default function PartnerRequestSettingsPage() {
 
   //해당 항목 불러온후 상태관리하는 함수
   const handleFetchReuseDetailPartner = async () => {
-    fetchPartnerRental().then((data) => {
-      setPartner(data.partner);
-      setReuse(data.reuse);
+    // fetchPartnerRental().then((data) => {
+    //   setPartner(data.partner);
+    //   setReuse(data.reuse);
+    //   setSettingInfo(data.settingInfo);
+    //   setWeeklyOffDays(data.weeklyOffDays);
+    //   setUpdateOffWeeklyOffDays(data.weeklyOffDays);
+    //   setOffDates(data.offDates);
+    //   setUpdateOffDates(data.offDates);
+    //   setLoading(false);
+    // });
+
+    const response = await fetch(`/api/partner/request-settings`, {
+      method: "GET",
+      credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+      setPartner(data.partnerInfo);
+      setReuse(data.reuseInfo);
       setSettingInfo(data.settingInfo);
       setWeeklyOffDays(data.weeklyOffDays);
       setUpdateOffWeeklyOffDays(data.weeklyOffDays);
       setOffDates(data.offDates);
       setUpdateOffDates(data.offDates);
       setLoading(false);
-    });
+    } else {
+      console.log("업체지점장- 대여현황 불러오기 오류");
+    }
   };
 
   //주의 useEffect 인자에 직접적으로 async를 쓰면 안된다. 차라리 fetch then은 가능
@@ -118,20 +138,20 @@ export default function PartnerRequestSettingsPage() {
     const tmpDeleteOffDates = [];
     offDates.forEach((offDate) => {
       //업데이트된 배열에 없는거면 삭제할 대상
-      if(!updateOffDates.includes(offDate)){
+      if (!updateOffDates.includes(offDate)) {
         tmpDeleteOffDates.push(offDate);
       }
     });
 
     updateOffDates.forEach((updateOffDate) => {
       //기존 배열에 없는거면 추가할 대상
-      if (!offDates.includes(updateOffDate)){
+      if (!offDates.includes(updateOffDate)) {
         tmpInsertOffDates.push(updateOffDate);
       }
     });
-    
-    console.log("tmpInsertOffDates",tmpInsertOffDates);
-    console.log("tmpDeleteOffDates",tmpDeleteOffDates);
+
+    console.log("tmpInsertOffDates", tmpInsertOffDates);
+    console.log("tmpDeleteOffDates", tmpDeleteOffDates);
     setInsertOffDates(tmpInsertOffDates);
     setDeleteOffDates(tmpDeleteOffDates);
   }, [updateOffDates]);
@@ -154,7 +174,7 @@ export default function PartnerRequestSettingsPage() {
     //     tmpInsertWeeklyOffDates.push(updateOffDate);
     //   }
     // });
-    
+
     // console.log("tmpInsertWeeklyOffDates",tmpInsertWeeklyOffDates);
     // console.log("tmpDeleteWeeklyOffDates",tmpDeleteWeeklyOffDates);
     // setInsertOffDates(tmpInsertWeeklyOffDates);
@@ -235,8 +255,8 @@ export default function PartnerRequestSettingsPage() {
           <div className="partner_rental_reuse_manager_container">
             <ReuseOperatorManagerInfo
               reuseOperatorName={reuse.reuseOperatorName}
-              reuseOperatorManagerName={reuse.reuseOperatorManagerName}
-              reuseOperatorManagerPhone={reuse.reuseOperatorManagerPhone}
+              reuseOperatorManagerName={reuse.reuseManagerName}
+              reuseOperatorManagerPhone={reuse.reuseManagerPhone}
             />
           </div>
           <div className="partner_rental_partner_greencup_container">

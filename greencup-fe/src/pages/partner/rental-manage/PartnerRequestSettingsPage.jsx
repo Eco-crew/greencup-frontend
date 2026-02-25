@@ -61,7 +61,7 @@ export default function PartnerRequestSettingsPage() {
   //const [isUpdatingMode, setIsUpdatingMode] = useState(false);
 
   //해당 항목 불러온후 상태관리하는 함수
-  const handleFetchReuseDetailPartner = async () => {
+  const handleFetchRequestSettingPartner = async () => {
     // fetchPartnerRental().then((data) => {
     //   setPartner(data.partner);
     //   setReuse(data.reuse);
@@ -80,7 +80,7 @@ export default function PartnerRequestSettingsPage() {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
+      //console.log(data);
       setPartner(data.partnerInfo);
       setReuse(data.reuseInfo);
       setSettingInfo(data.settingInfo);
@@ -98,7 +98,7 @@ export default function PartnerRequestSettingsPage() {
   useEffect(() => {
     //기본 mount 되자마자
     //fetch로 요청 내용 정보 설정
-    handleFetchReuseDetailPartner();
+    handleFetchRequestSettingPartner();
   }, []);
 
   //대여정보 수정 버튼 클릭시 실행해야하는것
@@ -133,7 +133,7 @@ export default function PartnerRequestSettingsPage() {
 
     if (response.ok) {
       const data = await response.json();
-      handleFetchReuseDetailPartner();
+      handleFetchRequestSettingPartner();
     } else {
       console.log("업체지점장- 필요한 갯수와 방문시간 수정 오류");
     }
@@ -149,7 +149,7 @@ export default function PartnerRequestSettingsPage() {
     }
   };
 
-  //기본설정 -필요한 갯수와 방문시간 수정 fetch 후 조회 fetch날리기
+  //비고메시지 수정 fetch 후 조회 fetch날리기
   const handleFetchUpdateSettingMemo = async () => {
     setLoading(true);
     const response = await fetch(`/api/partner/request-settings/memo`, {
@@ -165,7 +165,7 @@ export default function PartnerRequestSettingsPage() {
 
     if (response.ok) {
       const data = await response.json();
-      handleFetchReuseDetailPartner();
+      handleFetchRequestSettingPartner();
     } else {
       console.log("비고 메시지 수정 오류");
     }
@@ -174,6 +174,34 @@ export default function PartnerRequestSettingsPage() {
   //비정기휴무 수정버튼 클릭시 실행해야 하는 것
   const goUpdateIrregularHolidayFormClick = () => {
     setIsIrregularUpdatingMode((prev) => !prev);
+
+    //만약 수정 완료 상태였다면 fetch
+    if (isIrregularUpdatingMode) {
+      handleFetchUpdateOffDates();
+    }
+  };
+
+  //비고메시지 수정 fetch 후 조회 fetch날리기
+  const handleFetchUpdateOffDates = async () => {
+    setLoading(true);
+    const response = await fetch(`/api/partner/request-settings/off-dates`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        deletedOffDates: deleteOffDates,
+        insertedOffDates:insertOffDates,
+      }),
+      credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      handleFetchRequestSettingPartner();
+    } else {
+      console.log("비정기 휴무 수정 오류");
+    }
   };
 
   //정기휴무 수정버튼 클릭시 실행해야 하는 것
@@ -204,14 +232,14 @@ export default function PartnerRequestSettingsPage() {
       }
     });
 
-    console.log("tmpInsertOffDates", tmpInsertOffDates);
-    console.log("tmpDeleteOffDates", tmpDeleteOffDates);
+    //console.log("tmpInsertOffDates", tmpInsertOffDates);
+    //console.log("tmpDeleteOffDates", tmpDeleteOffDates);
     setInsertOffDates(tmpInsertOffDates);
     setDeleteOffDates(tmpDeleteOffDates);
   }, [updateOffDates]);
 
   useEffect(() => {
-    console.log(updateOffWeeklyOffDays);
+    //console.log(updateOffWeeklyOffDays);
   }, [updateOffWeeklyOffDays]);
 
   //partnersetting 대여정보수정 input박스에 입력시

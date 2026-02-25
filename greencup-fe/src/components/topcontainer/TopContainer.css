@@ -31,6 +31,10 @@
   margin-right: 8px;         
 }
 
+.top_container_login{
+  cursor: pointer;
+}
+
 #login_name{
   display:flex;
   justify-content: center;

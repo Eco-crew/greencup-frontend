@@ -36,6 +36,7 @@
 /* 마우스 올렸을 때 */
 .fixedBarNavLink:hover {
   opacity: 0.85;
+  cursor:pointer;
 }
 
 /* 현재 페이지 메뉴 */

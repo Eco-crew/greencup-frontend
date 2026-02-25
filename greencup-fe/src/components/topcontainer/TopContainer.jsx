@@ -27,7 +27,7 @@ export default function TopContainer({ loginUser, logout }) {
         <div id="login_info">
           {/* loginUser.role === REUSE_OPERATOR => 수거지점장일때, 가장 밑 블록 덩어리=> 업체지점장일때 */}
           {loginUser === null ? (
-            <div
+            <div className="top_container_login"
               onClick={() => {
                 goLoginPage();
               }}
@@ -46,7 +46,7 @@ export default function TopContainer({ loginUser, logout }) {
                 <div>{loginUser.userName}님</div>
               </div>
               <div>고객지원</div>
-              <div
+              <div className="top_container_login"
                 onClick={() => {
                   logout();
                   goHomePage();
@@ -62,7 +62,7 @@ export default function TopContainer({ loginUser, logout }) {
                 <div>{loginUser.userName}님</div>
               </div>
               <div>고객지원</div>
-              <div
+              <div className="top_container_login"
                 onClick={() => {
                   logout();
                   goHomePage();

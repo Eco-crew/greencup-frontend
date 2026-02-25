@@ -14,10 +14,16 @@ export default function Header({ loginUser, bigMenu }) {
                 //isActive => NavLink가 내부적으로 객체를 넘겨주는데 특정 속성
 
                 menu.path === "#" ? (
+                  // <div
+                  //   key={menu.label}
+                  //   className="fixedBarNavLink"
+                  //   onClick={() => alert("준비중입니다")}
+                  // >
+                  //   {menu.label}
+                  // </div>
                   <div
                     key={menu.label}
                     className="fixedBarNavLink"
-                    onClick={() => alert("준비중입니다")}
                   >
                     {menu.label}
                   </div>

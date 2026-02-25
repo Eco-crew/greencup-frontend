@@ -109,6 +109,34 @@ export default function PartnerRequestSettingsPage() {
   //기본 설정 수정버튼 클릭시 실행해야하는것
   const goUpdateSettingInfoFormClick = () => {
     setIsSettingInfoUpdatingMode((prev) => !prev);
+
+    //만약 수정 완료 상태였다면 fetch
+    if (isSettingInfoUpdatingMode) {
+      handleFetchUpdateSettingInfo();
+    }
+  };
+
+  //기본설정 수정 fetch 후 조회 fetch날리기
+  const handleFetchUpdateSettingInfo = async () => {
+    setLoading(true);
+    const response = await fetch(`/api/partner/request-settings/setting-info`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        defaultNeedCount: settingInfo.defaultNeedCount,
+        defaultVisitTime: `${settingInfo.defaultVisitTime}:00`,
+      }),
+      credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      handleFetchReuseDetailPartner();
+    } else {
+      console.log("업체지점장- 필요한 갯수와 방문시간 수정 오류");
+    }
   };
 
   //비고 메세지 수정버튼 클릭시 실행해야 하는 것
@@ -162,9 +190,9 @@ export default function PartnerRequestSettingsPage() {
   //partnersetting 대여정보수정 input박스에 입력시
   const partnerSettingOnChange = (e) => {
     //만약 시간설정이면 HH:MM인지 검사
-    if (e.target.name === "defaultVisitTime"){
+    if (e.target.name === "defaultVisitTime") {
       const result = isValidTime(e.target.value);
-      if (!result){
+      if (!result) {
         setSettingTimeError(true);
       } else {
         setSettingTimeError(false);
@@ -290,7 +318,13 @@ export default function PartnerRequestSettingsPage() {
                 defaultVisitTime={settingInfo.defaultVisitTime}
               />
             )}
-            {settingTimeError ? <div className="settingTimeError">HH:MM형식으로 시간을 입력해주세요.</div> :""}
+            {settingTimeError ? (
+              <div className="settingTimeError">
+                HH:MM형식으로 시간을 입력해주세요.
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="partner_rental_manage_partner_message_total_container">
             <div className="partner_rental_manage_title_container">

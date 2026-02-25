@@ -4,15 +4,16 @@
 
 .home_container {
   width: 90%;
-  margin: 60px auto;
+  margin: 0px auto;
 }
-
 
 /* =========================
    HERO
 ========================= */
 
 .home_hero {
+  height: 520px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,9 +22,15 @@
 
 .home_hero_left {
   width: 45%;
+  height: 100%;
+
+  background-image: url("/img/home/greencup-process-total2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
-.home_hero_left h1 {
+/* .home_hero_left h1 {
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 30px;
@@ -57,18 +64,18 @@
   font-size: 16px;
   line-height: 1.6;
   color: #444;
-}
-
+} */
 
 /* HERO RIGHT IMAGE */
 
 .home_hero_right {
   width: 50%;
-}
+  height: 100%;
 
-.home_hero_right img {
-  width: 100%;
-  border-radius: 20px;
+  background-image: url("/img/home/greencup-find-place2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 
@@ -77,36 +84,29 @@
 ========================= */
 
 .home_map_section {
+  width: 100%;
+  height: 520px;
   margin-bottom: 80px;
 }
 
 .home_map_section h2 {
-  font-size: 24px;
+  font-size: 28px;     
+  font-weight: 700;     
+  letter-spacing: -0.5px; 
+  color: #222;          
+  
   margin-bottom: 20px;
 }
 
 .home_map_card {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.home_map_card img {
   width: 100%;
-  display: block;
-}
+  height: 100%;
 
-.map_overlay {
-  position: absolute;
-  top: 30%;
-  left: 40px;
-  color: white;
+  background-image: url("/img/home/greencup-steps2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
-
-.map_overlay span {
-  color: #7CFF7A;
-}
-
 
 /* =========================
    BOTTOM SECTION
@@ -114,7 +114,7 @@
 
 .home_bottom_section {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: 40px;
 }
 
@@ -126,28 +126,138 @@
 
 .home_bottom_section h2 {
   margin-bottom: 20px;
-  font-size: 22px;
+
+  font-size: 28px;     
+  font-weight: 700;     
+  letter-spacing: -0.5px; 
+  color: #222; 
 }
 
 .card_placeholder {
-  background: #e0e0e0;
-  height: 220px;
-  border-radius: 20px;
-}
+  width: 100%;
+  height: 400px;
 
-.card_placeholder.large {
-  height: 300px;
-}
-
-.photo_cards {
-  display: flex;
-  gap: 20px;
+  background-image: url("/img/home/greencup-notice2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .photo_card {
-  background: #e0e0e0;
-  height: 220px;
-  flex: 1;
-  border-radius: 20px;
+  width: 100%;
+  height: 400px;
+
+  background-image: url("/img/home/greencup-event2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
+@media (max-width: 1100px) and (min-width: 901px) {
+  .home_container {
+    width: 94%;
+  }
+
+  /* HERO */
+  .home_hero {
+    height: 420px; /* 기존 520 → 줄여서 빈공간 감소 */
+    gap: 20px;
+  }
+
+  .home_hero_left,
+  .home_hero_right {
+    height: 100%;
+    background-size: contain; /* 핵심: contain → cover */
+    background-position: center;
+    border-radius: 16px;
+  }
+
+  /* MAP */
+  .home_map_section {
+    height: 420px;
+  }
+
+  .home_map_section h2 {
+    text-align: center;
+  }
+
+  .home_map_card {
+    background-size: contain;
+    background-position: center;
+    border-radius: 16px;
+  }
+
+  /* BOTTOM */
+  .home_bottom_section {
+    gap: 30px;
+  }
+
+  .home_bottom_section h2 {
+    text-align: center;
+  }
+
+  .card_placeholder,
+  .photo_card {
+    height: 340px;
+    background-size: contain;
+    background-position: center;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 900px) {
+  .home_container {
+    width: 94%;
+  }
+
+  /* HERO */
+  .home_hero {
+    height: auto;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 50px;
+  }
+
+  .home_hero_left,
+  .home_hero_right {
+    width: 100%;
+    height: 300px;
+    background-size: contain;
+    background-position: center;
+    border-radius: 18px;
+  }
+
+  /* MAP */
+  .home_map_section {
+    height: 320px;
+    margin-bottom: 50px;
+  }
+
+  .home_map_section h2 {
+    text-align: center;
+  }
+
+  .home_map_card {
+    background-size: contain;
+    background-position: center;
+    border-radius: 18px;
+  }
+
+  /* BOTTOM */
+  .home_bottom_section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .home_bottom_section h2 {
+    text-align: center;
+  }
+
+  .card_placeholder,
+  .photo_card {
+    height: 280px;
+    background-size: contain;
+    background-position: center;
+    border-radius: 18px;
+  }
+}

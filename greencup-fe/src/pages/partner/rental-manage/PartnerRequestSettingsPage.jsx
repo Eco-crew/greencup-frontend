@@ -88,6 +88,7 @@ export default function PartnerRequestSettingsPage() {
       setUpdateOffWeeklyOffDays(data.weeklyOffDays);
       setOffDates(data.offDates);
       setUpdateOffDates(data.offDates);
+
       setLoading(false);
     } else {
       console.log("업체지점장- 대여현황 불러오기 오류");
@@ -108,9 +109,14 @@ export default function PartnerRequestSettingsPage() {
 
   //기본 설정 수정버튼 클릭시 실행해야하는것
   const goUpdateSettingInfoFormClick = () => {
+    //만약 다른 수정폼이 열려있었다면 아무것도 동작하지 않게
+    if (isMemoUpdatingMode || isIrregularUpdatingMode || isRegularUpdatingMode){
+      return;
+    }
+
     setIsSettingInfoUpdatingMode((prev) => !prev);
 
-    //만약 수정 완료 상태였다면 fetch
+    //만약 수정하는 상태였다면 fetch
     if (isSettingInfoUpdatingMode) {
       handleFetchUpdateSettingInfo();
     }
@@ -141,10 +147,15 @@ export default function PartnerRequestSettingsPage() {
 
   //비고 메세지 수정버튼 클릭시 실행해야 하는 것
   const goUpdateMemoFormClick = () => {
+    //만약 다른 수정폼이 열려있었다면 아무것도 동작하지 않게
+    if (isSettingInfoUpdatingMode || isIrregularUpdatingMode || isRegularUpdatingMode){
+      return;
+    }
+
     setIsMemoUpdatingMode((prev) => !prev);
 
-    //만약 수정 완료 상태였다면 fetch
-    if (isMemoUpdatingMode){
+    //만약 수정하는 상태였다면 fetch
+    if (isMemoUpdatingMode) {
       handleFetchUpdateSettingMemo();
     }
   };
@@ -173,15 +184,20 @@ export default function PartnerRequestSettingsPage() {
 
   //비정기휴무 수정버튼 클릭시 실행해야 하는 것
   const goUpdateIrregularHolidayFormClick = () => {
+    //만약 다른 수정폼이 열려있었다면 아무것도 동작하지 않게
+    if (isSettingInfoUpdatingMode || isMemoUpdatingMode || isRegularUpdatingMode){
+      return;
+    }
+
     setIsIrregularUpdatingMode((prev) => !prev);
 
-    //만약 수정 완료 상태였다면 fetch
+    //만약 수정하는 상태였다면 fetch
     if (isIrregularUpdatingMode) {
       handleFetchUpdateOffDates();
     }
   };
 
-  //비고메시지 수정 fetch 후 조회 fetch날리기
+  //비정기휴무 수정 fetch 후 조회 fetch날리기
   const handleFetchUpdateOffDates = async () => {
     setLoading(true);
     const response = await fetch(`/api/partner/request-settings/off-dates`, {
@@ -191,7 +207,7 @@ export default function PartnerRequestSettingsPage() {
       },
       body: JSON.stringify({
         deletedOffDates: deleteOffDates,
-        insertedOffDates:insertOffDates,
+        insertedOffDates: insertOffDates,
       }),
       credentials: "include", // 세션에 관한 쿠키도 꼭 전송
     });
@@ -204,9 +220,44 @@ export default function PartnerRequestSettingsPage() {
     }
   };
 
-  //정기휴무 수정버튼 클릭시 실행해야 하는 것
+  //정기휴무 요일 수정버튼 클릭시 실행해야 하는 것
   const goUpdateRegularHolidayFormClick = () => {
+    //만약 다른 수정폼이 열려있었다면 아무것도 동작하지 않게
+    if (isSettingInfoUpdatingMode || isMemoUpdatingMode || isIrregularUpdatingMode){
+      return;
+    }
+
     setIsRegularUpdatingMode((prev) => !prev);
+
+    //만약 수정하는 상태였다면 fetch
+    if (isRegularUpdatingMode) {
+      handleFetchUpdateWeeklyOffDays();
+    }
+  };
+
+  //정기휴무 요일 수정 fetch 후 조회 fetch날리기
+  const handleFetchUpdateWeeklyOffDays = async () => {
+    setLoading(true);
+    const response = await fetch(
+      `/api/partner/request-settings/weekly-off-days`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          weeklyOffDays: updateOffWeeklyOffDays,
+        }),
+        credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+      },
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      handleFetchRequestSettingPartner();
+    } else {
+      console.log("정기 휴무 요일 수정 오류");
+    }
   };
 
   useEffect(() => {

@@ -71,8 +71,8 @@ export default function LoginPage() {
       if (nextUser.role === REUSE_OPERATOR) {
         navigate(`/reuse-operator/requests`);
       } else {
-        //업체 지점장일때는 대여 기록으로 이동
-        navigate(`/partner/requests`);
+        //업체 지점장일때는 대여 관리로 이동
+        navigate(`/partner/request-settings`);
       }
 
       //usecontext에 등록

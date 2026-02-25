@@ -116,7 +116,7 @@ export default function PartnerRequestSettingsPage() {
     }
   };
 
-  //기본설정 수정 fetch 후 조회 fetch날리기
+  //기본설정 -필요한 갯수와 방문시간 수정 fetch 후 조회 fetch날리기
   const handleFetchUpdateSettingInfo = async () => {
     setLoading(true);
     const response = await fetch(`/api/partner/request-settings/setting-info`, {
@@ -142,6 +142,33 @@ export default function PartnerRequestSettingsPage() {
   //비고 메세지 수정버튼 클릭시 실행해야 하는 것
   const goUpdateMemoFormClick = () => {
     setIsMemoUpdatingMode((prev) => !prev);
+
+    //만약 수정 완료 상태였다면 fetch
+    if (isMemoUpdatingMode){
+      handleFetchUpdateSettingMemo();
+    }
+  };
+
+  //기본설정 -필요한 갯수와 방문시간 수정 fetch 후 조회 fetch날리기
+  const handleFetchUpdateSettingMemo = async () => {
+    setLoading(true);
+    const response = await fetch(`/api/partner/request-settings/memo`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        memo: settingInfo.memo,
+      }),
+      credentials: "include", // 세션에 관한 쿠키도 꼭 전송
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      handleFetchReuseDetailPartner();
+    } else {
+      console.log("비고 메시지 수정 오류");
+    }
   };
 
   //비정기휴무 수정버튼 클릭시 실행해야 하는 것

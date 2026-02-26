@@ -227,9 +227,9 @@ function App() {
   //--------------------수거지점장 완료로 변경 영역 끝-----------------------
 
   //--------------------업체 지점장 요청 취소로 변경 영역 시작-----------------
-  //업체지점장-대여관리-미완료로 변경 모달 띄울지 여부
+  //업체지점장-대여현황에서 취소로 변경 모달 띄울지 여부
   const [partnerCancelModalOpen, setPartnerCancelModalOpen] = useState(false);
-  //지점장-요청현황-미완료로 변경 모달시, 현재 관련있는 요청 아이디
+  //업체지점장-대여현황에서 취소로 변경 모달시, 현재 관련있는 요청 아이디
   const [partnerCancelRequestId, setPartnerCancelRequestId] = useState("");
 
   //변경후, 페이지내에서 다시 수정한 목록을 바로 보여줘야하는데 그러면 바로 fetch를 실행해야함
@@ -239,45 +239,24 @@ function App() {
     setPartnerCancelReloadKey((k) => k + 1);
   };
 
-  //수거지점장-요청현황-미완료로 변경 모달에서 취소버튼을 클릭시
+  //업체지점장-대여현황에서 취소로 변경 모달에서 취소버튼을 클릭시
   const partnerCancel_CancelClick = () => {
     //reusecancelmodal open 상태변수를 바꾸자
     setPartnerCancelModalOpen(false);
   };
 
-  //수거지점장-요청현황-미완료로 변경 모달에서 확인버튼을 클릭시
+  //업체지점장-대여현황에서 취소로 변경 모달에서 확인버튼을 클릭시
   const partnerCancel_ConfirmClick = async () => {
-    //요청아이디 상태변수를 가져온다
-    //fetch로 요청 미완료로 업데이트
-    // const response = await fetch(
-    //   `/api/reuse-operator/requests/${reuseCancelRequestId}/uncomplete`,
-    //   {
-    //     method: "PUT",
-    //     credentials: "include", // 세션에 관한 쿠키도 꼭 전송
-    //   },
-    // );
-
-    // if (response.ok) {
-    //   const data = await response.json();
-    //   alert("요청 미완료로 변경 성공");
-
-    //   //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
-    //   reuseCancelTriggerReload();
-
-    //   //reusecancelmodal open 상태변수를 바꾸자
-    //   setReuseCancelModalOpen(false);
-    // } else {
-    //   alert("요청 미완료로 변경 실패");
-    // }
+    //추후 수정을 하기위한 백엔드 fetch 연결 필요
 
     //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
     partnerCancelTriggerReload();
 
-    //reusecancelmodal open 상태변수를 바꾸자
+    //modal open 상태변수를 바꾸자
     setPartnerCancelModalOpen(false);
   };
 
-  //수거지점장-요청현황에서 취소버튼을 누를시
+  //업체지점장-대여현황에서 취소버튼을 누를시
   const partnerRequestCancelClick = (requestId) => {
     //modal open 상태변수를 바꾸자
     setPartnerCancelModalOpen(true);

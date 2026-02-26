@@ -104,7 +104,7 @@ function App() {
 
     if (response.ok) {
       const data = await response.json();
-      alert("요청 미완료로 변경 성공");
+      //alert("요청 미완료로 변경 성공");
 
       //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
       reuseCancelTriggerReload();
@@ -112,10 +112,9 @@ function App() {
       //reusecancelmodal open 상태변수를 바꾸자
       setReuseCancelModalOpen(false);
     } else {
-      alert("요청 미완료로 변경 실패");
+      //alert("요청 미완료로 변경 실패");
     }
 
-    //console.log("reuseCancel_ConfirmClick 눌림");
   };
 
   //수거지점장-요청현황에서 취소버튼을 누를시
@@ -180,7 +179,7 @@ function App() {
 
       if (response.ok) {
         const data = await response.json();
-        alert("파손 및 분실개수 변경 성공");
+        //alert("파손 및 분실개수 변경 성공");
 
         //fetch로 요청 완료 처리
         console.log(reuseCompleteMissedCount);
@@ -194,21 +193,20 @@ function App() {
 
         if (response2.ok) {
           const data = await response2.json();
-          alert("요청 완료 처리 변경 성공");
+          //alert("요청 완료 처리 변경 성공");
           //아래 페이지 컴포넌트에서 강제로 useEffect를 또 실행시키기 위해
           reuseCompleteTriggerReload();
 
           //reusecancelmodal open 상태변수를 바꾸자
           setReuseCompleteModalOpen(false);
         } else {
-          alert("요청 완료 처리 변경 실패");
+          //alert("요청 완료 처리 변경 실패");
         }
       } else {
-        alert("파손 및 분실개수 변경 실패");
+        //alert("파손 및 분실개수 변경 실패");
       }
     }
 
-    //console.log("reuseComplete_ConfirmClick 눌림");
   };
 
   //수거지점장-요청현황-완료로 변경 모달에서 숫자입력을 할시
